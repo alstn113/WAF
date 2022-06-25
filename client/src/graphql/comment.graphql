@@ -1,0 +1,24 @@
+query GetAllComments {
+  comments {
+    id
+    text
+  }
+}
+
+query GetCommentById($id: String!) {
+  comment(id: $id) {
+    id
+    text
+  }
+}
+
+mutation createComment($createCommentInput: CreateCommentInput!) {
+  createComment(createCommentInput: $createCommentInput) {
+    id
+    text
+  }
+}
+
+mutation deleteComment($deleteCommentId: String!) {
+  deleteComment(id: $deleteCommentId)
+}
