@@ -1,12 +1,14 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import { dehydrate, DehydratedState, QueryClient } from 'react-query';
-import { GetAllPostsQuery, useGetAllPostsQuery } from '../generated/graphql';
-import graphqlRequestClient from '../lib/client/graphqlRequestClient';
-import formatDate from '../utils/formatDate';
+import {
+  GetAllCommentsQuery,
+  useGetAllCommentsQuery,
+} from '../../generated/graphql';
+import graphqlRequestClient from '../../lib/client/graphqlRequestClient';
 
-const Home: NextPage = () => {
-  const { data, error, isLoading } = useGetAllPostsQuery<
-    GetAllPostsQuery,
+const Comment: NextPage = () => {
+  const { data, error, isLoading } = useGetAllCommentsQuery<
+    GetAllCommentsQuery,
     Error
   >(graphqlRequestClient);
 
@@ -15,12 +17,10 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      {data?.posts?.map(post => (
-        <div key={post.id}>
-          <div>{post.id}</div>
-          <div>{post.title}</div>
-          <div>{post.body}</div>
-          <div>{formatDate(post.createdAt)}</div>
+      {data?.comments?.map(comment => (
+        <div key={comment.id}>
+          <div>{comment.id}</div>
+          <div>{comment.text}</div>
         </div>
       ))}
     </div>
@@ -32,8 +32,8 @@ export const getServerSideProps: GetServerSideProps = async (): Promise<{
 }> => {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
-    useGetAllPostsQuery.getKey(),
-    useGetAllPostsQuery.fetcher(graphqlRequestClient),
+    useGetAllCommentsQuery.getKey(),
+    useGetAllCommentsQuery.fetcher(graphqlRequestClient),
   );
 
   return {
@@ -43,4 +43,4 @@ export const getServerSideProps: GetServerSideProps = async (): Promise<{
   };
 };
 
-export default Home;
+export default Comment;
