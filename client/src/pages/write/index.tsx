@@ -4,6 +4,7 @@ import {
   CreatePostMutation,
   CreatePostMutationVariables,
   useCreatePostMutation,
+  useGetAllPostsQuery,
 } from '../../generated/graphql';
 import graphqlRequestClient from '../../lib/client/graphqlRequestClient';
 
@@ -15,7 +16,7 @@ const Write: NextPage = () => {
       _variables: CreatePostMutationVariables,
       _context: unknown,
     ) => {
-      queryClient.invalidateQueries(['GetAllPosts', {}]);
+      queryClient.invalidateQueries(useGetAllPostsQuery.getKey());
       console.log('mutation test', data);
     },
   });
