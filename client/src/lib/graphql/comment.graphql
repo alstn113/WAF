@@ -2,6 +2,9 @@ query GetAllComments {
   comments {
     id
     text
+    postId
+    createdAt
+    updatedAt
   }
 }
 

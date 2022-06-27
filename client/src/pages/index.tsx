@@ -1,8 +1,11 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import { dehydrate, DehydratedState, QueryClient } from 'react-query';
-import { GetAllPostsQuery, useGetAllPostsQuery } from '../generated/graphql';
+import {
+  GetAllPostsQuery,
+  useGetAllPostsQuery,
+} from '../lib/generated/graphql';
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
-import formatDate from '../utils/formatDate';
+import formatDate from '../lib/utils/formatDate';
 
 const Home: NextPage = () => {
   const { data, error, isLoading } = useGetAllPostsQuery<

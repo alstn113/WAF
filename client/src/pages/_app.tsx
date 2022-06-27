@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 
 // recoil
 import { RecoilRoot } from 'recoil';
+
 import Nav from '../components/Nav';
 
 function MyApp({ Component, pageProps }: AppProps) {

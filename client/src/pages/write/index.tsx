@@ -5,7 +5,7 @@ import {
   CreatePostMutationVariables,
   useCreatePostMutation,
   useGetAllPostsQuery,
-} from '../../generated/graphql';
+} from '../../lib/generated/graphql';
 import graphqlRequestClient from '../../lib/client/graphqlRequestClient';
 
 const Write: NextPage = () => {

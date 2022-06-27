@@ -23,14 +23,15 @@ export type Scalars = {
 export type Comment = {
   __typename?: 'Comment';
   createdAt?: Maybe<Scalars['DateTime']>;
-  fk_post_id: Scalars['String'];
   id: Scalars['ID'];
   post: Post;
+  postId: Scalars['String'];
   text: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type CreateCommentInput = {
-  fk_post_id: Scalars['String'];
+  postId: Scalars['String'];
   text: Scalars['String'];
 };
 
@@ -74,6 +75,7 @@ export type Post = {
   createdAt?: Maybe<Scalars['DateTime']>;
   id: Scalars['ID'];
   title: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 export type Query = {
@@ -94,10 +96,20 @@ export type QueryPostArgs = {
   id: Scalars['String'];
 };
 
+export type User = {
+  __typename?: 'User';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id: Scalars['ID'];
+  provider: Scalars['String'];
+  socialId: Scalars['String'];
+  updatedAt?: Maybe<Scalars['DateTime']>;
+  username: Scalars['String'];
+};
+
 export type GetAllCommentsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllCommentsQuery = { __typename?: 'Query', comments?: Array<{ __typename?: 'Comment', id: string, text: string }> | null };
+export type GetAllCommentsQuery = { __typename?: 'Query', comments?: Array<{ __typename?: 'Comment', id: string, text: string, postId: string, createdAt?: any | null, updatedAt?: any | null }> | null };
 
 export type GetCommentByIdQueryVariables = Exact<{
   id: Scalars['String'];
@@ -123,14 +135,14 @@ export type DeleteCommentMutation = { __typename?: 'Mutation', deleteComment?: s
 export type GetAllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title: string, body: string, createdAt?: any | null, comments?: Array<{ __typename?: 'Comment', id: string, text: string, fk_post_id: string }> | null }> | null };
+export type GetAllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title: string, body: string, createdAt?: any | null, updatedAt?: any | null, comments?: Array<{ __typename?: 'Comment', id: string, text: string, postId: string }> | null }> | null };
 
 export type GetPostByIdQueryVariables = Exact<{
   postId: Scalars['String'];
 }>;
 
 
-export type GetPostByIdQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, title: string, body: string, comments?: Array<{ __typename?: 'Comment', id: string, text: string, fk_post_id: string }> | null } | null };
+export type GetPostByIdQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, title: string, body: string, createdAt?: any | null, updatedAt?: any | null, comments?: Array<{ __typename?: 'Comment', id: string, text: string, postId: string }> | null } | null };
 
 export type CreatePostMutationVariables = Exact<{
   createPostInput: CreatePostInput;
@@ -152,6 +164,9 @@ export const GetAllCommentsDocument = `
   comments {
     id
     text
+    postId
+    createdAt
+    updatedAt
   }
 }
     `;
@@ -251,9 +266,10 @@ export const GetAllPostsDocument = `
     comments {
       id
       text
-      fk_post_id
+      postId
     }
     createdAt
+    updatedAt
   }
 }
     `;
@@ -285,8 +301,10 @@ export const GetPostByIdDocument = `
     comments {
       id
       text
-      fk_post_id
+      postId
     }
+    createdAt
+    updatedAt
   }
 }
     `;

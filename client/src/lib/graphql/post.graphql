@@ -6,9 +6,10 @@ query GetAllPosts {
     comments {
       id
       text
-      fk_post_id
+      postId
     }
     createdAt
+    updatedAt
   }
 }
 
@@ -20,8 +21,10 @@ query GetPostById($postId: String!) {
     comments {
       id
       text
-      fk_post_id
+      postId
     }
+    createdAt
+    updatedAt
   }
 }
 

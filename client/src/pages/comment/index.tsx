@@ -3,7 +3,7 @@ import { dehydrate, DehydratedState, QueryClient } from 'react-query';
 import {
   GetAllCommentsQuery,
   useGetAllCommentsQuery,
-} from '../../generated/graphql';
+} from '../../lib/generated/graphql';
 import graphqlRequestClient from '../../lib/client/graphqlRequestClient';
 
 const Comment: NextPage = () => {
