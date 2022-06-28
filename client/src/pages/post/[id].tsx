@@ -90,7 +90,7 @@ const PostDetail: NextPage = () => {
           <div key={comment.id}>
             <div>ID : {comment.id}</div>
             <div>TEXT : {comment.text}</div>
-            <div>{comment.createdAt}</div>
+            <div>{formatDate(comment.createdAt)}</div>
           </div>
         ))}
       </div>

@@ -10,6 +10,7 @@ import {
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
 import formatDate from '../lib/utils/formatDate';
 import Link from 'next/link';
+import { Button, Container, Box } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
   const { data, error, isLoading, refetch } = useGetAllPostsQuery<
@@ -34,22 +35,30 @@ const Home: NextPage = () => {
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;
 
+  const github = () => {
+    window.location.href = 'http://localhost:8080/auth/github';
+  };
   return (
-    <div>
-      {data?.posts?.map(post => (
-        <div key={post.id}>
-          <Link href={{ pathname: '/post/[id]', query: { id: post.id } }}>
-            <a>
-              <div>ID : {post.id}</div>
-            </a>
-          </Link>
-          <div>TITILE : {post.title}</div>
-          <div>BODY : {post.body}</div>
-          <div>{formatDate(post.createdAt)}</div>
-          <button onClick={() => deletePost(post.id)}>X</button>
-        </div>
-      ))}
-    </div>
+    <Container>
+      <Button colorScheme="blue" onClick={github}>
+        Github
+      </Button>
+      <Container>
+        {data?.posts?.map(post => (
+          <Box key={post.id} margin="4">
+            <Link href={{ pathname: '/post/[id]', query: { id: post.id } }}>
+              <a>
+                <div>ID : {post.id}</div>
+              </a>
+            </Link>
+            <div>TITILE : {post.title}</div>
+            <div>BODY : {post.body}</div>
+            <div>{formatDate(post.createdAt)}</div>
+            <button onClick={() => deletePost(post.id)}>X</button>
+          </Box>
+        ))}
+      </Container>
+    </Container>
   );
 };
 

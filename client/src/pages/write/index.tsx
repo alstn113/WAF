@@ -11,6 +11,7 @@ import {
 } from '../../lib/generated/graphql';
 import graphqlRequestClient from '../../lib/client/graphqlRequestClient';
 import { useRouter } from 'next/router';
+import { Button, Input } from '@chakra-ui/react';
 
 interface IFormInputs {
   title: string;
@@ -52,12 +53,11 @@ const Write: NextPage = () => {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('title')} type="text" placeholder="title" />
+        <Input {...register('title')} type="text" placeholder="title" />
         <p>{errors.title?.message}</p>
-        <input {...register('body')} type="text" placeholder="body" />
+        <Input {...register('body')} type="text" placeholder="body" />
         <p>{errors.body?.message}</p>
-
-        <button>post</button>
+        <Button type="submit">post</Button>
       </form>
     </div>
   );

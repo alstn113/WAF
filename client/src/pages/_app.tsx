@@ -9,6 +9,10 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 // recoil
 import { RecoilRoot } from 'recoil';
 
+// chakra-ui
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '../styles/theme';
+
 import Nav from '../components/Nav';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -18,8 +22,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={true} />
         <Hydrate state={pageProps.dehydratedState}>
-          <Nav />
-          <Component {...pageProps} />
+          <ChakraProvider theme={theme}>
+            <Nav />
+            <Component {...pageProps} />
+          </ChakraProvider>
         </Hydrate>
       </QueryClientProvider>
     </RecoilRoot>
