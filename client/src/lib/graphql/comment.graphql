@@ -12,6 +12,8 @@ query GetCommentById($id: String!) {
   comment(id: $id) {
     id
     text
+    createdAt
+    updatedAt
   }
 }
 

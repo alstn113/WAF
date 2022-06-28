@@ -116,7 +116,7 @@ export type GetCommentByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetCommentByIdQuery = { __typename?: 'Query', comment?: { __typename?: 'Comment', id: string, text: string } | null };
+export type GetCommentByIdQuery = { __typename?: 'Query', comment?: { __typename?: 'Comment', id: string, text: string, createdAt?: any | null, updatedAt?: any | null } | null };
 
 export type CreateCommentMutationVariables = Exact<{
   createCommentInput: CreateCommentInput;
@@ -135,14 +135,14 @@ export type DeleteCommentMutation = { __typename?: 'Mutation', deleteComment?: s
 export type GetAllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title: string, body: string, createdAt?: any | null, updatedAt?: any | null, comments?: Array<{ __typename?: 'Comment', id: string, text: string, postId: string }> | null }> | null };
+export type GetAllPostsQuery = { __typename?: 'Query', posts?: Array<{ __typename?: 'Post', id: string, title: string, body: string, createdAt?: any | null, updatedAt?: any | null, comments?: Array<{ __typename?: 'Comment', id: string, text: string, postId: string, createdAt?: any | null, updatedAt?: any | null }> | null }> | null };
 
 export type GetPostByIdQueryVariables = Exact<{
   postId: Scalars['String'];
 }>;
 
 
-export type GetPostByIdQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, title: string, body: string, createdAt?: any | null, updatedAt?: any | null, comments?: Array<{ __typename?: 'Comment', id: string, text: string, postId: string }> | null } | null };
+export type GetPostByIdQuery = { __typename?: 'Query', post?: { __typename?: 'Post', id: string, title: string, body: string, createdAt?: any | null, updatedAt?: any | null, comments?: Array<{ __typename?: 'Comment', id: string, text: string, postId: string, createdAt?: any | null, updatedAt?: any | null }> | null } | null };
 
 export type CreatePostMutationVariables = Exact<{
   createPostInput: CreatePostInput;
@@ -194,6 +194,8 @@ export const GetCommentByIdDocument = `
   comment(id: $id) {
     id
     text
+    createdAt
+    updatedAt
   }
 }
     `;
@@ -267,6 +269,8 @@ export const GetAllPostsDocument = `
       id
       text
       postId
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt
@@ -302,6 +306,8 @@ export const GetPostByIdDocument = `
       id
       text
       postId
+      createdAt
+      updatedAt
     }
     createdAt
     updatedAt

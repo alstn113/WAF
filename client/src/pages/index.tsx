@@ -1,10 +1,5 @@
 import type { GetServerSideProps, NextPage } from 'next';
-import {
-  dehydrate,
-  DehydratedState,
-  QueryClient,
-  useQueryClient,
-} from 'react-query';
+import { dehydrate, DehydratedState, QueryClient } from 'react-query';
 import {
   DeletePostMutation,
   DeletePostMutationVariables,
@@ -14,6 +9,7 @@ import {
 } from '../lib/generated/graphql';
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
 import formatDate from '../lib/utils/formatDate';
+import Link from 'next/link';
 
 const Home: NextPage = () => {
   const { data, error, isLoading, refetch } = useGetAllPostsQuery<
@@ -42,9 +38,13 @@ const Home: NextPage = () => {
     <div>
       {data?.posts?.map(post => (
         <div key={post.id}>
-          <div>{post.id}</div>
-          <div>{post.title}</div>
-          <div>{post.body}</div>
+          <Link href={{ pathname: '/post/[id]', query: { id: post.id } }}>
+            <a>
+              <div>ID : {post.id}</div>
+            </a>
+          </Link>
+          <div>TITILE : {post.title}</div>
+          <div>BODY : {post.body}</div>
           <div>{formatDate(post.createdAt)}</div>
           <button onClick={() => deletePost(post.id)}>X</button>
         </div>
