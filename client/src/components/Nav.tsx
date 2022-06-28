@@ -19,11 +19,6 @@ const Nav = () => {
           <a>Counter</a>
         </Link>
       </div>
-      <div>
-        <Link href={'/comment'}>
-          <a>Comment</a>
-        </Link>
-      </div>
     </div>
   );
 };

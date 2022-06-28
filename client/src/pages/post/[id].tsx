@@ -3,14 +3,34 @@ import type {
   GetServerSidePropsContext,
   NextPage,
 } from 'next';
-import { dehydrate, DehydratedState, QueryClient } from 'react-query';
 import {
+  dehydrate,
+  DehydratedState,
+  QueryClient,
+  useQueryClient,
+} from 'react-query';
+import {
+  CreateCommentMutation,
+  CreateCommentMutationVariables,
   GetPostByIdQuery,
+  useCreateCommentMutation,
   useGetPostByIdQuery,
 } from '../../lib/generated/graphql';
 import graphqlRequestClient from '../../lib/client/graphqlRequestClient';
 import formatDate from '../../lib/utils/formatDate';
 import { useRouter } from 'next/router';
+
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+interface IFormInputs {
+  text: string;
+}
+
+const schema = yup.object().shape({
+  text: yup.string().required('필수항목입니다'),
+});
 
 const PostDetail: NextPage = () => {
   const router = useRouter();
@@ -19,6 +39,32 @@ const PostDetail: NextPage = () => {
     GetPostByIdQuery,
     Error
   >(graphqlRequestClient, { postId: id });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<IFormInputs>({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+  });
+
+  const queryClient = useQueryClient();
+  const { mutate } = useCreateCommentMutation<Error>(graphqlRequestClient, {
+    onSuccess: async (
+      _data: CreateCommentMutation,
+      _variables: CreateCommentMutationVariables,
+      _context: unknown,
+    ) => {
+      await queryClient.invalidateQueries(
+        useGetPostByIdQuery.getKey({ postId: id }),
+      );
+    },
+  });
+
+  const onSubmit = (input: IFormInputs) => {
+    mutate({ createCommentInput: { ...input, postId: id } });
+  };
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;
@@ -29,6 +75,15 @@ const PostDetail: NextPage = () => {
       <div>TITLE : {data?.post?.title}</div>
       <div>BODY : {data?.post?.body}</div>
       <div>{formatDate(data?.post?.createdAt)}</div>
+      <hr />
+      <div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input {...register('text')} type="text" placeholder="text" />
+          <p>{errors.text?.message}</p>
+
+          <button>post</button>
+        </form>
+      </div>
       <hr />
       <div>
         {data?.post?.comments?.map(comment => (
@@ -43,23 +98,23 @@ const PostDetail: NextPage = () => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async (
-//   context: GetServerSidePropsContext,
-// ): Promise<{
-//   props: { dehydratedState: DehydratedState };
-// }> => {
-//   const id = context.params?.id as string;
-//   const queryClient = new QueryClient();
-//   await queryClient.prefetchQuery(
-//     useGetPostByIdQuery.getKey({ postId: id }),
-//     useGetPostByIdQuery.fetcher(graphqlRequestClient, { postId: id }),
-//   );
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext,
+): Promise<{
+  props: { dehydratedState: DehydratedState };
+}> => {
+  const id = context.params?.id as string;
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery(
+    useGetPostByIdQuery.getKey({ postId: id }),
+    useGetPostByIdQuery.fetcher(graphqlRequestClient, { postId: id }),
+  );
 
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   };
-// };
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 
 export default PostDetail;
