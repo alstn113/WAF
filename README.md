@@ -6,4 +6,4 @@ Server
 
 Client
 
-      nextjs, graphql, react-query, recoil
+      nextjs, graphql, react-query, recoil, chakra-ui
