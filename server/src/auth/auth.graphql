@@ -1,0 +1,13 @@
+input SocialAuthInput {
+  code: String
+}
+
+type Query {
+  gitHubAuth(input: SocialAuthInput!): User!
+  googleAuth(input: SocialAuthInput!): User!
+  getGoogleAuthURL: String!
+}
+
+type Mutation {
+  logout: User
+}
