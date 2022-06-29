@@ -1,0 +1,3 @@
+query GithubAuth($input: SocialAuthInput!) {
+  githubAuth(input: $input)
+}

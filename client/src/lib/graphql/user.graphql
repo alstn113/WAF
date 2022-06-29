@@ -1,0 +1,10 @@
+query ME {
+  me {
+    id
+    socialId
+    username
+    provider
+    createdAt
+    updatedAt
+  }
+}

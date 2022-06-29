@@ -8,6 +8,8 @@ import { GraphQLDateTime } from 'graphql-iso-date';
 import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
 import { AuthMiddleware } from './auth/auth.middleware';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { AuthMiddleware } from './auth/auth.middleware';
         };
       },
     }),
+    AuthModule,
+    UserModule,
     PostModule,
     CommentModule,
   ],

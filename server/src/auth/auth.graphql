@@ -3,8 +3,8 @@ input SocialAuthInput {
 }
 
 type Query {
-  gitHubAuth(input: SocialAuthInput!): User!
-  googleAuth(input: SocialAuthInput!): User!
+  githubAuth(input: SocialAuthInput!): String
+  googleAuth(input: SocialAuthInput!): String
   getGoogleAuthURL: String!
 }
 

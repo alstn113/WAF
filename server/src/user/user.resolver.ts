@@ -7,6 +7,6 @@ export class UserResolver {
 
   @Query('me')
   async me(@Context() context) {
-    return this.userService.findOne({ id: context.req.user });
+    return await this.userService.findOne({ id: context.req.user });
   }
 }

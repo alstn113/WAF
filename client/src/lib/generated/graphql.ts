@@ -46,6 +46,7 @@ export type Mutation = {
   createPost?: Maybe<Post>;
   deleteComment?: Maybe<Scalars['String']>;
   deletePost?: Maybe<Scalars['String']>;
+  logout?: Maybe<User>;
 };
 
 
@@ -82,6 +83,10 @@ export type Query = {
   __typename?: 'Query';
   comment?: Maybe<Comment>;
   comments?: Maybe<Array<Comment>>;
+  getGoogleAuthURL: Scalars['String'];
+  githubAuth: Scalars['String'];
+  googleAuth: Scalars['String'];
+  me?: Maybe<User>;
   post?: Maybe<Post>;
   posts?: Maybe<Array<Post>>;
 };
@@ -92,19 +97,41 @@ export type QueryCommentArgs = {
 };
 
 
+export type QueryGithubAuthArgs = {
+  input: SocialAuthInput;
+};
+
+
+export type QueryGoogleAuthArgs = {
+  input: SocialAuthInput;
+};
+
+
 export type QueryPostArgs = {
   id: Scalars['String'];
+};
+
+export type SocialAuthInput = {
+  code?: InputMaybe<Scalars['String']>;
 };
 
 export type User = {
   __typename?: 'User';
   createdAt?: Maybe<Scalars['DateTime']>;
+  hashedRt?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  provider: Scalars['String'];
-  socialId: Scalars['String'];
+  provider?: Maybe<Scalars['String']>;
+  socialId?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['DateTime']>;
-  username: Scalars['String'];
+  username?: Maybe<Scalars['String']>;
 };
+
+export type GithubAuthQueryVariables = Exact<{
+  input: SocialAuthInput;
+}>;
+
+
+export type GithubAuthQuery = { __typename?: 'Query', githubAuth: string };
 
 export type GetAllCommentsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -158,7 +185,36 @@ export type DeletePostMutationVariables = Exact<{
 
 export type DeletePostMutation = { __typename?: 'Mutation', deletePost?: string | null };
 
+export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
+
+export type MeQuery = { __typename?: 'Query', me?: { __typename?: 'User', id: string, socialId?: string | null, username?: string | null, provider?: string | null, createdAt?: any | null, updatedAt?: any | null } | null };
+
+
+export const GithubAuthDocument = `
+    query GithubAuth($input: SocialAuthInput!) {
+  githubAuth(input: $input)
+}
+    `;
+export const useGithubAuthQuery = <
+      TData = GithubAuthQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: GithubAuthQueryVariables,
+      options?: UseQueryOptions<GithubAuthQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<GithubAuthQuery, TError, TData>(
+      ['GithubAuth', variables],
+      fetcher<GithubAuthQuery, GithubAuthQueryVariables>(client, GithubAuthDocument, variables, headers),
+      options
+    );
+
+useGithubAuthQuery.getKey = (variables: GithubAuthQueryVariables) => ['GithubAuth', variables];
+;
+
+useGithubAuthQuery.fetcher = (client: GraphQLClient, variables: GithubAuthQueryVariables, headers?: RequestInit['headers']) => fetcher<GithubAuthQuery, GithubAuthQueryVariables>(client, GithubAuthDocument, variables, headers);
 export const GetAllCommentsDocument = `
     query GetAllComments {
   comments {
@@ -375,3 +431,34 @@ export const useDeletePostMutation = <
       options
     );
 useDeletePostMutation.fetcher = (client: GraphQLClient, variables: DeletePostMutationVariables, headers?: RequestInit['headers']) => fetcher<DeletePostMutation, DeletePostMutationVariables>(client, DeletePostDocument, variables, headers);
+export const MeDocument = `
+    query ME {
+  me {
+    id
+    socialId
+    username
+    provider
+    createdAt
+    updatedAt
+  }
+}
+    `;
+export const useMeQuery = <
+      TData = MeQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables?: MeQueryVariables,
+      options?: UseQueryOptions<MeQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<MeQuery, TError, TData>(
+      variables === undefined ? ['ME'] : ['ME', variables],
+      fetcher<MeQuery, MeQueryVariables>(client, MeDocument, variables, headers),
+      options
+    );
+
+useMeQuery.getKey = (variables?: MeQueryVariables) => variables === undefined ? ['ME'] : ['ME', variables];
+;
+
+useMeQuery.fetcher = (client: GraphQLClient, variables?: MeQueryVariables, headers?: RequestInit['headers']) => fetcher<MeQuery, MeQueryVariables>(client, MeDocument, variables, headers);

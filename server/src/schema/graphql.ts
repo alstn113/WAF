@@ -22,9 +22,9 @@ export class CreatePostInput {
 }
 
 export abstract class IQuery {
-    abstract gitHubAuth(input: SocialAuthInput): User | Promise<User>;
+    abstract githubAuth(input: SocialAuthInput): Nullable<string> | Promise<Nullable<string>>;
 
-    abstract googleAuth(input: SocialAuthInput): User | Promise<User>;
+    abstract googleAuth(input: SocialAuthInput): Nullable<string> | Promise<Nullable<string>>;
 
     abstract getGoogleAuthURL(): string | Promise<string>;
 
