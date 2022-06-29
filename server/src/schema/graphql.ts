@@ -7,10 +7,6 @@
 
 /* tslint:disable */
 /* eslint-disable */
-export class SocialAuthInput {
-    code?: Nullable<string>;
-}
-
 export class CreateCommentInput {
     text: string;
     postId: string;
@@ -21,13 +17,16 @@ export class CreatePostInput {
     body: string;
 }
 
+export class Comment {
+    id: string;
+    text: string;
+    postId: string;
+    post: Post;
+    createdAt?: Nullable<DateTime>;
+    updatedAt?: Nullable<DateTime>;
+}
+
 export abstract class IQuery {
-    abstract githubAuth(input: SocialAuthInput): Nullable<string> | Promise<Nullable<string>>;
-
-    abstract googleAuth(input: SocialAuthInput): Nullable<string> | Promise<Nullable<string>>;
-
-    abstract getGoogleAuthURL(): string | Promise<string>;
-
     abstract comments(): Nullable<Comment[]> | Promise<Nullable<Comment[]>>;
 
     abstract comment(id: string): Nullable<Comment> | Promise<Nullable<Comment>>;
@@ -40,8 +39,6 @@ export abstract class IQuery {
 }
 
 export abstract class IMutation {
-    abstract logout(): Nullable<User> | Promise<Nullable<User>>;
-
     abstract createComment(createCommentInput: CreateCommentInput): Nullable<Comment> | Promise<Nullable<Comment>>;
 
     abstract deleteComment(id: string): Nullable<string> | Promise<Nullable<string>>;
@@ -49,15 +46,6 @@ export abstract class IMutation {
     abstract createPost(createPostInput: CreatePostInput): Nullable<Post> | Promise<Nullable<Post>>;
 
     abstract deletePost(id: string): Nullable<string> | Promise<Nullable<string>>;
-}
-
-export class Comment {
-    id: string;
-    text: string;
-    postId: string;
-    post: Post;
-    createdAt?: Nullable<DateTime>;
-    updatedAt?: Nullable<DateTime>;
 }
 
 export class Post {

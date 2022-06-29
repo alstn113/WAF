@@ -7,9 +7,12 @@ import configuration from './config/configuration';
 import { GraphQLDateTime } from 'graphql-iso-date';
 import { PostModule } from './post/post.module';
 import { CommentModule } from './comment/comment.module';
-import { AuthMiddleware } from './auth/auth.middleware';
+import { AuthMiddleware } from './middleware/auth.middleware';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth/auth.guard';
 
 @Module({
   imports: [
@@ -17,27 +20,33 @@ import { UserModule } from './user/user.module';
       isGlobal: true,
       load: [configuration],
     }),
+    JwtModule.register({}),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ['./**/*.graphql'],
       playground: false,
       resolvers: { DateTime: GraphQLDateTime },
       plugins: [ApolloServerPluginLandingPageLocalDefault()],
-      context: ({ req, res }) => {
-        return {
-          req,
-          res,
-        };
+      cors: {
+        origin: true,
+        credentials: true,
       },
+      context: ({ req, res }) => ({ req, res }),
     }),
     AuthModule,
     UserModule,
     PostModule,
     CommentModule,
   ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes('cats');
+    consumer.apply(AuthMiddleware).forRoutes('*');
   }
 }

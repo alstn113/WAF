@@ -1,24 +1,24 @@
 import { HttpException, Injectable } from '@nestjs/common';
+import { PrismaService } from 'prisma/prisma.service';
+import { Response } from 'express';
+import { AuthService } from './auth.service';
 import { ConfigService } from '@nestjs/config';
 import axios from 'axios';
-import { PrismaService } from 'prisma/prisma.service';
-import { SocialAuthInput } from 'src/schema/graphql';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class GithubAuthService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly authService: AuthService,
+    private readonly authServie: AuthService,
     private readonly configService: ConfigService,
   ) {}
 
-  async githubAuth(input: SocialAuthInput, context: any) {
+  async githubCallback(res: Response, code: string) {
     try {
       const GITHUB_ID = this.configService.get('auth.github.id');
       const GITHUB_SECRET = this.configService.get('auth.github.secret');
       const accessToken = await this.getGithubAccessToken(
-        input.code,
+        code,
         GITHUB_ID,
         GITHUB_SECRET,
       );
@@ -28,11 +28,10 @@ export class GithubAuthService {
       const userId = await this.getGithubUserId(userInfo);
       if (!userId) throw new HttpException('로그인 실패', 400);
 
-      const access_token = await this.authService.getAccessToken(userId);
-      const refresh_token = await this.authService.getRefreshToken(userId);
-      await this.authService.updateRtHash(userId, refresh_token);
-      this.authService.setTokenCookie(context, { access_token, refresh_token });
-      return userId;
+      const access_token = await this.authServie.getAccessToken(userId);
+      const refresh_token = await this.authServie.getRefreshToken(userId);
+      await this.authServie.updateRtHash(userId, refresh_token);
+      this.authServie.setTokenCookie(res, { access_token, refresh_token });
     } catch (e) {
       throw new HttpException(e.message, 500);
     }
