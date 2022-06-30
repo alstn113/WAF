@@ -31,11 +31,13 @@ export class PostResolver {
     return this.postService.findById({ id });
   }
 
+  @Public()
   @Mutation('createPost')
   createPost(@Args('createPostInput') args: Prisma.PostCreateInput) {
     return this.postService.create(args);
   }
 
+  @Public()
   @Mutation('deletePost')
   deletePost(@Args('id') id: string) {
     return this.postService.delete({ id });

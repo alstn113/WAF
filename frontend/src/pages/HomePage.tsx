@@ -7,6 +7,7 @@ import {
 } from '../lib/generated/graphql';
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
 import formatDate from '../lib/utils/formatDate';
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const HomePage = () => {
   const { data, isLoading, error, refetch } =
@@ -26,7 +27,7 @@ const HomePage = () => {
     mutate({ deletePostId: postId });
   };
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <LoadingSpinner />;
   if (error) return <div>error</div>;
 
   const github = () => {

@@ -20,11 +20,13 @@ export class CommentResolver {
     return this.commentService.findById({ id });
   }
 
+  @Public()
   @Mutation('createComment')
   createComment(@Args('createCommentInput') args: Prisma.CommentCreateInput) {
     return this.commentService.create(args);
   }
 
+  @Public()
   @Mutation('deleteComment')
   deleteComment(@Args('id') id: string) {
     return this.commentService.delete({ id });
