@@ -1,4 +1,3 @@
-overwrite: true
 schema: http://localhost:8080/graphql
 documents: 'src/**/*.graphql'
 generates:
@@ -9,3 +8,5 @@ generates:
       - typescript-react-query
     config:
       fetcher: graphql-request
+      exposeQueryKeys: true
+      exposeFetcher: true

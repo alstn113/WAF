@@ -186,6 +186,11 @@ export const useGetAllCommentsQuery = <
       fetcher<GetAllCommentsQuery, GetAllCommentsQueryVariables>(client, GetAllCommentsDocument, variables, headers),
       options
     );
+
+useGetAllCommentsQuery.getKey = (variables?: GetAllCommentsQueryVariables) => variables === undefined ? ['GetAllComments'] : ['GetAllComments', variables];
+;
+
+useGetAllCommentsQuery.fetcher = (client: GraphQLClient, variables?: GetAllCommentsQueryVariables, headers?: RequestInit['headers']) => fetcher<GetAllCommentsQuery, GetAllCommentsQueryVariables>(client, GetAllCommentsDocument, variables, headers);
 export const GetCommentByIdDocument = `
     query GetCommentById($id: String!) {
   comment(id: $id) {
@@ -210,6 +215,11 @@ export const useGetCommentByIdQuery = <
       fetcher<GetCommentByIdQuery, GetCommentByIdQueryVariables>(client, GetCommentByIdDocument, variables, headers),
       options
     );
+
+useGetCommentByIdQuery.getKey = (variables: GetCommentByIdQueryVariables) => ['GetCommentById', variables];
+;
+
+useGetCommentByIdQuery.fetcher = (client: GraphQLClient, variables: GetCommentByIdQueryVariables, headers?: RequestInit['headers']) => fetcher<GetCommentByIdQuery, GetCommentByIdQueryVariables>(client, GetCommentByIdDocument, variables, headers);
 export const CreateCommentDocument = `
     mutation createComment($createCommentInput: CreateCommentInput!) {
   createComment(createCommentInput: $createCommentInput) {
@@ -231,6 +241,7 @@ export const useCreateCommentMutation = <
       (variables?: CreateCommentMutationVariables) => fetcher<CreateCommentMutation, CreateCommentMutationVariables>(client, CreateCommentDocument, variables, headers)(),
       options
     );
+useCreateCommentMutation.fetcher = (client: GraphQLClient, variables: CreateCommentMutationVariables, headers?: RequestInit['headers']) => fetcher<CreateCommentMutation, CreateCommentMutationVariables>(client, CreateCommentDocument, variables, headers);
 export const DeleteCommentDocument = `
     mutation deleteComment($deleteCommentId: String!) {
   deleteComment(id: $deleteCommentId)
@@ -249,6 +260,7 @@ export const useDeleteCommentMutation = <
       (variables?: DeleteCommentMutationVariables) => fetcher<DeleteCommentMutation, DeleteCommentMutationVariables>(client, DeleteCommentDocument, variables, headers)(),
       options
     );
+useDeleteCommentMutation.fetcher = (client: GraphQLClient, variables: DeleteCommentMutationVariables, headers?: RequestInit['headers']) => fetcher<DeleteCommentMutation, DeleteCommentMutationVariables>(client, DeleteCommentDocument, variables, headers);
 export const GetAllPostsDocument = `
     query GetAllPosts {
   posts {
@@ -281,6 +293,11 @@ export const useGetAllPostsQuery = <
       fetcher<GetAllPostsQuery, GetAllPostsQueryVariables>(client, GetAllPostsDocument, variables, headers),
       options
     );
+
+useGetAllPostsQuery.getKey = (variables?: GetAllPostsQueryVariables) => variables === undefined ? ['GetAllPosts'] : ['GetAllPosts', variables];
+;
+
+useGetAllPostsQuery.fetcher = (client: GraphQLClient, variables?: GetAllPostsQueryVariables, headers?: RequestInit['headers']) => fetcher<GetAllPostsQuery, GetAllPostsQueryVariables>(client, GetAllPostsDocument, variables, headers);
 export const GetPostByIdDocument = `
     query GetPostById($postId: String!) {
   post(id: $postId) {
@@ -313,6 +330,11 @@ export const useGetPostByIdQuery = <
       fetcher<GetPostByIdQuery, GetPostByIdQueryVariables>(client, GetPostByIdDocument, variables, headers),
       options
     );
+
+useGetPostByIdQuery.getKey = (variables: GetPostByIdQueryVariables) => ['GetPostById', variables];
+;
+
+useGetPostByIdQuery.fetcher = (client: GraphQLClient, variables: GetPostByIdQueryVariables, headers?: RequestInit['headers']) => fetcher<GetPostByIdQuery, GetPostByIdQueryVariables>(client, GetPostByIdDocument, variables, headers);
 export const CreatePostDocument = `
     mutation createPost($createPostInput: CreatePostInput!) {
   createPost(createPostInput: $createPostInput) {
@@ -335,6 +357,7 @@ export const useCreatePostMutation = <
       (variables?: CreatePostMutationVariables) => fetcher<CreatePostMutation, CreatePostMutationVariables>(client, CreatePostDocument, variables, headers)(),
       options
     );
+useCreatePostMutation.fetcher = (client: GraphQLClient, variables: CreatePostMutationVariables, headers?: RequestInit['headers']) => fetcher<CreatePostMutation, CreatePostMutationVariables>(client, CreatePostDocument, variables, headers);
 export const DeletePostDocument = `
     mutation deletePost($deletePostId: String!) {
   deletePost(id: $deletePostId)
@@ -353,3 +376,4 @@ export const useDeletePostMutation = <
       (variables?: DeletePostMutationVariables) => fetcher<DeletePostMutation, DeletePostMutationVariables>(client, DeletePostDocument, variables, headers)(),
       options
     );
+useDeletePostMutation.fetcher = (client: GraphQLClient, variables: DeletePostMutationVariables, headers?: RequestInit['headers']) => fetcher<DeletePostMutation, DeletePostMutationVariables>(client, DeletePostDocument, variables, headers);

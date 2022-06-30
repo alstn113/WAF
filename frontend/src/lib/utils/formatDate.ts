@@ -3,6 +3,7 @@ import format from 'date-fns/format';
 import koLocale from 'date-fns/locale/ko';
 
 const formatDate = (date: string): string => {
+  if (!date) return '오류';
   const d = new Date(date);
   const now = Date.now();
   const diff = now - new Date(date).getTime();
