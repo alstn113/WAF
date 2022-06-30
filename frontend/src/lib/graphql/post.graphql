@@ -1,0 +1,45 @@
+query GetAllPosts {
+  posts {
+    id
+    title
+    body
+    comments {
+      id
+      text
+      postId
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+query GetPostById($postId: String!) {
+  post(id: $postId) {
+    id
+    title
+    body
+    comments {
+      id
+      text
+      postId
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+
+mutation createPost($createPostInput: CreatePostInput!) {
+  createPost(createPostInput: $createPostInput) {
+    id
+    title
+    body
+  }
+}
+
+mutation deletePost($deletePostId: String!) {
+  deletePost(id: $deletePostId)
+}
