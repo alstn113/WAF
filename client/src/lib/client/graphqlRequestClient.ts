@@ -8,6 +8,8 @@ const requestHeaders = {
 
 const graphqlRequestClient = new GraphQLClient(GRAPHQL_ENDPOINT, {
   headers: requestHeaders,
+  credentials: 'include',
+  mode: 'cors',
 });
 
 export default graphqlRequestClient;
