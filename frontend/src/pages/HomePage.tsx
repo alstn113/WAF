@@ -28,17 +28,25 @@ const HomePage = () => {
 
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>error</div>;
+
+  const github = () => {
+    window.location.href = 'http://localhost:8080/auth/github';
+  };
+
   return (
     <div>
-      {data?.posts?.map((post) => (
-        <div key={post.id}>
-          <Link to={`/post/${post.id}`}>{post.id}</Link>
-          <div>{post.title}</div>
-          <div>{post.body}</div>
-          <div>{formatDate(post.createdAt)}</div>
-          <button onClick={() => deletePost(post.id)}>X</button>
-        </div>
-      ))}
+      <button onClick={github}>github</button>
+      <div>
+        {data?.posts?.map((post) => (
+          <div key={post.id}>
+            <Link to={`/post/${post.id}`}>{post.id}</Link>
+            <div>{post.title}</div>
+            <div>{post.body}</div>
+            <div>{formatDate(post.createdAt)}</div>
+            <button onClick={() => deletePost(post.id)}>X</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
