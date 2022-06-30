@@ -1,5 +1,6 @@
 import { useGetAllPostsQuery } from '../generated/graphql';
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
+import formatDate from '../lib/utils/formatDate';
 
 const HomePage = () => {
   const { data, isLoading, error } = useGetAllPostsQuery(graphqlRequestClient);
@@ -13,7 +14,7 @@ const HomePage = () => {
           <div>{post.id}</div>
           <div>{post.title}</div>
           <div>{post.body}</div>
-          <div>{post.createdAt}</div>
+          <div>{formatDate(post.createdAt)}</div>
         </div>
       ))}
     </div>
