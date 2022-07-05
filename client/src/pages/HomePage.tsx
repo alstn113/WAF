@@ -7,7 +7,7 @@ import {
 } from '../lib/generated/graphql';
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
 import formatDate from '../lib/utils/formatDate';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const HomePage = () => {
   const { data, isLoading, error, refetch } =

@@ -10,7 +10,7 @@ import {
 } from '../lib/generated/graphql';
 import formatDate from '../lib/utils/formatDate';
 import * as yup from 'yup';
-import LoadingSpinner from '../components/LoadingSpinner';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 interface IFormInputs {
   text: string;

@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { PROPERTIES } from '../../config/properties';
 
 const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT,
+  baseURL: PROPERTIES.API_ENDPOINT,
   withCredentials: true,
 });
 

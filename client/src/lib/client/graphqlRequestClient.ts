@@ -1,15 +1,13 @@
 import { GraphQLClient } from 'graphql-request';
+import { PROPERTIES } from '../../config/properties';
 
-const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_GRAPHQL_ENDPOINT as string;
-
+// example
 const requestHeaders = {
   authorization: 'Bearer MY_TOKEN',
 };
 
-const graphqlRequestClient = new GraphQLClient(GRAPHQL_ENDPOINT, {
+const graphqlRequestClient = new GraphQLClient(PROPERTIES.GRAPHQL_ENDPOINT, {
   headers: requestHeaders,
-  credentials: 'include',
-  mode: 'cors',
 });
 
 export default graphqlRequestClient;
