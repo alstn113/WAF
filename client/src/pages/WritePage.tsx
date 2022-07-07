@@ -10,6 +10,7 @@ import {
 } from '../lib/generated/graphql';
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
 import { useNavigate } from 'react-router-dom';
+import { Container } from '@chakra-ui/react';
 
 interface IFormInputs {
   title: string;
@@ -49,7 +50,7 @@ const WritePage = () => {
   });
 
   return (
-    <div>
+    <Container display={'flex'} justifyContent={'center'}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input {...register('title')} type="text" placeholder="title" />
         <p>{errors.title?.message}</p>
@@ -57,7 +58,7 @@ const WritePage = () => {
         <p>{errors.body?.message}</p>
         <button type="submit">post</button>
       </form>
-    </div>
+    </Container>
   );
 };
 

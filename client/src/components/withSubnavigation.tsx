@@ -292,17 +292,17 @@ const NAV_ITEMS: Array<NavItem> = [
     ],
   },
   {
-    label: 'Find Work',
+    label: 'Form',
     children: [
       {
-        label: 'Job Board',
-        subLabel: 'Find your dream design job',
-        href: '/',
+        label: 'Form Test',
+        subLabel: 'Form Create And Delete Test',
+        href: '/form',
       },
       {
-        label: 'Freelance Projects',
-        subLabel: 'An exclusive list for contract work',
-        href: '/',
+        label: 'Model View',
+        subLabel: 'you can check form model',
+        href: '/model-view',
       },
     ],
   },

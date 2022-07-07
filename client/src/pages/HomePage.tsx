@@ -8,6 +8,7 @@ import {
 import graphqlRequestClient from '../lib/client/graphqlRequestClient';
 import formatDate from '../lib/utils/formatDate';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import { Container } from '@chakra-ui/react';
 
 const HomePage = () => {
   const { data, isLoading, error, refetch } =
@@ -35,9 +36,9 @@ const HomePage = () => {
   };
 
   return (
-    <div>
-      <button onClick={github}>github</button>
+    <Container display={'flex'} justifyContent={'center'}>
       <div>
+        <button onClick={github}>github</button>
         {data?.posts?.map((post) => (
           <div key={post.id}>
             <Link to={`/post/${post.id}`}>{post.id}</Link>
@@ -48,7 +49,7 @@ const HomePage = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

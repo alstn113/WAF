@@ -7,6 +7,8 @@ import PostDetailPage from './pages/PostDetailPage';
 import { ChakraProvider } from '@chakra-ui/react';
 import ScrollToTop from './components/common/ScrollToTop';
 import WithSubnavigation from './components/withSubnavigation';
+import FormPage from './pages/FormPage';
+import ModelViewPage from './pages/ModelViewPage';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/post/:postId" element={<PostDetailPage />} />
         <Route path="/write" element={<WritePage />} />
+        <Route path="/form" element={<FormPage />} />
+        <Route path="/model-view" element={<ModelViewPage />} />
         <Route path="/counter" element={<CounterPage />} />
 
         {/* catch all */}

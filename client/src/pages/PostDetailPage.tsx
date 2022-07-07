@@ -11,6 +11,7 @@ import {
 import formatDate from '../lib/utils/formatDate';
 import * as yup from 'yup';
 import LoadingSpinner from '../components/common/LoadingSpinner';
+import { Container } from '@chakra-ui/react';
 
 interface IFormInputs {
   text: string;
@@ -57,7 +58,7 @@ const PostDetailPage = () => {
   if (error) return <div>error</div>;
 
   return (
-    <div>
+    <Container display={'flex'} justifyContent={'center'}>
       <div>ID : {data?.post?.id}</div>
       <div>TITLE : {data?.post?.title}</div>
       <div>BODY : {data?.post?.body}</div>
@@ -81,7 +82,7 @@ const PostDetailPage = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 
