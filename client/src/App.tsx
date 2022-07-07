@@ -3,16 +3,16 @@ import CounterPage from './pages/CounterPage';
 import HomePage from './pages/HomePage';
 import WritePage from './pages/WritePage';
 import NotFoundPage from './pages/NotFoundPage';
-import Nav from './components/Nav';
 import PostDetailPage from './pages/PostDetailPage';
 import { ChakraProvider } from '@chakra-ui/react';
 import ScrollToTop from './components/common/ScrollToTop';
+import WithSubnavigation from './components/withSubnavigation';
 
 function App() {
   return (
     <ChakraProvider>
       <ScrollToTop />
-      <Nav />
+      <WithSubnavigation />
       <Routes>
         {/* public routes */}
         <Route path="/" element={<HomePage />} />
