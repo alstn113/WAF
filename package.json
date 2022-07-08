@@ -1,0 +1,11 @@
+{
+  "name": "wap-awesome-form",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/neko113/WAF.git",
+  "author": "neko113 <alstn113@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"cd server && yarn start:dev\" \"cd client && yarn dev\""
+  }
+}
