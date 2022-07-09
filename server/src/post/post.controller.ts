@@ -1,42 +1,34 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('post')
+@ApiTags('post')
 export class PostController {
   constructor(private readonly postService: PostService) {}
 
-  @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postService.create(createPostDto);
-  }
-
   @Get()
-  findAll() {
-    return this.postService.findAll();
+  async getPosts() {
+    return await this.postService.findAllPosts();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.postService.findOne(+id);
+  async getPost(@Param('id') id: string) {
+    const post = await this.postService.findPostById(id);
+    if (!post) return 'This post is not exist';
+    return post;
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePostDto: UpdatePostDto) {
-    return this.postService.update(+id, updatePostDto);
+  @Post()
+  async create(@Body() dto: CreatePostDto) {
+    return await this.postService.createPost(dto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.postService.remove(+id);
+  async deletePost(@Param('id') id: string) {
+    const post = await this.postService.findPostById(id);
+    if (!post) return 'This post is not exist';
+    return await this.postService.deletePost(id);
   }
 }
