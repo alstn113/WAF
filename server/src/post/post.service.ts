@@ -6,11 +6,13 @@ import { CreatePostDto } from './dto/create-post.dto';
 export class PostService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async findAllPosts() {
+  async findPosts() {
     return await this.prismaService.post.findMany();
   }
 
   async findPostById(id: string) {
+    const post = await this.findPostById(id);
+    if (!post) return 'This post does not exist';
     return await this.prismaService.post.findUnique({
       where: {
         id,
@@ -25,6 +27,8 @@ export class PostService {
   }
 
   async deletePost(id: string) {
+    const post = await this.findPostById(id);
+    if (!post) return 'This post does not exist';
     return await this.prismaService.post.delete({
       where: {
         id,

@@ -10,14 +10,12 @@ export class PostController {
 
   @Get()
   async getPosts() {
-    return await this.postService.findAllPosts();
+    return await this.postService.findPosts();
   }
 
   @Get(':id')
   async getPost(@Param('id') id: string) {
-    const post = await this.postService.findPostById(id);
-    if (!post) return 'This post is not exist';
-    return post;
+    return await this.postService.findPostById(id);
   }
 
   @Post()
@@ -27,8 +25,6 @@ export class PostController {
 
   @Delete(':id')
   async deletePost(@Param('id') id: string) {
-    const post = await this.postService.findPostById(id);
-    if (!post) return 'This post is not exist';
     return await this.postService.deletePost(id);
   }
 }
