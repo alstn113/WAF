@@ -1,3 +1,5 @@
+import { Container } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import useGetPosts from '../libs/hooks/queries/post/useGetPosts';
 import formatDate from '../libs/utils/formatDate';
 
@@ -8,23 +10,18 @@ const Home = () => {
   if (error) return <div>error</div>;
 
   return (
-    <div>
-      {data?.map((post) => (
-        <div key={post.id}>
-          <div>{post.id}</div>
-          <div>{post.body}</div>
-          <div>
-            {post.comments?.map((comment) => (
-              <div key={comment.id}>
-                <div>{comment.id}</div>
-              </div>
-            ))}
+    <Container display={'flex'} justifyContent={'center'} marginTop={'32'}>
+      <div>
+        {data?.map((post) => (
+          <div key={post.id}>
+            <Link to={`/post/${post.id}`}>{post.id}</Link>
+            <div>{post.title}</div>
+            <div>{post.body}</div>
+            <div>{formatDate(post.createdAt)}</div>
           </div>
-          <div>{formatDate(post.createdAt)}</div>
-          <div>{formatDate(post.updatedAt)}</div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </Container>
   );
 };
 

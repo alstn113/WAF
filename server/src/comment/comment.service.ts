@@ -11,13 +11,13 @@ export class CommentService {
   }
 
   async findCommentById(id: string) {
-    const comment = await this.findCommentById(id);
-    if (!comment) throw new NotFoundException();
-    return await this.prismaService.comment.findUnique({
+    const comment = await this.prismaService.comment.findUnique({
       where: {
         id,
       },
     });
+    if (!comment) throw new NotFoundException();
+    return comment;
   }
 
   async createComment(dto: CreateCommentDto) {
@@ -27,8 +27,7 @@ export class CommentService {
   }
 
   async deleteComment(id: string) {
-    const comment = await this.findCommentById(id);
-    if (!comment) throw new NotFoundException();
+    await this.findCommentById(id);
     return await this.prismaService.comment.delete({
       where: { id },
     });

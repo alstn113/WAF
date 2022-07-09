@@ -13,7 +13,7 @@ export class PostController {
     return await this.postService.findPosts();
   }
 
-  @Get(':id')
+  @Get('/:id')
   async getPost(@Param('id') id: string) {
     return await this.postService.findPostById(id);
   }
