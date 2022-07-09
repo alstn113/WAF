@@ -1,4 +1,4 @@
-import { IComment, ICommentCreateRequest } from '../../interfaces';
+import { IComment, ICommentCreateRequest } from '../interfaces';
 import apiClient from './apiClient';
 
 const CommentAPI = {
@@ -6,7 +6,7 @@ const CommentAPI = {
     const { data } = await apiClient.get('/comment');
     return data;
   },
-  getComment: async (id: string): Promise<IComment | string> => {
+  getComment: async (id: string): Promise<IComment> => {
     const { data } = await apiClient.get(`/comment/${id}`);
     return data;
   },

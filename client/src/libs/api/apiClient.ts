@@ -1,8 +1,8 @@
-import axios from "axios";
-import { PROPERTIES } from "../../config/properties";
+import axios from 'axios';
+import { PROPERTIES } from '../../config/properties';
 
 const apiClient = axios.create({
-  baseURL: PROPERTIES.API_ENDPOINT,
+  baseURL: PROPERTIES.BASE_URL,
   withCredentials: true,
 });
 

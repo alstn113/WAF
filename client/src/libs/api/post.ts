@@ -1,4 +1,4 @@
-import { IPost, IPostCreateRequest } from '../../interfaces';
+import { IPost, IPostCreateRequest } from '../interfaces';
 import apiClient from './apiClient';
 
 const PostAPI = {
@@ -6,7 +6,7 @@ const PostAPI = {
     const { data } = await apiClient.get('/post');
     return data;
   },
-  getPost: async (id: string): Promise<IPost | string> => {
+  getPost: async (id: string): Promise<IPost> => {
     const { data } = await apiClient.get(`/post/${id}`);
     return data;
   },

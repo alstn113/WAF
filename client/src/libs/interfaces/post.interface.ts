@@ -5,8 +5,8 @@ export interface IPost {
   title: string;
   body: string;
   comments?: IComment[];
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IPostCreateRequest {
