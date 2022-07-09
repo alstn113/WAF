@@ -11,7 +11,7 @@ const CommentAPI = {
     return data;
   },
   createComment: async (input: ICommentCreateRequest) => {
-    const { data } = await apiClient.post('/', input);
+    const { data } = await apiClient.post('/comment', input);
     return data;
   },
   deleteComment: async (id: string) => {

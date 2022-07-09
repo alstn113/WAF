@@ -10,7 +10,7 @@ const useCreateComment = (
     unknown
   >,
 ) => {
-  useMutation(CommentAPI.createComment, options);
+  return useMutation(CommentAPI.createComment, options);
 };
 
 export default useCreateComment;

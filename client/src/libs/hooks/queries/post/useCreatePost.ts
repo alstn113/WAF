@@ -5,7 +5,7 @@ import { IPost, IPostCreateRequest } from '../../../interfaces';
 const useCreatePost = (
   options: UseMutationOptions<IPost, unknown, IPostCreateRequest, unknown>,
 ) => {
-  useMutation(PostAPI.createPost, options);
+  return useMutation(PostAPI.createPost, options);
 };
 
 export default useCreatePost;

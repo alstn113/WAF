@@ -6,7 +6,7 @@ const useDeleteComment = (
   id: string,
   options: UseMutationOptions<IComment>,
 ) => {
-  useMutation(() => CommentAPI.deleteComment(id), options);
+  return useMutation(() => CommentAPI.deleteComment(id), options);
 };
 
 export default useDeleteComment;

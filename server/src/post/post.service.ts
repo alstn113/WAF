@@ -7,13 +7,20 @@ export class PostService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async findPosts() {
-    return await this.prismaService.post.findMany();
+    return await this.prismaService.post.findMany({
+      include: {
+        comments: true,
+      },
+    });
   }
 
   async findPostById(id: string) {
     const post = await this.prismaService.post.findUnique({
       where: {
         id,
+      },
+      include: {
+        comments: true,
       },
     });
     if (!post) throw new NotFoundException();
