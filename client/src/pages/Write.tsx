@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import { Container } from '@chakra-ui/react';
+import { Container, useToast } from '@chakra-ui/react';
 import useCreatePost from '../libs/hooks/queries/post/useCreatePost';
 import useGetPosts from '../libs/hooks/queries/post/useGetPosts';
 
@@ -18,12 +18,21 @@ const schema = yup.object().shape({
 });
 
 const Write = () => {
+  const toast = useToast();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { mutate } = useCreatePost({
     onSuccess: async () => {
       await queryClient.invalidateQueries(useGetPosts.getKey());
       navigate('/');
+    },
+    onError: (e) => {
+      toast({
+        title: `${e.response?.statusText} [CODE : ${e.response?.status}]`,
+        status: 'error',
+        isClosable: true,
+        duration: 1000,
+      });
     },
   });
   const onSubmit = (input: IFormInput) => {
