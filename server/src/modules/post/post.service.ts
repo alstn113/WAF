@@ -13,7 +13,14 @@ export class PostService {
   async findPosts() {
     return await this.prismaService.post.findMany({
       include: {
-        comments: true,
+        user: {
+          select: {
+            id: true,
+            username: true,
+            provider: true,
+            socialId: true,
+          },
+        },
       },
     });
   }
@@ -24,7 +31,26 @@ export class PostService {
         id,
       },
       include: {
-        comments: true,
+        user: {
+          select: {
+            id: true,
+            username: true,
+            provider: true,
+            socialId: true,
+          },
+        },
+        comments: {
+          include: {
+            user: {
+              select: {
+                id: true,
+                username: true,
+                provider: true,
+                socialId: true,
+              },
+            },
+          },
+        },
       },
     });
     if (!post) throw new NotFoundException();

@@ -7,6 +7,9 @@ import NotFound from './pages/NotFound';
 import Counter from './pages/Counter';
 import Write from './pages/Write';
 import PostDetail from './pages/PostDetail';
+import ModelView from './pages/ModelView';
+import Form from './pages/Form';
+import Profile from './pages/Profile';
 
 const App = () => {
   return (
@@ -19,6 +22,9 @@ const App = () => {
         <Route path="/write" element={<Write />} />
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/counter" element={<Counter />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/model-view" element={<ModelView />} />
+        <Route path="/profile" element={<Profile />} />
 
         {/* catch all */}
         <Route path="*" element={<NotFound />} />

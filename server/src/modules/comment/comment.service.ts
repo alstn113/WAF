@@ -11,13 +11,34 @@ export class CommentService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async findComments() {
-    return await this.prismaService.comment.findMany();
+    return await this.prismaService.comment.findMany({
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            provider: true,
+            socialId: true,
+          },
+        },
+      },
+    });
   }
 
   async findCommentById(id: string) {
     const comment = await this.prismaService.comment.findUnique({
       where: {
         id,
+      },
+      include: {
+        user: {
+          select: {
+            id: true,
+            username: true,
+            provider: true,
+            socialId: true,
+          },
+        },
       },
     });
     if (!comment) throw new NotFoundException();

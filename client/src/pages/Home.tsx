@@ -1,22 +1,19 @@
 import { Container } from '@chakra-ui/react';
-import { Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import useGetPosts from '../libs/hooks/queries/post/useGetPosts';
 import formatDate from '../libs/utils/formatDate';
+import useAuthStore from '../store/useAuthStore';
 
 const Home = () => {
   const { data, isLoading, error } = useGetPosts();
-  const github = () => {
-    window.location.href = 'http://localhost:8080/auth/github';
-  };
+
   if (isLoading) return <LoadingSpinner />;
   if (error) return <div>{error.message}</div>;
 
   return (
     <Container display={'flex'} justifyContent={'center'} marginTop={'32'}>
       <div>
-        <button onClick={github}>github</button>
         {data?.map((post) => (
           <div key={post.id}>
             <Link to={`/post/${post.id}`}>{post.id}</Link>

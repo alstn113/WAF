@@ -3,7 +3,7 @@ import CommentAPI from '../../../api/comment';
 import { IComment, ICommentCreateRequest } from '../../../interfaces';
 
 const useCreateComment = (
-  options: UseMutationOptions<IComment, Error, ICommentCreateRequest, unknown>,
+  options: UseMutationOptions<IComment, Error, ICommentCreateRequest>,
 ) => {
   return useMutation(CommentAPI.createComment, options);
 };

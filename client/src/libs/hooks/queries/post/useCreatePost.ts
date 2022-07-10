@@ -3,7 +3,7 @@ import PostAPI from '../../../api/post';
 import { IPost, IPostCreateRequest } from '../../../interfaces';
 
 const useCreatePost = (
-  options: UseMutationOptions<IPost, Error, IPostCreateRequest, unknown>,
+  options: UseMutationOptions<IPost, Error, IPostCreateRequest>,
 ) => {
   return useMutation(PostAPI.createPost, options);
 };

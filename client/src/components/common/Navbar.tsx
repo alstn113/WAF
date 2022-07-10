@@ -22,9 +22,17 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
+import useAuthStore from '../../store/useAuthStore';
+import { useEffect } from 'react';
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
+  const { currentUser, getCurrentUser, logout } = useAuthStore();
+
+  useEffect(() => {
+    getCurrentUser();
+    return () => {};
+  }, []);
 
   return (
     <Box>
@@ -67,34 +75,62 @@ const Navbar = () => {
           </Flex>
         </Flex>
 
-        <Stack
-          flex={{ base: 1, md: 0 }}
-          justify={'flex-end'}
-          direction={'row'}
-          spacing={6}
-        >
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}
+        {currentUser ? (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={'flex-end'}
+            direction={'row'}
+            spacing={6}
           >
-            Sign In
-          </Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
-            fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            _hover={{
-              bg: 'pink.300',
-            }}
+            <Button
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              _hover={{
+                bg: 'pink.300',
+              }}
+            >
+              {currentUser.username}
+            </Button>
+            <Button
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'blue.400'}
+              _hover={{
+                bg: 'blue.300',
+              }}
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </Button>
+          </Stack>
+        ) : (
+          <Stack
+            flex={{ base: 1, md: 0 }}
+            justify={'flex-end'}
+            direction={'row'}
+            spacing={6}
           >
-            Sign Up
-          </Button>
-        </Stack>
+            <Button
+              fontSize={'sm'}
+              fontWeight={600}
+              color={'white'}
+              bg={'pink.400'}
+              _hover={{
+                bg: 'pink.300',
+              }}
+              onClick={() => {
+                window.location.href = 'http://localhost:8080/auth/github';
+              }}
+            >
+              Github
+            </Button>
+          </Stack>
+        )}
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
@@ -306,10 +342,13 @@ const NAV_ITEMS: Array<NavItem> = [
       },
     ],
   },
-
   {
     label: 'Counter',
     href: '/counter',
+  },
+  {
+    label: 'Profile',
+    href: '/profile',
   },
 ];
 
