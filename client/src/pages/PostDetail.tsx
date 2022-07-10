@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { Navigate, useParams } from 'react-router-dom';
 import * as yup from 'yup';
 import LoadingSpinner from '../components/common/LoadingSpinner';
-import { Container } from '@chakra-ui/react';
+import { Container, useToast } from '@chakra-ui/react';
 import useCreateComment from '../libs/hooks/queries/comment/useCreateComment';
 import useGetPost from '../libs/hooks/queries/post/useGetPost';
 
@@ -16,6 +16,7 @@ const schema = yup.object().shape({
 });
 
 const PostDetailPage = () => {
+  const toast = useToast();
   const params = useParams<{ postId: string }>();
   const postId = params.postId as string;
   const { data, isLoading, error, refetch } = useGetPost(postId);
@@ -32,6 +33,14 @@ const PostDetailPage = () => {
   const { mutate } = useCreateComment({
     onSuccess: async () => {
       await refetch();
+    },
+    onError: (e) => {
+      toast({
+        title: `${e.response?.statusText} [CODE : ${e.response?.status}]`,
+        status: 'error',
+        isClosable: true,
+        duration: 1000,
+      });
     },
   });
 
