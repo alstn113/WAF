@@ -7,13 +7,16 @@ import formatDate from '../libs/utils/formatDate';
 
 const Home = () => {
   const { data, isLoading, error } = useGetPosts();
-
+  const github = () => {
+    window.location.href = 'http://localhost:8080/auth/github';
+  };
   if (isLoading) return <LoadingSpinner />;
   if (error) return <div>error</div>;
 
   return (
     <Container display={'flex'} justifyContent={'center'} marginTop={'32'}>
       <div>
+        <button onClick={github}>github</button>
         {data?.map((post) => (
           <div key={post.id}>
             <Link to={`/post/${post.id}`}>{post.id}</Link>

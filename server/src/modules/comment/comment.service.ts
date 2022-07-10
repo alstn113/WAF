@@ -27,7 +27,10 @@ export class CommentService {
   }
 
   async deleteComment(id: string) {
-    await this.findCommentById(id);
+    const exist = await this.prismaService.comment.findUnique({
+      where: { id },
+    });
+    if (!exist) throw new NotFoundException();
     return await this.prismaService.comment.delete({
       where: { id },
     });
