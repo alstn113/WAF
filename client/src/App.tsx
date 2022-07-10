@@ -10,6 +10,8 @@ import PostDetail from './pages/PostDetail';
 import ModelView from './pages/ModelView';
 import Form from './pages/Form';
 import Profile from './pages/Profile';
+import RequireAuth from './components/RequireAuth';
+import Unauthorized from './pages/UnAuthorized';
 
 const App = () => {
   return (
@@ -24,7 +26,10 @@ const App = () => {
         <Route path="/counter" element={<Counter />} />
         <Route path="/form" element={<Form />} />
         <Route path="/model-view" element={<ModelView />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/profile" element={<Profile />} />
+        </Route>
 
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
