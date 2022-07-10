@@ -36,7 +36,7 @@ const PostDetailPage = () => {
     },
     onError: (e) => {
       toast({
-        title: `${e.response?.statusText} [CODE : ${e.response?.status}]`,
+        title: `${e.response?.data.message} [CODE : ${e.response?.data.statusCode}]`,
         status: 'error',
         isClosable: true,
         duration: 1000,

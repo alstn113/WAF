@@ -1,9 +1,8 @@
-import { AxiosError } from 'axios';
 import { useQuery, UseQueryResult } from 'react-query';
 import PostAPI from '../../../api/post';
-import { IPost } from '../../../interfaces';
+import { ICustomAxiosError, IPost } from '../../../interfaces';
 
-const useGetPost = (id: string): UseQueryResult<IPost, AxiosError> => {
+const useGetPost = (id: string): UseQueryResult<IPost, ICustomAxiosError> => {
   return useQuery(['GetPost', id], () => PostAPI.getPost(id));
 };
 

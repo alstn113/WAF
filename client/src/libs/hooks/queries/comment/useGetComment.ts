@@ -1,9 +1,10 @@
-import { AxiosError } from 'axios';
 import { useQuery, UseQueryResult } from 'react-query';
 import CommentAPI from '../../../api/comment';
-import { IComment } from '../../../interfaces';
+import { IComment, ICustomAxiosError } from '../../../interfaces';
 
-const useGetComment = (id: string): UseQueryResult<IComment, AxiosError> => {
+const useGetComment = (
+  id: string,
+): UseQueryResult<IComment, ICustomAxiosError> => {
   return useQuery(['GetComment', id], CommentAPI.getComments);
 };
 

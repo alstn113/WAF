@@ -1,11 +1,10 @@
-import { AxiosError } from 'axios';
 import { useMutation, UseMutationOptions } from 'react-query';
 import CommentAPI from '../../../api/comment';
-import { IComment } from '../../../interfaces';
+import { IComment, ICustomAxiosError } from '../../../interfaces';
 
 const useDeleteComment = (
   id: string,
-  options: UseMutationOptions<IComment, AxiosError>,
+  options: UseMutationOptions<IComment, ICustomAxiosError>,
 ) => {
   return useMutation(() => CommentAPI.deleteComment(id), options);
 };
