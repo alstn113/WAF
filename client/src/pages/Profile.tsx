@@ -10,16 +10,12 @@ const Profile = () => {
       alignItems={'center'}
       marginTop={'32'}
     >
-      {currentUser ? (
-        <div>
-          <div>{currentUser?.id}</div>
-          <div>{currentUser?.username}</div>
-          <div>{currentUser?.provider}</div>
-          <div>{currentUser?.socialId}</div>
-        </div>
-      ) : (
-        <div>로그인 상태 아님</div>
-      )}
+      <div>
+        <div>{currentUser?.id}</div>
+        <div>{currentUser?.username}</div>
+        <div>{currentUser?.provider}</div>
+        <div>{currentUser?.socialId}</div>
+      </div>
     </Container>
   );
 };

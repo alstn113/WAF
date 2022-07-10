@@ -23,16 +23,10 @@ import {
 } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
 import useAuthStore from '../../store/useAuthStore';
-import { useEffect } from 'react';
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
-  const { currentUser, getCurrentUser, logout } = useAuthStore();
-
-  useEffect(() => {
-    getCurrentUser();
-    return () => {};
-  }, []);
+  const { currentUser, logout } = useAuthStore();
 
   return (
     <Box>
@@ -339,10 +333,6 @@ const NAV_ITEMS: Array<NavItem> = [
         href: '/model-view',
       },
     ],
-  },
-  {
-    label: 'Counter',
-    href: '/counter',
   },
   {
     label: 'Profile',

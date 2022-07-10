@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import { Container, useToast } from '@chakra-ui/react';
 import useCreatePost from '../libs/hooks/queries/post/useCreatePost';
 import useGetPosts from '../libs/hooks/queries/post/useGetPosts';
-import { AxiosError } from 'axios';
 
 interface IFormInput {
   title: string;
