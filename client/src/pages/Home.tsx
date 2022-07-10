@@ -11,7 +11,7 @@ const Home = () => {
     window.location.href = 'http://localhost:8080/auth/github';
   };
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <div>error</div>;
+  if (error) return <div>{error.message}</div>;
 
   return (
     <Container display={'flex'} justifyContent={'center'} marginTop={'32'}>

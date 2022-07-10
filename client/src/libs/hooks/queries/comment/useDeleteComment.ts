@@ -4,7 +4,7 @@ import { IComment } from '../../../interfaces';
 
 const useDeleteComment = (
   id: string,
-  options: UseMutationOptions<IComment>,
+  options: UseMutationOptions<IComment, Error>,
 ) => {
   return useMutation(() => CommentAPI.deleteComment(id), options);
 };

@@ -40,7 +40,7 @@ const PostDetailPage = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (error) return <div>error</div>;
+  if (error) return <div>{error.message}</div>;
   return (
     <Container
       display={'flex'}

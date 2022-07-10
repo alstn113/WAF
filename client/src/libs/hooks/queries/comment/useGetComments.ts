@@ -1,7 +1,8 @@
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import CommentAPI from '../../../api/comment';
+import { IComment } from '../../../interfaces';
 
-const useGetComments = () => {
+const useGetComments = (): UseQueryResult<IComment[], Error> => {
   return useQuery(['GetComments'], CommentAPI.getComments);
 };
 
