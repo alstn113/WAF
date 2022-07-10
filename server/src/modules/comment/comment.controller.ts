@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { GetCurrentUserId } from 'src/common/decorators/get-current-user-id.decorator';
 import { Public } from 'src/common/decorators/public.decorator';
 import { CommentService } from './comment.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
@@ -22,12 +23,18 @@ export class CommentController {
   }
 
   @Post()
-  async createComment(@Body() dto: CreateCommentDto) {
-    return await this.commentService.createComment(dto);
+  async createComment(
+    @GetCurrentUserId() userId: string,
+    @Body() dto: CreateCommentDto,
+  ) {
+    return await this.commentService.createComment(userId, dto);
   }
 
   @Delete(':id')
-  async deleteComment(@Param('id') id: string) {
-    return await this.commentService.deleteComment(id);
+  async deleteComment(
+    @GetCurrentUserId() userId: string,
+    @Param('id') id: string,
+  ) {
+    return await this.commentService.deleteComment(userId, id);
   }
 }

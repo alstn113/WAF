@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateCommentDto } from './dto/create-comment.dto';
 
@@ -20,17 +24,18 @@ export class CommentService {
     return comment;
   }
 
-  async createComment(dto: CreateCommentDto) {
+  async createComment(userId: string, dto: CreateCommentDto) {
     return await this.prismaService.comment.create({
-      data: dto,
+      data: { ...dto, userId },
     });
   }
 
-  async deleteComment(id: string) {
+  async deleteComment(userId: string, id: string) {
     const exist = await this.prismaService.comment.findUnique({
       where: { id },
     });
     if (!exist) throw new NotFoundException();
+    if (exist.userId !== userId) throw new UnauthorizedException();
     return await this.prismaService.comment.delete({
       where: { id },
     });

@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePostDto } from './dto/create-post.dto';
 
@@ -27,15 +31,16 @@ export class PostService {
     return post;
   }
 
-  async createPost(dto: CreatePostDto) {
+  async createPost(userId: string, dto: CreatePostDto) {
     return await this.prismaService.post.create({
-      data: dto,
+      data: { ...dto, userId },
     });
   }
 
-  async deletePost(id: string) {
+  async deletePost(userId: string, id: string) {
     const exist = await this.prismaService.post.findUnique({ where: { id } });
     if (!exist) throw new NotFoundException();
+    if (exist.userId !== userId) throw new UnauthorizedException();
     return await this.prismaService.post.delete({
       where: {
         id,
