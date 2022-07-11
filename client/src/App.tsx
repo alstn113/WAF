@@ -9,33 +9,34 @@ import PostDetail from './pages/PostDetail';
 import ModelView from './pages/ModelView';
 import Form from './pages/Form';
 import Profile from './pages/Profile';
-import RequireAuth from './components/RequireAuth';
-import Unauthorized from './pages/UnAuthorized';
-import Core from './components/Core';
+import useAuthStore from './store/useAuthStore';
+import { useEffect } from 'react';
 
 const App = () => {
+  const { getCurrentUser } = useAuthStore();
+
+  useEffect(() => {
+    getCurrentUser();
+  }, []);
+
   return (
     <ChakraProvider>
-      <Core />
       <ScrollToTop />
       <Navbar />
       <Routes>
         {/* public routes */}
         <Route path="/" element={<Home />} />
+        <Route path="/write" element={<Write />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/form" element={<Form />} />
         <Route path="/model-view" element={<ModelView />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
 
         {/* protected routes */}
-        <Route element={<RequireAuth />}>
-          <Route path="/write" element={<Write />} />
-          <Route path="/profile" element={<Profile />} />
-        </Route>
 
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
-      </Routes>{' '}
+      </Routes>
     </ChakraProvider>
   );
 };

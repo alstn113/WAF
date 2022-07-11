@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import useGetPosts from '../libs/hooks/queries/post/useGetPosts';
 import formatDate from '../libs/utils/formatDate';
-import useAuthStore from '../store/useAuthStore';
 
 const Home = () => {
   const { data, isLoading, error } = useGetPosts();
