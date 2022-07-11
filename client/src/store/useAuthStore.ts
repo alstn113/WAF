@@ -9,7 +9,6 @@ interface States {
 
 interface Actions {
   getCurrentUser: () => void;
-  setUser: (user: IUser) => void;
   logout: () => void;
 }
 
@@ -22,7 +21,6 @@ const useAuthStore = create<States & Actions>((set) => ({
     const user = await UserAPI.getCurrrentUser();
     set(() => ({ currentUser: user }));
   },
-  setUser: (user) => set(() => ({ currentUser: user })),
   logout: async () => {
     await AuthAPI.logout();
     set(() => ({ currentUser: null }));

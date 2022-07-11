@@ -1,8 +1,7 @@
 import { Container } from '@chakra-ui/react';
-import useFormStore from '../store/useFormStore';
+import FormContainer from '../components/Form/FormContainer';
 
-const ModelView = () => {
-  const { formList } = useFormStore();
+const FormChange = () => {
   return (
     <Container
       flex={'display'}
@@ -10,9 +9,9 @@ const ModelView = () => {
       alignItems={'center'}
       marginTop="16"
     >
-      <pre>{JSON.stringify(formList, null, '\t')}</pre>
+      <FormContainer />
     </Container>
   );
 };
 
-export default ModelView;
+export default FormChange;

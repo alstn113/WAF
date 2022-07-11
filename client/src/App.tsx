@@ -7,10 +7,11 @@ import NotFound from './pages/NotFound';
 import Write from './pages/Write';
 import PostDetail from './pages/PostDetail';
 import ModelView from './pages/ModelView';
-import Form from './pages/Form';
+import FormDND from './pages/FormDND';
 import Profile from './pages/Profile';
 import useAuthStore from './store/useAuthStore';
 import { useEffect } from 'react';
+import FormChange from './pages/FormChange';
 
 const App = () => {
   const { getCurrentUser } = useAuthStore();
@@ -29,8 +30,9 @@ const App = () => {
         <Route path="/write" element={<Write />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/post/:postId" element={<PostDetail />} />
-        <Route path="/form" element={<Form />} />
+        <Route path="/form-dnd" element={<FormDND />} />
         <Route path="/model-view" element={<ModelView />} />
+        <Route path="/form-change" element={<FormChange />} />
 
         {/* protected routes */}
 

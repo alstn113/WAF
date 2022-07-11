@@ -313,8 +313,8 @@ const NAV_ITEMS: Array<NavItem> = [
         href: '/write',
       },
       {
-        label: 'WAF',
-        subLabel: 'WAP AWESOME FORM',
+        label: 'Post List',
+        subLabel: 'See Awesome Post',
         href: '/',
       },
     ],
@@ -323,9 +323,14 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Form',
     children: [
       {
-        label: 'Form Test',
+        label: 'Form DND Test',
         subLabel: 'Form Create And Delete Test',
-        href: '/form',
+        href: '/form-dnd',
+      },
+      {
+        label: 'Form Change Test',
+        subLabel: 'You Can Change Form',
+        href: '/form-change',
       },
       {
         label: 'Model View',

@@ -1,7 +1,7 @@
 import { Button, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
-import FormItem from '../components/FormItem';
+import FormItem from '../components/Form/FormItem';
 import useFormStore from '../store/useFormStore';
 
 const Form = () => {
