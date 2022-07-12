@@ -1,5 +1,5 @@
 import { Container, Select } from '@chakra-ui/react';
-import React, { ReactNode, useState } from 'react';
+import { useState, ReactNode } from 'react';
 import CheckBoxForm from './CheckBoxForm/CheckBoxForm';
 import DropdonwForm from './DropdownForm/DropdonwForm';
 import LongAnswerForm from './LongAnswerForm/LongAnswerForm';
@@ -7,14 +7,14 @@ import MutipleChoiceForm from './MutipleChoiceForm/MutipleChoiceForm';
 import ShortAnswerForm from './ShortAnswerForm/ShortAnswerForm';
 
 const FormContainer = () => {
-  const formType: { [key: string]: React.ReactNode } = {
+  const formType: { [key: string]: ReactNode } = {
     단답형: <ShortAnswerForm />,
     장문형: <LongAnswerForm />,
     객관식: <MutipleChoiceForm />,
     체크박스: <CheckBoxForm />,
     드롭다운: <DropdonwForm />,
   };
-  const [selectedFormType, setSelectedFormType] = useState<React.ReactNode>(
+  const [selectedFormType, setSelectedFormType] = useState<ReactNode>(
     <ShortAnswerForm />,
   );
   return (

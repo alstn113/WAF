@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { Draggable } from 'react-beautiful-dnd';
+import FormContainer from './FormContainer';
 
 interface Props {
   formItem: { id: string; content: string };
@@ -16,6 +17,7 @@ const FormItem = ({ formItem, index }: Props) => {
           isDragging={snapshot.isDragging}
         >
           <Handle {...provided.dragHandleProps} />
+          <FormContainer />
           {formItem.content}
         </Container>
       )}
