@@ -15,6 +15,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthGuard } from './common/guards/auth-guard.guard';
 import { AuthMiddleware } from './middlewares/jwt-auth.middleware';
+import { FormBuilderModule } from './modules/form-builder/form-builder.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AuthMiddleware } from './middlewares/jwt-auth.middleware';
     UserModule,
     PostModule,
     CommentModule,
+    FormBuilderModule,
   ],
   providers: [
     {

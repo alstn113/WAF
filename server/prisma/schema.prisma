@@ -44,13 +44,11 @@ model Comment {
   post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
 
-model Form {
+model FormBuilder {
   id String @id @default(uuid())
   title String 
   description String
-
-//  여기를 작성해봅시다... 
-
+  formData Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
-}
+} 
