@@ -1,8 +1,8 @@
 import { Container } from '@chakra-ui/react';
-import useFormStore from '../store/useFormStore';
+import useFormBuilderStore from '../store/useFormBuilder';
 
 const ModelView = () => {
-  const { formList } = useFormStore();
+  const { formList } = useFormBuilderStore();
   return (
     <Container
       flex={'display'}

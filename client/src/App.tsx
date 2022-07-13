@@ -8,7 +8,7 @@ import Write from './pages/Write';
 import PostDetail from './pages/PostDetail';
 import ModelView from './pages/ModelView';
 import FormDND from './pages/FormDND';
-import Profile from './pages/Profile';
+import MyPage from './pages/MyPage';
 import useAuthStore from './store/useAuthStore';
 import { useEffect } from 'react';
 import FormChange from './pages/FormChange';
@@ -28,7 +28,7 @@ const App = () => {
         {/* public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/write" element={<Write />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/my-page" element={<MyPage />} />
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/form-dnd" element={<FormDND />} />
         <Route path="/model-view" element={<ModelView />} />

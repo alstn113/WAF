@@ -2,12 +2,12 @@ import { Button, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import FormItem from '../components/Form/FormItem';
-import useFormStore from '../store/useFormStore';
+import useFormBuilderStore from '../store/useFormBuilder';
 
 const Form = () => {
   const toast = useToast();
 
-  const { formList, count, setFormList } = useFormStore();
+  const { formList, count, setFormList } = useFormBuilderStore();
 
   const reorder = (list: any[], startIndex: number, endIndex: number) => {
     const result = Array.from(list);
@@ -35,12 +35,13 @@ const Form = () => {
     toast({
       title: '폼이 생성되었습니다',
       status: 'success',
-      duration: 3000,
+      duration: 1500,
       isClosable: true,
     });
   };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
+      <Test>Test</Test>
       <Container>
         <Wrapper>
           <Title>WAF</Title>
@@ -97,6 +98,14 @@ export const FormListContainer = styled.div<{ isDraggingOver: boolean }>`
   background-color: ${(props) => (props.isDraggingOver ? '#84c0eb' : '#fff')};
   flex-grow: 1;
   min-height: 30px;
+`;
+
+export const Test = styled.div`
+  position: fixed;
+  right: 2rem;
+  top: 10rem;
+  background: gray;
+  height: 10rem;
 `;
 
 export default Form;

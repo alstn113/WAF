@@ -1,6 +1,8 @@
 import create from 'zustand';
 
 interface States {
+  title: string;
+  description: string;
   formList: {
     id: string;
     content: string;
@@ -12,8 +14,10 @@ interface Actions {
   setFormList: (newFormList: any, newCount: number) => void;
 }
 
-const useFormStore = create<States & Actions>((set) => ({
+const userFormBuilderStore = create<States & Actions>((set) => ({
   // States
+  title: '제목없음',
+  description: '설명없음',
   formList: [{ id: 'form-1', content: 'item-1' }],
   count: 1,
 
@@ -25,4 +29,4 @@ const useFormStore = create<States & Actions>((set) => ({
     })),
 }));
 
-export default useFormStore;
+export default userFormBuilderStore;
