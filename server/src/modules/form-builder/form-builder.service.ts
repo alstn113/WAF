@@ -11,13 +11,20 @@ export class FormBuilderService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async findFormBuilder(userId: string, id: string) {
-    const formBuilder = await this.prismaService.formBuilder.findUnique({
+    const formBuilder = await this.prismaService.formBuilder.findMany({
       where: {
-        id,
+        AND: [
+          {
+            formList: {
+              path: '$[0].id',
+              string_contains: 'form',
+            },
+          },
+        ],
       },
     });
     if (!formBuilder) throw new NotFoundException();
-    if (formBuilder.userId !== userId) throw new UnauthorizedException();
+    // if (formBuilder.userId !== userId) throw new UnauthorizedException();
     return formBuilder;
   }
 
@@ -25,6 +32,7 @@ export class FormBuilderService {
     return await this.prismaService.formBuilder.create({
       data: {
         ...dto,
+        formList: JSON.parse(dto.formList),
         userId: userId,
       },
     });

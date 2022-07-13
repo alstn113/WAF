@@ -1,12 +1,10 @@
-import { Button, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import FormItem from '../components/Form/FormItem';
+import Sidebar from '../components/Form/Sidebar';
 import useFormBuilderStore from '../libs/store/useFormBuilderStore';
 
 const Form = () => {
-  const toast = useToast();
-
   const { formList, count, setFormList } = useFormBuilderStore();
 
   const reorder = (list: any[], startIndex: number, endIndex: number) => {
@@ -26,28 +24,12 @@ const Form = () => {
     setFormList(newFormList, count);
   };
 
-  const onCreate = () => {
-    const newFormList = Array.from(formList).concat({
-      id: `form-${count + 1}`,
-      question: 'question',
-      type: 'ShortAnswer',
-      answer: [],
-    });
-    setFormList(newFormList, count + 1);
-    toast({
-      title: '폼이 생성되었습니다',
-      status: 'success',
-      duration: 1500,
-      isClosable: true,
-    });
-  };
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Test>Test</Test>
       <Container>
         <Wrapper>
           <Title>WAF</Title>
-          <Button onClick={onCreate}>폼 생성</Button>
+          <Sidebar />
           <Droppable droppableId="form-list">
             {(provided, snapshot) => (
               <FormListContainer
@@ -100,14 +82,6 @@ export const FormListContainer = styled.div<{ isDraggingOver: boolean }>`
   background-color: ${(props) => (props.isDraggingOver ? '#84c0eb' : '#fff')};
   flex-grow: 1;
   min-height: 30px;
-`;
-
-export const Test = styled.div`
-  position: fixed;
-  right: 2rem;
-  top: 10rem;
-  background: gray;
-  height: 10rem;
 `;
 
 export default Form;

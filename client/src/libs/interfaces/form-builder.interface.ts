@@ -21,5 +21,5 @@ export interface IFromBuilder {
 export interface IFormBuilderCreateRequest {
   title: string;
   description: string;
-  formList: JSON;
+  formList: string;
 }

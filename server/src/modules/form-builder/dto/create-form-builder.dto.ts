@@ -1,5 +1,4 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Prisma } from '@prisma/client';
 
 export class CreateFormBuilderDto {
   @ApiProperty()
@@ -9,5 +8,5 @@ export class CreateFormBuilderDto {
   description: string;
 
   @ApiProperty()
-  formList: Prisma.NullTypes.JsonNull | Prisma.InputJsonValue;
+  formList: string;
 }
