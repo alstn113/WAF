@@ -18,7 +18,7 @@ export class FormBuilderService {
           {
             formData: {
               path: '$.data',
-              string_contains: 'test',
+              string_contains: 't',
             },
           },
         ],
@@ -34,6 +34,21 @@ export class FormBuilderService {
       data: {
         ...dto,
         userId: userId,
+      },
+    });
+  }
+
+  async deleteFormBuilder(userId: string, id: string) {
+    const formBuilder = await this.prismaService.formBuilder.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!formBuilder) throw new NotFoundException();
+    if (formBuilder.userId !== userId) throw new UnauthorizedException();
+    return await this.prismaService.formBuilder.delete({
+      where: {
+        id,
       },
     });
   }

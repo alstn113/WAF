@@ -1,5 +1,5 @@
 import { IUser } from '../interfaces';
-import apiClient from './apiClient';
+import apiClient from './apiClient.api';
 
 const UserAPI = {
   getCurrrentUser: async (): Promise<IUser | null> => {

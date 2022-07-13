@@ -1,5 +1,5 @@
 import { useMutation, UseMutationOptions } from 'react-query';
-import PostAPI from '../../../api/post';
+import PostAPI from '../../../api/post.api';
 import { ICustomAxiosError, IPost } from '../../../interfaces';
 
 const useDeletePost = (

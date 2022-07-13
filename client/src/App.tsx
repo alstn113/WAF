@@ -9,7 +9,7 @@ import PostDetail from './pages/PostDetail';
 import ModelView from './pages/ModelView';
 import FormDND from './pages/FormDND';
 import MyPage from './pages/MyPage';
-import useAuthStore from './store/useAuthStore';
+import useAuthStore from './libs/store/useAuthStore';
 import { useEffect } from 'react';
 import FormChange from './pages/FormChange';
 

@@ -1,5 +1,5 @@
 import { useQuery, UseQueryResult } from 'react-query';
-import CommentAPI from '../../../api/comment';
+import CommentAPI from '../../../api/comment.api';
 import { IComment, ICustomAxiosError } from '../../../interfaces';
 
 const useGetComment = (

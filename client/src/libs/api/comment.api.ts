@@ -1,5 +1,5 @@
 import { IComment, ICommentCreateRequest } from '../interfaces';
-import apiClient from './apiClient';
+import apiClient from './apiClient.api';
 
 const CommentAPI = {
   getComments: async (): Promise<IComment[]> => {

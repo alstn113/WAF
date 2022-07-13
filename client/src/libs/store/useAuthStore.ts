@@ -1,7 +1,7 @@
 import create from 'zustand';
-import AuthAPI from '../libs/api/auth';
-import UserAPI from '../libs/api/user';
-import { IUser } from '../libs/interfaces';
+import AuthAPI from '../api/auth.api';
+import UserAPI from '../api/user.api';
+import { IUser } from '../interfaces';
 
 interface States {
   currentUser: IUser | null;

@@ -22,7 +22,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import useAuthStore from '../../store/useAuthStore';
+import useAuthStore from '../../libs/store/useAuthStore';
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();

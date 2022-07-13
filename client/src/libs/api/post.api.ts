@@ -1,5 +1,5 @@
 import { IPost, IPostCreateRequest } from '../interfaces';
-import apiClient from './apiClient';
+import apiClient from './apiClient.api';
 
 const PostAPI = {
   getPosts: async (): Promise<IPost[]> => {
