@@ -1,9 +1,10 @@
 import styled from '@emotion/styled';
 import { Draggable } from 'react-beautiful-dnd';
+import { IForm } from '../../libs/interfaces';
 import FormContainer from './FormContainer';
 
 interface Props {
-  formItem: { id: string; content: string };
+  formItem: IForm;
   index: number;
 }
 
@@ -18,7 +19,10 @@ const FormItem = ({ formItem, index }: Props) => {
         >
           <Handle {...provided.dragHandleProps} />
           <FormContainer />
-          {formItem.content}
+          <div>id : {formItem.id}</div>
+          <div>question : {formItem.question}</div>
+          <div>type : {formItem.type}</div>
+          <div>answer : {JSON.stringify(formItem.answer)}</div>
         </Container>
       )}
     </Draggable>

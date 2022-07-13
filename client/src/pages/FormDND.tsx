@@ -29,7 +29,9 @@ const Form = () => {
   const onCreate = () => {
     const newFormList = Array.from(formList).concat({
       id: `form-${count + 1}`,
-      content: `item-${count + 1}`,
+      question: 'question',
+      type: 'ShortAnswer',
+      answer: [],
     });
     setFormList(newFormList, count + 1);
     toast({

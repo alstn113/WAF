@@ -9,5 +9,5 @@ export class CreateFormBuilderDto {
   description: string;
 
   @ApiProperty()
-  formData: Prisma.NullTypes.JsonNull | Prisma.InputJsonValue;
+  formList: Prisma.NullTypes.JsonNull | Prisma.InputJsonValue;
 }

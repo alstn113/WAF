@@ -1,25 +1,20 @@
 import create from 'zustand';
+import { IForm, IFromBuilder } from '../interfaces';
 
-interface States {
-  title: string;
-  description: string;
-  formList: {
-    id: string;
-    content: string;
-  }[];
+interface States extends IFromBuilder {
   count: number;
 }
 
 interface Actions {
-  setFormList: (newFormList: any, newCount: number) => void;
+  setFormList: (newFormList: IForm[], newCount: number) => void;
 }
 
 const userFormBuilderStore = create<States & Actions>((set) => ({
   // States
   title: '제목없음',
   description: '설명없음',
-  formList: [{ id: 'form-1', content: 'item-1' }],
-  count: 1,
+  formList: [],
+  count: 0,
 
   // Actions
   setFormList: (newFormList, newCount) =>

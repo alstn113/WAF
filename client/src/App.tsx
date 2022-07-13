@@ -11,7 +11,6 @@ import FormDND from './pages/FormDND';
 import MyPage from './pages/MyPage';
 import useAuthStore from './libs/store/useAuthStore';
 import { useEffect } from 'react';
-import FormChange from './pages/FormChange';
 
 const App = () => {
   const { getCurrentUser } = useAuthStore();
@@ -32,7 +31,6 @@ const App = () => {
         <Route path="/post/:postId" element={<PostDetail />} />
         <Route path="/form-dnd" element={<FormDND />} />
         <Route path="/model-view" element={<ModelView />} />
-        <Route path="/form-change" element={<FormChange />} />
 
         {/* protected routes */}
 
