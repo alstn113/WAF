@@ -11,8 +11,18 @@ export class FormBuilderService {
   constructor(private readonly prismaService: PrismaService) {}
 
   async findFormBuilder(userId: string, id: string) {
-    const formBuilder = await this.prismaService.formBuilder.findUnique({
-      where: { id },
+    const formBuilder = await this.prismaService.formBuilder.findFirst({
+      where: {
+        AND: [
+          { id },
+          {
+            formData: {
+              path: '$.data',
+              string_contains: 'test',
+            },
+          },
+        ],
+      },
     });
     if (!formBuilder) throw new NotFoundException();
     if (formBuilder.userId !== userId) throw new UnauthorizedException();
