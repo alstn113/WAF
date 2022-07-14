@@ -1,4 +1,4 @@
-import { useToast } from '@chakra-ui/react';
+import { Button, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Draggable } from 'react-beautiful-dnd';
 import { IForm } from '../../libs/interfaces';
@@ -45,7 +45,7 @@ const FormItem = ({ formItem, index }: Props) => {
           />
           <div>type : {formItem.type}</div>
           <div>answer : {JSON.stringify(formItem.answer)}</div>
-          <button onClick={onDelete}>삭제</button>
+          <Button onClick={onDelete}>삭제</Button>
         </Container>
       )}
     </Draggable>

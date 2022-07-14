@@ -5,7 +5,7 @@ import Sidebar from '../components/Form/Sidebar';
 import useFormBuilderStore from '../libs/store/useFormBuilderStore';
 
 const FormDND = () => {
-  const { formList, count, setFormList } = useFormBuilderStore();
+  const { formList, setFormList } = useFormBuilderStore();
 
   const reorder = (list: any[], startIndex: number, endIndex: number) => {
     const result = Array.from(list);
@@ -21,7 +21,7 @@ const FormDND = () => {
     if (destination.index === source.index) return;
 
     const newFormList = reorder(formList, source.index, destination.index);
-    setFormList(newFormList, count);
+    setFormList(newFormList);
   };
 
   return (
