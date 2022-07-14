@@ -13,9 +13,13 @@ export interface IForm {
 }
 
 export interface IFromBuilder {
+  id: string;
   title: string;
   description: string;
   formList: IForm[];
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IFormBuilderCreateRequest {

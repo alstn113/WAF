@@ -9,6 +9,11 @@ import { FormBuilderService } from './form-builder.service';
 export class FormBuilderController {
   constructor(private readonly formBuilderService: FormBuilderService) {}
 
+  @Get('/')
+  async getFormBuilders(@GetCurrentUserId() userId: string) {
+    return await this.formBuilderService.findFormBuilders(userId);
+  }
+
   @Get('/:id')
   async getFormBuilder(
     @GetCurrentUserId() userId: string,

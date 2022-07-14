@@ -2,6 +2,10 @@ import { IFormBuilderCreateRequest } from '../interfaces';
 import apiClient from './apiClient.api';
 
 const FormBuilderAPI = {
+  getFormBuilders: async () => {
+    const { data } = await apiClient.get('/form-builder');
+    return data;
+  },
   getFormBuilder: async (id: string) => {
     const { data } = await apiClient.get(`/form-builder/${id}`);
     return data;
