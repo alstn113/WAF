@@ -2,12 +2,10 @@ import produce from 'immer';
 import create from 'zustand';
 import { IForm, IFromBuilder } from '../interfaces';
 
-interface States extends IFromBuilder {
-  count: number;
-}
+interface States extends IFromBuilder {}
 
 interface Actions {
-  setFormList: (newFormList: IForm[], newCount: number) => void;
+  setFormList: (newFormList: IForm[]) => void;
   setFormItemQuestion: (index: number, newQuestion: string) => void;
   setFormItemType: (index: number, newType: string) => void;
   setFormItemAnswer: () => void;
@@ -18,13 +16,11 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
   title: '제목없음',
   description: '설명없음',
   formList: [],
-  count: 0,
 
   // Actions
-  setFormList: (newFormList, newCount) =>
+  setFormList: (newFormList) =>
     set(() => ({
       formList: newFormList,
-      count: newCount,
     })),
   setFormItemQuestion: (index, newQuestion) =>
     set(

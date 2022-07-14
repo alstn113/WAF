@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Draggable } from 'react-beautiful-dnd';
 import { IForm } from '../../libs/interfaces';
@@ -10,7 +11,20 @@ interface Props {
 }
 
 const FormItem = ({ formItem, index }: Props) => {
-  const { setFormItemQuestion } = userFormBuilderStore();
+  const toast = useToast();
+  const { setFormItemQuestion, setFormList, formList } = userFormBuilderStore();
+
+  const onDelete = () => {
+    const newFormList = formList.filter((item) => item.id !== formItem.id);
+    setFormList(newFormList);
+    toast({
+      title: `질문을 삭제하였습니다.`,
+      status: 'success',
+      duration: 1500,
+      isClosable: true,
+    });
+  };
+
   return (
     <Draggable draggableId={formItem.id} index={index}>
       {(provided, snapshot) => (
@@ -31,6 +45,7 @@ const FormItem = ({ formItem, index }: Props) => {
           />
           <div>type : {formItem.type}</div>
           <div>answer : {JSON.stringify(formItem.answer)}</div>
+          <button onClick={onDelete}>삭제</button>
         </Container>
       )}
     </Draggable>

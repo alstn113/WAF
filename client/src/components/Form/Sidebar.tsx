@@ -2,20 +2,20 @@ import { Button, Flex, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import useCreateFormBuilder from '../../libs/hooks/queries/form-builder/useCreateFormBuilder';
 import useFormBuilderStore from '../../libs/store/useFormBuilderStore';
+import { v4 as uuidv4 } from 'uuid';
 
 const Sidebar = () => {
   const toast = useToast();
-  const { title, description, formList, count, setFormList } =
-    useFormBuilderStore();
+  const { title, description, formList, setFormList } = useFormBuilderStore();
 
   const onCreate = () => {
     const newFormList = Array.from(formList).concat({
-      id: `form-${count + 1}`,
+      id: uuidv4(),
       question: 'question',
       type: 'ShortAnswer',
       answer: [],
     });
-    setFormList(newFormList, count + 1);
+    setFormList(newFormList);
 
     toast({
       title: '폼이 생성되었습니다',
