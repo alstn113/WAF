@@ -1,6 +1,6 @@
 import produce from 'immer';
 import create from 'zustand';
-import { IForm, IFromBuilder, questionType } from '../interfaces';
+import { IForm, IFromBuilder } from '../interfaces';
 
 interface States extends IFromBuilder {
   count: number;
@@ -9,7 +9,7 @@ interface States extends IFromBuilder {
 interface Actions {
   setFormList: (newFormList: IForm[], newCount: number) => void;
   setFormItemQuestion: (index: number, newQuestion: string) => void;
-  setFormItemType: (index: number, newType: questionType) => void;
+  setFormItemType: (index: number, newType: string) => void;
   setFormItemAnswer: () => void;
 }
 

@@ -1,18 +1,17 @@
-export type questionType =
-  | 'ShortAnswer'
-  | 'LongAnswer'
-  | 'MultipleChoice'
-  | 'CheckBox'
-  | 'Dropdown';
-
 export interface IForm {
   id: string;
   question: string;
-  type: questionType;
+  type: string;
   answer: string[];
 }
 
 export interface IFromBuilder {
+  title: string;
+  description: string;
+  formList: IForm[];
+}
+
+export interface IFromBuilderResponse {
   id: string;
   title: string;
   description: string;
