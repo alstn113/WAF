@@ -4,15 +4,13 @@ import {
   Flex,
   Grid,
   GridItem,
-  Stack,
-  StackItem,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import useGetFormBuilders from '../libs/hooks/queries/form-builder/useGetFormBuilders';
 import formatDate from '../libs/utils/formatDate';
-import { Wrapper } from './FormDND';
+import { Link } from 'react-router-dom';
 
 const MyPage = () => {
   const { data, isLoading, error } = useGetFormBuilders();
@@ -61,10 +59,12 @@ const MyPage = () => {
                 fontSize="0.9rem"
                 textAlign={'center'}
               >
-                <div>제목 : {formBuilder.title}</div>
-                <div>설명 : {formBuilder.description}</div>
-                <div>생성일 : {formatDate(formBuilder.createdAt)}</div>
-                <div>업데이트일 : {formatDate(formBuilder.updatedAt)}</div>
+                <Link to={`/form/${formBuilder.id}`}>
+                  <div>제목 : {formBuilder.title}</div>
+                  <div>설명 : {formBuilder.description}</div>
+                  <div>생성일 : {formatDate(formBuilder.createdAt)}</div>
+                  <div>업데이트일 : {formatDate(formBuilder.updatedAt)}</div>
+                </Link>
               </GridItem>
             ))
           )}

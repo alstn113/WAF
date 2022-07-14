@@ -16,33 +16,9 @@ model User {
   username String
   provider String
   hashedRt String?
-  posts Post[]
-  comments Comment[]
   formBuilders FormBuilder[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
-}
-
-model Post {
-  id String @id @default(uuid())
-  title String
-  body String
-  userId String
-  comments Comment[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model Comment {
-  id String @id @default(uuid())
-  text String
-  userId String
-  postId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt()
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
 
 model FormBuilder {

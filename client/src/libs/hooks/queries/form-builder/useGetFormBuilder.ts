@@ -1,10 +1,10 @@
 import { useQuery, UseQueryResult } from 'react-query';
 import FormBuilderAPI from '../../../api/form-builder.api';
-import { ICustomAxiosError, IFromBuilder } from '../../../interfaces';
+import { ICustomAxiosError, IFromBuilderResponse } from '../../../interfaces';
 
 const useGetFormBuilder = (
   id: string,
-): UseQueryResult<IFromBuilder, ICustomAxiosError> => {
+): UseQueryResult<IFromBuilderResponse, ICustomAxiosError> => {
   return useQuery(['GetFormBuilder', id], () =>
     FormBuilderAPI.getFormBuilder(id),
   );

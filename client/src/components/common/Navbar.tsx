@@ -305,21 +305,6 @@ interface NavItem {
 
 const NAV_ITEMS: Array<NavItem> = [
   {
-    label: 'Post',
-    children: [
-      {
-        label: 'Write',
-        subLabel: 'Write post what you think',
-        href: '/write',
-      },
-      {
-        label: 'Post List',
-        subLabel: 'See Awesome Post',
-        href: '/',
-      },
-    ],
-  },
-  {
     label: 'Form',
     children: [
       {

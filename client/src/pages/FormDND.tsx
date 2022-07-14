@@ -4,7 +4,7 @@ import FormItem from '../components/Form/FormItem';
 import Sidebar from '../components/Form/Sidebar';
 import useFormBuilderStore from '../libs/store/useFormBuilderStore';
 
-const Form = () => {
+const FormDND = () => {
   const { formList, count, setFormList } = useFormBuilderStore();
 
   const reorder = (list: any[], startIndex: number, endIndex: number) => {
@@ -84,4 +84,4 @@ export const FormListContainer = styled.div<{ isDraggingOver: boolean }>`
   min-height: 30px;
 `;
 
-export default Form;
+export default FormDND;

@@ -8,8 +8,6 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
-import { PostModule } from './modules/post/post.module';
-import { CommentModule } from './modules/comment/comment.module';
 import configuration from './config/configuration';
 import { JwtModule } from '@nestjs/jwt';
 import { PrismaModule } from './prisma/prisma.module';
@@ -27,8 +25,6 @@ import { FormBuilderModule } from './modules/form-builder/form-builder.module';
     PrismaModule,
     AuthModule,
     UserModule,
-    PostModule,
-    CommentModule,
     FormBuilderModule,
   ],
   providers: [
