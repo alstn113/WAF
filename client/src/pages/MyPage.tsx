@@ -1,9 +1,11 @@
 import {
+  Button,
   Center,
   Container,
   Flex,
   Grid,
   GridItem,
+  useToast,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
@@ -11,9 +13,24 @@ import LoadingSpinner from '../components/common/LoadingSpinner';
 import useGetFormBuilders from '../libs/hooks/queries/form-builder/useGetFormBuilders';
 import formatDate from '../libs/utils/formatDate';
 import { Link } from 'react-router-dom';
+import useDeleteFormBuilder from '../libs/hooks/queries/form-builder/useDeleteFormBuilder';
 
 const MyPage = () => {
-  const { data, isLoading, error } = useGetFormBuilders();
+  const { data, isLoading, error, refetch } = useGetFormBuilders();
+  const toast = useToast();
+
+  const { mutate } = useDeleteFormBuilder({
+    onSuccess: async () => {
+      await refetch();
+      toast({
+        title: '폼을 삭제했습니다',
+        duration: 1500,
+        isClosable: true,
+        status: 'success',
+      });
+    },
+  });
+
   if (error) return <div>{error.response?.data.message}</div>;
   return (
     <Container maxWidth={'100%'} centerContent>
@@ -65,6 +82,12 @@ const MyPage = () => {
                   <div>생성일 : {formatDate(formBuilder.createdAt)}</div>
                   <div>업데이트일 : {formatDate(formBuilder.updatedAt)}</div>
                 </Link>
+                <Button
+                  onClick={() => mutate(formBuilder.id)}
+                  marginTop={'1rem'}
+                >
+                  삭제
+                </Button>
               </GridItem>
             ))
           )}

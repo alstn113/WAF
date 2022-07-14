@@ -3,10 +3,9 @@ import FormBuilderAPI from '../../../api/form-builder.api';
 import { ICustomAxiosError, IFromBuilder } from '../../../interfaces';
 
 const useDeleteFormBuilder = (
-  id: string,
-  options: UseMutationOptions<IFromBuilder, ICustomAxiosError>,
+  options?: UseMutationOptions<IFromBuilder, ICustomAxiosError, string>,
 ) => {
-  return useMutation(() => FormBuilderAPI.deleteFormBuilder(id), options);
+  return useMutation(FormBuilderAPI.deleteFormBuilder, options);
 };
 
 export default useDeleteFormBuilder;

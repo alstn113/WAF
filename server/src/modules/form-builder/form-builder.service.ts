@@ -23,6 +23,9 @@ export class FormBuilderService {
         createdAt: true,
         updatedAt: true,
       },
+      orderBy: {
+        updatedAt: 'desc',
+      },
     });
   }
 
