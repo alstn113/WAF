@@ -1,5 +1,6 @@
+import produce from 'immer';
 import create from 'zustand';
-import { IForm, IFromBuilder } from '../interfaces';
+import { IForm, IFromBuilder, questionType } from '../interfaces';
 
 interface States extends IFromBuilder {
   count: number;
@@ -7,6 +8,9 @@ interface States extends IFromBuilder {
 
 interface Actions {
   setFormList: (newFormList: IForm[], newCount: number) => void;
+  setFormItemQuestion: (index: number, newQuestion: string) => void;
+  setFormItemType: (index: number, newType: questionType) => void;
+  setFormItemAnswer: () => void;
 }
 
 const userFormBuilderStore = create<States & Actions>((set) => ({
@@ -22,6 +26,19 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
       formList: newFormList,
       count: newCount,
     })),
+  setFormItemQuestion: (index, newQuestion) =>
+    set(
+      produce((state: States) => {
+        state.formList[index].question = newQuestion;
+      }),
+    ),
+  setFormItemType: (index, newType) =>
+    set(
+      produce((state: States) => {
+        state.formList[index].type = newType;
+      }),
+    ),
+  setFormItemAnswer: () => set(produce((state: States) => {})),
 }));
 
 export default userFormBuilderStore;
