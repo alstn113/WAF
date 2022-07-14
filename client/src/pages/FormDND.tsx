@@ -3,17 +3,10 @@ import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import FormItem from '../components/Form/FormItem';
 import Sidebar from '../components/Form/Sidebar';
 import useFormBuilderStore from '../libs/store/useFormBuilderStore';
+import reorder from '../libs/utils/reorder';
 
 const FormDND = () => {
   const { formList, setFormList } = useFormBuilderStore();
-
-  const reorder = (list: any[], startIndex: number, endIndex: number) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-  };
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source } = result;

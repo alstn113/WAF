@@ -10,7 +10,7 @@ import { CreateFormBuilderDto } from './dto/create-form-builder.dto';
 export class FormBuilderService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async findFormBuilders(userId) {
+  async findFormBuilders(userId: string) {
     return await this.prismaService.formBuilder.findMany({
       where: {
         userId,
