@@ -51,7 +51,9 @@ const Sidebar = () => {
     <SidebarWrapper>
       <Flex direction={'column'}>
         <Button onClick={onCreate}>폼 생성</Button>
-        <Button onClick={onSave}>저장</Button>
+        <Button onClick={onSave} marginTop="1rem">
+          저장
+        </Button>
       </Flex>
     </SidebarWrapper>
   );

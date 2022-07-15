@@ -5,6 +5,8 @@ import { IForm, IFromBuilder } from '../interfaces';
 interface States extends IFromBuilder {}
 
 interface Actions {
+  setTitle: (newTitle: string) => void;
+  setDescription: (newDescription: string) => void;
   setFormList: (newFormList: IForm[]) => void;
   setFormItemQuestion: (index: number, newQuestion: string) => void;
   setFormItemType: (index: number, newType: string) => void;
@@ -18,6 +20,9 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
   formList: [],
 
   // Actions
+  setTitle: (newTitle) => set(() => ({ title: newTitle })),
+  setDescription: (newDescription) =>
+    set(() => ({ description: newDescription })),
   setFormList: (newFormList) =>
     set(() => ({
       formList: newFormList,

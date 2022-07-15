@@ -1,4 +1,4 @@
-import { Button, useToast } from '@chakra-ui/react';
+import { Button, Input, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Draggable } from 'react-beautiful-dnd';
 import { IForm } from '../../libs/interfaces';
@@ -37,9 +37,10 @@ const FormItem = ({ formItem, index }: Props) => {
           <FormContainer index={index} />
           <div>id : {formItem.id}</div>
           <div>index : {index}</div>
-          <input
+          <Input
             type="text"
             placeholder={formItem.type}
+            width="50%"
             value={formItem.question}
             onChange={(e) => setFormItemQuestion(index, e.target.value)}
           />
