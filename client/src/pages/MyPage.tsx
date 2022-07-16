@@ -12,14 +12,16 @@ import {
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import useGetFormBuilders from '../libs/hooks/queries/form-builder/useGetFormBuilders';
 import formatDate from '../libs/utils/formatDate';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useDeleteFormBuilder from '../libs/hooks/queries/form-builder/useDeleteFormBuilder';
+import useCreateFormBuilder from '../libs/hooks/queries/form-builder/useCreateFormBuilder';
 
 const MyPage = () => {
   const { data, isLoading, error, refetch } = useGetFormBuilders();
   const toast = useToast();
+  const navigate = useNavigate();
 
-  const { mutate } = useDeleteFormBuilder({
+  const { mutate: deleteMutate } = useDeleteFormBuilder({
     onSuccess: async () => {
       await refetch();
       toast({
@@ -28,6 +30,12 @@ const MyPage = () => {
         isClosable: true,
         status: 'success',
       });
+    },
+  });
+
+  const { mutate: createMutate } = useCreateFormBuilder({
+    onSuccess: (data) => {
+      navigate(`/form/${data.id}`);
     },
   });
 
@@ -44,7 +52,19 @@ const MyPage = () => {
         <Flex direction={'row'}>
           <Wrap spacing={'30px'}>
             <WrapItem>
-              <Center w={'120px'} h={'120px'} bg={'#a0a0a0a3'}>
+              <Center
+                w={'120px'}
+                h={'120px'}
+                bg={'#a0a0a0a3'}
+                _hover={{ bg: '#878282a2' }}
+                onClick={() =>
+                  createMutate({
+                    title: '제목없음',
+                    description: '설명없음',
+                    formList: '[]',
+                  })
+                }
+              >
                 내용없음
               </Center>
             </WrapItem>
@@ -83,7 +103,7 @@ const MyPage = () => {
                   <div>업데이트일 : {formatDate(formBuilder.updatedAt)}</div>
                 </Link>
                 <Button
-                  onClick={() => mutate(formBuilder.id)}
+                  onClick={() => deleteMutate(formBuilder.id)}
                   marginTop={'1rem'}
                 >
                   삭제

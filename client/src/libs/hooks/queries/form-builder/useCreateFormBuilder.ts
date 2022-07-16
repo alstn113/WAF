@@ -3,12 +3,12 @@ import FormBuilderAPI from '../../../api/form-builder.api';
 import {
   ICustomAxiosError,
   IFormBuilderCreateRequest,
-  IFromBuilder,
+  IFromBuilderResponse,
 } from '../../../interfaces';
 
 const useCreateFormBuilder = (
   options?: UseMutationOptions<
-    IFromBuilder,
+    IFromBuilderResponse,
     ICustomAxiosError,
     IFormBuilderCreateRequest
   >,
