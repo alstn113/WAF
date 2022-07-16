@@ -5,7 +5,6 @@ import Navbar from './components/common/Navbar';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import ModelView from './pages/ModelView';
-import FormDND from './pages/FormDND';
 import MyPage from './pages/MyPage';
 import useAuthStore from './libs/store/useAuthStore';
 import { useEffect } from 'react';
@@ -26,7 +25,6 @@ const App = () => {
         {/* public routes */}
         <Route path="/" element={<Home />} />
         <Route path="/my-page" element={<MyPage />} />
-        <Route path="/form-dnd" element={<FormDND />} />
         <Route path="/form/:formId" element={<Form />} />
         <Route path="/model-view" element={<ModelView />} />
 

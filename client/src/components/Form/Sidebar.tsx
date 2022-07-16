@@ -1,10 +1,14 @@
 import { Button, Flex, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
-import useCreateFormBuilder from '../../libs/hooks/queries/form-builder/useCreateFormBuilder';
 import useFormBuilderStore from '../../libs/store/useFormBuilderStore';
 import { v4 as uuidv4 } from 'uuid';
+import useUpdateFormBuilder from '../../libs/hooks/queries/form-builder/uesUpdateFormBuilder';
 
-const Sidebar = () => {
+interface Props {
+  formId: string;
+}
+
+const Sidebar = ({ formId }: Props) => {
   const toast = useToast();
   const { title, description, formList, setFormList } = useFormBuilderStore();
 
@@ -25,7 +29,7 @@ const Sidebar = () => {
     });
   };
 
-  const { mutate } = useCreateFormBuilder({
+  const { mutate: updateMutate } = useUpdateFormBuilder(formId, {
     onSuccess: () => {
       toast({
         title: '저장되었습니다.',
@@ -44,7 +48,7 @@ const Sidebar = () => {
     },
   });
   const onSave = () => {
-    mutate({ title, description, formList: JSON.stringify(formList) });
+    updateMutate({ title, description, formList: JSON.stringify(formList) });
   };
 
   return (

@@ -21,7 +21,7 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
   description: '설명없음',
   formList: [],
 
-  //
+  // Actions
   setFormBuilder: (data) =>
     set(() => ({
       title: data.title,

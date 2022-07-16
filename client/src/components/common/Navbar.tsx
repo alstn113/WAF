@@ -308,11 +308,6 @@ const NAV_ITEMS: Array<NavItem> = [
     label: 'Form',
     children: [
       {
-        label: 'Form DND Test',
-        subLabel: 'Form Create And Delete Test',
-        href: '/form-dnd',
-      },
-      {
         label: 'Model View',
         subLabel: 'you can check form model',
         href: '/model-view',

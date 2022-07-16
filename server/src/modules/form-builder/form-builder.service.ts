@@ -65,7 +65,9 @@ export class FormBuilderService {
     return await this.prismaService.formBuilder.update({
       where: { id },
       data: {
-        ...dto,
+        title: dto.title,
+        description: dto.description,
+        formList: JSON.parse(dto.formList),
       },
     });
   }
