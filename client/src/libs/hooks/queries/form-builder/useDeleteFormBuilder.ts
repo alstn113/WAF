@@ -1,9 +1,9 @@
 import { useMutation, UseMutationOptions } from 'react-query';
 import FormBuilderAPI from '../../../api/form-builder.api';
-import { ICustomAxiosError, IFromBuilder } from '../../../interfaces';
+import { ICustomAxiosError, IFromBuilderResponse } from '../../../interfaces';
 
 const useDeleteFormBuilder = (
-  options?: UseMutationOptions<IFromBuilder, ICustomAxiosError, string>,
+  options?: UseMutationOptions<IFromBuilderResponse, ICustomAxiosError, string>,
 ) => {
   return useMutation(FormBuilderAPI.deleteFormBuilder, options);
 };

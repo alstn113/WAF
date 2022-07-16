@@ -1,4 +1,7 @@
-import { IFormBuilderCreateRequest } from '../interfaces';
+import {
+  IFormBuilderCreateRequest,
+  IFormBuilderUpdateRequest,
+} from '../interfaces';
 import apiClient from './apiClient.api';
 
 const FormBuilderAPI = {
@@ -10,12 +13,15 @@ const FormBuilderAPI = {
     const { data } = await apiClient.get(`/form-builder/${id}`);
     return data;
   },
-
   createFormBuilder: async (input: IFormBuilderCreateRequest) => {
     const { data } = await apiClient.post('/form-builder', input);
     return data;
   },
-
+  updateFormBuilder:
+    (id: string) => async (input: IFormBuilderUpdateRequest) => {
+      const { data } = await apiClient.patch(`/form-builder/${id}`, input);
+      return data;
+    },
   deleteFormBuilder: async (id: string) => {
     const { data } = await apiClient.delete(`/form-builder/${id}`);
     return data;

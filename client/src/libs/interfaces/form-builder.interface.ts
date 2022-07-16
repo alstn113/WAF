@@ -26,3 +26,9 @@ export interface IFormBuilderCreateRequest {
   description: string;
   formList: string;
 }
+
+export interface IFormBuilderUpdateRequest {
+  title?: string;
+  description?: string;
+  formList?: string;
+}

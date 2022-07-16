@@ -1,7 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GetCurrentUserId } from 'src/common/decorators/get-current-user-id.decorator';
 import { CreateFormBuilderDto } from './dto/create-form-builder.dto';
+import { UpdateFormBuilderDto } from './dto/update-form-builder.dto';
 import { FormBuilderService } from './form-builder.service';
 
 @Controller('form-builder')
@@ -28,6 +37,15 @@ export class FormBuilderController {
     @Body() dto: CreateFormBuilderDto,
   ) {
     return await this.formBuilderService.createFormBuilder(userId, dto);
+  }
+
+  @Patch('/:id')
+  async updateFormBuilder(
+    @GetCurrentUserId() userId: string,
+    @Param('id') id: string,
+    @Body() dto: UpdateFormBuilderDto,
+  ) {
+    return await this.formBuilderService.updateFormBuilder(userId, id, dto);
   }
 
   @Delete('/:id')

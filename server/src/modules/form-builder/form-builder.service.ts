@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateFormBuilderDto } from './dto/create-form-builder.dto';
+import { UpdateFormBuilderDto } from './dto/update-form-builder.dto';
 
 @Injectable()
 export class FormBuilderService {
@@ -46,6 +47,25 @@ export class FormBuilderService {
         ...dto,
         formList: JSON.parse(dto.formList),
         userId: userId,
+      },
+    });
+  }
+
+  async updateFormBuilder(
+    userId: string,
+    id: string,
+    dto: UpdateFormBuilderDto,
+  ) {
+    const formBuilder = await this.prismaService.formBuilder.findUnique({
+      where: { id },
+    });
+    if (!formBuilder) throw new NotFoundException();
+    if (formBuilder.userId !== userId) throw new UnauthorizedException();
+
+    return await this.prismaService.formBuilder.update({
+      where: { id },
+      data: {
+        ...dto,
       },
     });
   }
