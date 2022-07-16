@@ -7,14 +7,8 @@ import useFormBuilderStore from '../libs/store/useFormBuilderStore';
 import reorder from '../libs/utils/reorder';
 
 const FormDND = () => {
-  const {
-    title,
-    description,
-    formList,
-    setFormList,
-    setTitle,
-    setDescription,
-  } = useFormBuilderStore();
+  const { title, description, formList, setFormList, changeFormField } =
+    useFormBuilderStore();
 
   const onDragEnd = (result: DropResult) => {
     const { destination, source } = result;
@@ -35,17 +29,18 @@ const FormDND = () => {
               value={title}
               width="50%"
               bg={'white'}
-              onChange={(e) => setTitle(e.target.value)}
+              placeholder="제목"
+              onChange={(e) => changeFormField('title', e.target.value)}
             />
           </Title>
           <Description>
             <Input
               type="text"
-              placeholder={description}
+              placeholder="설명"
               bg={'white'}
               value={description}
               width="50%"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => changeFormField('description', e.target.value)}
             />
           </Description>
           <Sidebar />

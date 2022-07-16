@@ -5,12 +5,13 @@ import { IForm, IFromBuilder } from '../interfaces';
 interface States extends IFromBuilder {}
 
 interface Actions {
-  setTitle: (newTitle: string) => void;
-  setDescription: (newDescription: string) => void;
   setFormList: (newFormList: IForm[]) => void;
-  setFormItemQuestion: (index: number, newQuestion: string) => void;
-  setFormItemType: (index: number, newType: string) => void;
-  setFormItemAnswer: () => void;
+  changeFormField: (field: 'title' | 'description', data: string) => void;
+  changeFormItemField: (
+    index: number,
+    field: 'question' | 'type',
+    data: string,
+  ) => void;
 }
 
 const userFormBuilderStore = create<States & Actions>((set) => ({
@@ -20,26 +21,22 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
   formList: [],
 
   // Actions
-  setTitle: (newTitle) => set(() => ({ title: newTitle })),
-  setDescription: (newDescription) =>
-    set(() => ({ description: newDescription })),
   setFormList: (newFormList) =>
     set(() => ({
       formList: newFormList,
     })),
-  setFormItemQuestion: (index, newQuestion) =>
+  changeFormField: (field, data) =>
     set(
       produce((state: States) => {
-        state.formList[index].question = newQuestion;
+        state[field] = data;
       }),
     ),
-  setFormItemType: (index, newType) =>
+  changeFormItemField: (index, field, data) =>
     set(
       produce((state: States) => {
-        state.formList[index].type = newType;
+        state.formList[index][field] = data;
       }),
     ),
-  setFormItemAnswer: () => set(produce((state: States) => {})),
 }));
 
 export default userFormBuilderStore;

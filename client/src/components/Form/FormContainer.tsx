@@ -10,7 +10,7 @@ interface Props {
   index: number;
 }
 const FormContainer = ({ index }: Props) => {
-  const { setFormItemType } = userFormBuilderStore();
+  const { changeFormItemField } = userFormBuilderStore();
   const formType: { [key: string]: ReactNode } = {
     단답형: <ShortAnswerForm />,
     장문형: <LongAnswerForm />,
@@ -27,7 +27,7 @@ const FormContainer = ({ index }: Props) => {
         defaultValue={'단답형'}
         onChange={(e) => {
           setSelectedFormType(formType[e.target.value]);
-          setFormItemType(index, e.target.value);
+          changeFormItemField(index, 'type', e.target.value);
         }}
       >
         {Object.keys(formType).map((formType) => (

@@ -12,7 +12,7 @@ const Sidebar = () => {
     const newFormList = Array.from(formList).concat({
       id: uuidv4(),
       question: 'question',
-      type: 'ShortAnswer',
+      type: '단답형',
       answer: [],
     });
     setFormList(newFormList);

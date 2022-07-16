@@ -12,7 +12,7 @@ interface Props {
 
 const FormItem = ({ formItem, index }: Props) => {
   const toast = useToast();
-  const { setFormItemQuestion, setFormList, formList } = userFormBuilderStore();
+  const { changeFormItemField, setFormList, formList } = userFormBuilderStore();
 
   const onDelete = () => {
     const newFormList = formList.filter((item) => item.id !== formItem.id);
@@ -42,7 +42,9 @@ const FormItem = ({ formItem, index }: Props) => {
             placeholder={formItem.type}
             width="50%"
             value={formItem.question}
-            onChange={(e) => setFormItemQuestion(index, e.target.value)}
+            onChange={(e) =>
+              changeFormItemField(index, 'question', e.target.value)
+            }
           />
           <div>type : {formItem.type}</div>
           <div>answer : {JSON.stringify(formItem.answer)}</div>
