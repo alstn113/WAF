@@ -1,5 +1,5 @@
 import { Container } from '@chakra-ui/react';
-import useFormBuilderStore from '../libs/store/useFormBuilderStore';
+import useFormBuilderStore from '../../libs/store/useFormBuilderStore';
 
 const ModelView = () => {
   const { title, description, formList } = useFormBuilderStore();

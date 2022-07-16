@@ -22,7 +22,7 @@ import {
   ChevronRightIcon,
 } from '@chakra-ui/icons';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import useAuthStore from '../../libs/store/useAuthStore';
+import useAuthStore from '../../../libs/store/useAuthStore';
 
 const Navbar = () => {
   const { isOpen, onToggle } = useDisclosure();
@@ -310,7 +310,22 @@ const NAV_ITEMS: Array<NavItem> = [
       {
         label: 'Model View',
         subLabel: 'you can check form model',
-        href: '/model-view',
+        href: '/form/model-view',
+      },
+    ],
+  },
+  {
+    label: 'Board',
+    children: [
+      {
+        label: 'See Posts',
+        subLabel: 'you can see posts',
+        href: '/board',
+      },
+      {
+        label: 'Write Post',
+        subLabel: 'you can wite post',
+        href: '/board/post/write',
       },
     ],
   },

@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '../components/common/LoadingSpinner';
-import useGetFormBuilder from '../libs/hooks/queries/form-builder/useGetFormBuilder';
-import userFormBuilderStore from '../libs/store/useFormBuilderStore';
+import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
+import useGetFormBuilder from '../../libs/hooks/queries/form-builder/useGetFormBuilder';
+import userFormBuilderStore from '../../libs/store/useFormBuilderStore';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
-import reorder from '../libs/utils/reorder';
+import reorder from '../../libs/utils/reorder';
 import { Input } from '@chakra-ui/react';
-import FormItem from '../components/Form/FormItem';
-import Sidebar from '../components/Form/Sidebar';
+import FormItem from '../../components/Form/FormItem';
+import Sidebar from '../../components/Form/Sidebar';
 
 const Form = () => {
   const params = useParams<{ formId: string }>();

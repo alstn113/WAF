@@ -9,12 +9,12 @@ import {
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
-import LoadingSpinner from '../components/common/LoadingSpinner';
-import useGetFormBuilders from '../libs/hooks/queries/form-builder/useGetFormBuilders';
-import formatDate from '../libs/utils/formatDate';
+import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
+import useGetFormBuilders from '../../libs/hooks/queries/form-builder/useGetFormBuilders';
+import formatDate from '../../libs/utils/formatDate';
 import { Link, useNavigate } from 'react-router-dom';
-import useDeleteFormBuilder from '../libs/hooks/queries/form-builder/useDeleteFormBuilder';
-import useCreateFormBuilder from '../libs/hooks/queries/form-builder/useCreateFormBuilder';
+import useDeleteFormBuilder from '../../libs/hooks/queries/form-builder/useDeleteFormBuilder';
+import useCreateFormBuilder from '../../libs/hooks/queries/form-builder/useCreateFormBuilder';
 
 const MyPage = () => {
   const { data, isLoading, error, refetch } = useGetFormBuilders();

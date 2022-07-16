@@ -14,6 +14,8 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthGuard } from './common/guards/auth-guard.guard';
 import { AuthMiddleware } from './middlewares/jwt-auth.middleware';
 import { FormBuilderModule } from './modules/form-builder/form-builder.module';
+import { PostModule } from './modules/post/post.module';
+import { CommentModule } from './modules/comment/comment.module';
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { FormBuilderModule } from './modules/form-builder/form-builder.module';
     PrismaModule,
     AuthModule,
     UserModule,
+    PostModule,
+    CommentModule,
     FormBuilderModule,
   ],
   providers: [
