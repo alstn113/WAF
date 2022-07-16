@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import Form from './pages/Form/Form';
 import Board from './pages/Board/Board';
 import PostDetail from './pages/PostDetail/PostDetail';
-import Write from './pages/Write/Write';
+import Write from '@/pages/Write/Write';
 
 const App = () => {
   const { getCurrentUser } = useAuthStore();

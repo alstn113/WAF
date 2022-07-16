@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
 import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
 import { Container, useToast } from '@chakra-ui/react';
