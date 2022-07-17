@@ -11,7 +11,7 @@ const Home = () => {
       <div>
         <Button size="md">가나다</Button>
       </div>
-      <RadioButton labelText="sdf" name="same" />
+      <RadioButton labelText="sdf" name="same" value="same" />
     </div>
   );
 };

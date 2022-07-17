@@ -10,7 +10,7 @@ const RadioButton = forwardRef<HTMLInputElement, Props>(
     return (
       <S.Label>
         <S.Text>{labelText}</S.Text>
-        <S.RadioButton ref={ref} type="radio" name={name} {...options} />
+        <S.RadioButton type="radio" ref={ref} name={name} {...options} />
         <S.RadioMark />
       </S.Label>
     );
