@@ -10,8 +10,9 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.div`
+  font-family: BMEULJIRO;
   font-size: 9rem;
-  font-weight: 900;
+  font-weight: bold;
   padding: 1rem;
   background: linear-gradient(to left, #7928ca, #ff0080);
   background-clip: text;

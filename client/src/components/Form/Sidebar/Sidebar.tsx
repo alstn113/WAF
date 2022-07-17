@@ -1,7 +1,8 @@
-import styled from '@emotion/styled';
+import * as S from './Sidebar.styles';
 import useFormBuilderStore from '@libs/store/useFormBuilderStore';
 import { v4 as uuidv4 } from 'uuid';
 import useUpdateFormBuilder from '@libs/hooks/queries/form-builder/uesUpdateFormBuilder';
+import Button from '@src/components/common/Button/Button';
 
 interface Props {
   formId: string;
@@ -13,7 +14,7 @@ const Sidebar = ({ formId }: Props) => {
   const onCreate = () => {
     const newFormList = Array.from(formList).concat({
       id: uuidv4(),
-      question: 'question',
+      question: '제목없는 질문',
       type: '단답형',
       answer: [],
     });
@@ -29,22 +30,15 @@ const Sidebar = ({ formId }: Props) => {
   };
 
   return (
-    <SidebarWrapper>
-      <div>
-        <button onClick={onCreate}>폼 생성</button>
-        <button onClick={onSave}>저장</button>
-      </div>
-    </SidebarWrapper>
+    <S.SidebarWrapper>
+      <Button size="sm" onClick={onCreate}>
+        폼 생성
+      </Button>
+      <Button size="sm" onClick={onSave}>
+        저장
+      </Button>
+    </S.SidebarWrapper>
   );
 };
 
-export const SidebarWrapper = styled.div`
-  position: fixed;
-  right: 2rem;
-  top: 10rem;
-  background: #b3ef82;
-  border-radius: 1rem;
-  padding: 1rem;
-  height: 10rem;
-`;
 export default Sidebar;

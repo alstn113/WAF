@@ -26,7 +26,7 @@ const FormContent = ({ formId }: Props) => {
   return (
     <div>
       <S.Title>
-        <input
+        <S.TitleInput
           type="text"
           value={title}
           width="50%"
@@ -35,7 +35,7 @@ const FormContent = ({ formId }: Props) => {
         />
       </S.Title>
       <S.Description>
-        <input
+        <S.DescriptionInput
           type="text"
           placeholder="설명"
           value={description}

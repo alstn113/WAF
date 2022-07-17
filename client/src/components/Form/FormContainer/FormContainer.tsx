@@ -1,4 +1,5 @@
-import { useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
+import * as S from './FormContainer.styles';
 import userFormBuilderStore from '@libs/store/useFormBuilderStore';
 import CheckBoxForm from '@components/Form/CheckBoxForm/CheckBoxForm';
 import DropdonwForm from '@components/Form/DropdownForm/DropdonwForm';
@@ -17,26 +18,20 @@ const FormContainer = ({ index }: Props) => {
     체크박스: <CheckBoxForm />,
     드롭다운: <DropdonwForm />,
   };
-  const [selectedFormType, setSelectedFormType] = useState<ReactNode>(
-    <ShortAnswerForm />,
-  );
+
   return (
-    <div>
-      <select
-        defaultValue={'단답형'}
-        onChange={(e) => {
-          setSelectedFormType(formType[e.target.value]);
-          changeFormItemField(index, 'type', e.target.value);
-        }}
-      >
-        {Object.keys(formType).map((formType) => (
-          <option key={formType} value={formType}>
-            {formType}
-          </option>
-        ))}
-      </select>
-      {selectedFormType}
-    </div>
+    <S.Select
+      defaultValue={'단답형'}
+      onChange={(e) => {
+        changeFormItemField(index, 'type', e.target.value);
+      }}
+    >
+      {Object.keys(formType).map((formType) => (
+        <option key={formType} value={formType}>
+          {formType}
+        </option>
+      ))}
+    </S.Select>
   );
 };
 

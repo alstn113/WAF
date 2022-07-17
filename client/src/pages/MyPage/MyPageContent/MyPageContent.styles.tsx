@@ -17,6 +17,7 @@ export const GridItem = styled.div`
   padding: 1rem;
   font-size: 0.9rem;
   text-align: center;
+  transition: 0.5s ease-in-out;
   &:hover {
     background: #a5eea7;
   }

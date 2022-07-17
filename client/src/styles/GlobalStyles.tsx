@@ -24,6 +24,14 @@ const GlobalStyles = () => {
           a {
             text-decoration: none;
           }
+          @font-face {
+            font-family: 'BMEULJIRO';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/BMEULJIRO.woff')
+              format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+          }
         `}
       />
     </>

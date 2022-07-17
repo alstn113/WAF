@@ -19,6 +19,7 @@ export const WrapperItem = styled.button`
   width: 120px;
   height: 120px;
   background: #878282a2;
+  transition: 0.5s ease-in-out;
   & + & {
     margin-left: 3rem;
   }

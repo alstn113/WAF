@@ -9,6 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
+  font-family: BMEULJIRO;
   font-size: 10rem;
   font-weight: 900;
   padding: 1rem;
@@ -19,6 +20,7 @@ export const Title = styled.div`
 `;
 
 export const ErrorMessage = styled.div`
+  font-family: BMEULJIRO;
   margin-top: 2rem;
   font-size: 5rem;
   font-weight: 800;

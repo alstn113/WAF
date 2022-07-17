@@ -16,8 +16,8 @@ const ErrorFallBack = ({ message, queryKey }: Props) => {
 
   return (
     <S.Container>
-      <S.Title>BOOM!</S.Title>
-      <S.ErrorMessage>ERROR : {message}</S.ErrorMessage>
+      <S.Title>ERROR</S.Title>
+      <S.ErrorMessage>{message}</S.ErrorMessage>
     </S.Container>
   );
 };

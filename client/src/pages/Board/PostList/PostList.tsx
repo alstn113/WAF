@@ -4,7 +4,6 @@ import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
 
 const PostList = () => {
   const { data } = useGetPosts();
-
   return (
     <div>
       {data?.map((post) => (

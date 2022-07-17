@@ -8,6 +8,7 @@ export const Wrapper = styled.header<{ isScroll: boolean }>`
   top: 0;
   z-index: ${Z_INDEX.HEADER};
   background: #fff;
+  transition: 0.5s ease-in-out;
   ${({ isScroll }) =>
     isScroll &&
     css`
