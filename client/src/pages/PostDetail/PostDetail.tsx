@@ -2,10 +2,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
-import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
-import { Container, useToast } from '@chakra-ui/react';
-import useCreateComment from '../../libs/hooks/queries/comment/useCreateComment';
-import useGetPost from '../../libs/hooks/queries/post/useGetPost';
+import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
+import useCreateComment from '@libs/hooks/queries/comment/useCreateComment';
+import useGetPost from '@libs/hooks/queries/post/useGetPost';
 
 interface IFormInputs {
   text: string;
@@ -16,7 +15,6 @@ const schema = yup.object().shape({
 });
 
 const PostDetailPage = () => {
-  const toast = useToast();
   const params = useParams<{ postId: string }>();
   const postId = params.postId as string;
   const { data, isLoading, error, refetch } = useGetPost(postId);
@@ -34,14 +32,7 @@ const PostDetailPage = () => {
     onSuccess: async () => {
       await refetch();
     },
-    onError: (e) => {
-      toast({
-        title: `${e.response?.data.message} [CODE : ${e.response?.data.statusCode}]`,
-        status: 'error',
-        isClosable: true,
-        duration: 1000,
-      });
-    },
+    onError: (e) => {},
   });
 
   const onSubmit = (input: IFormInputs) => {
@@ -51,12 +42,7 @@ const PostDetailPage = () => {
   if (isLoading) return <LoadingSpinner />;
   if (error) return <div>{error.message}</div>;
   return (
-    <Container
-      display={'flex'}
-      justifyContent={'center'}
-      alignItems={'center'}
-      marginTop={'32'}
-    >
+    <div>
       <div>
         <div>ID : {data?.id}</div>
         <div>TITLE : {data?.title}</div>
@@ -80,7 +66,7 @@ const PostDetailPage = () => {
           ))}
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 

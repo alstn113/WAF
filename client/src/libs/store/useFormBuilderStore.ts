@@ -1,6 +1,6 @@
 import produce from 'immer';
 import create from 'zustand';
-import { IForm, IFromBuilder } from '../interfaces';
+import { IForm, IFromBuilder } from '@libs/interfaces';
 
 interface States extends IFromBuilder {}
 

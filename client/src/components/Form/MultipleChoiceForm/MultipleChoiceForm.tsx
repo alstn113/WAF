@@ -1,4 +1,4 @@
-const MutipleChoiceForm = () => {
+const MultipleChoiceForm = () => {
   return (
     <div>
       <div>객관식 질문</div>
@@ -6,4 +6,4 @@ const MutipleChoiceForm = () => {
   );
 };
 
-export default MutipleChoiceForm;
+export default MultipleChoiceForm;

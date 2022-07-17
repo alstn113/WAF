@@ -1,4 +1,4 @@
-import apiClient from './apiClient.api';
+import apiClient from '@libs/api/apiClient.api';
 
 const AuthAPI = {
   logout: async () => {

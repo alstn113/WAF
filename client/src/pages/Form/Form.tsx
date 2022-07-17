@@ -1,13 +1,12 @@
 import styled from '@emotion/styled';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
-import useGetFormBuilder from '../../libs/hooks/queries/form-builder/useGetFormBuilder';
-import userFormBuilderStore from '../../libs/store/useFormBuilderStore';
+import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
+import useGetFormBuilder from '@libs/hooks/queries/form-builder/useGetFormBuilder';
+import userFormBuilderStore from '@libs/store/useFormBuilderStore';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
-import reorder from '../../libs/utils/reorder';
-import { Input } from '@chakra-ui/react';
-import FormItem from '../../components/Form/FormItem';
-import Sidebar from '../../components/Form/Sidebar';
+import reorder from '@libs/utils/reorder';
+import FormItem from '@src/components/Form/FormItem/FormItem';
+import Sidebar from '@src/components/Form/Sidebar/Sidebar';
 
 const Form = () => {
   const params = useParams<{ formId: string }>();
@@ -47,20 +46,18 @@ const Form = () => {
       <Container>
         <Wrapper>
           <Title>
-            <Input
+            <input
               type="text"
               value={title}
               width="50%"
-              bg={'white'}
               placeholder="제목"
               onChange={(e) => changeFormField('title', e.target.value)}
             />
           </Title>
           <Description>
-            <Input
+            <input
               type="text"
               placeholder="설명"
-              bg={'white'}
               value={description}
               width="50%"
               onChange={(e) => changeFormField('description', e.target.value)}

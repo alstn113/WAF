@@ -1,8 +1,8 @@
 import {
   IFormBuilderCreateRequest,
   IFormBuilderUpdateRequest,
-} from '../interfaces';
-import apiClient from './apiClient.api';
+} from '@libs/interfaces';
+import apiClient from '@libs/api/apiClient.api';
 
 const FormBuilderAPI = {
   getFormBuilders: async () => {

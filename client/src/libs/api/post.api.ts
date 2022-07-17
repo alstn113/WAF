@@ -1,5 +1,5 @@
-import { IPostCreateRequest } from '../interfaces';
-import apiClient from './apiClient.api';
+import { IPostCreateRequest } from '@libs/interfaces';
+import apiClient from '@libs/api/apiClient.api';
 
 const PostAPI = {
   getPosts: async () => {

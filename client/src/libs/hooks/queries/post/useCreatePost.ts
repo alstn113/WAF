@@ -1,10 +1,6 @@
 import { useMutation, UseMutationOptions } from 'react-query';
-import PostAPI from '../../../api/post.api';
-import {
-  IPost,
-  IPostCreateRequest,
-  ICustomAxiosError,
-} from '../../../interfaces';
+import PostAPI from '@libs/api/post.api';
+import { IPost, IPostCreateRequest, ICustomAxiosError } from '@libs/interfaces';
 
 const useCreatePost = (
   options?: UseMutationOptions<IPost, ICustomAxiosError, IPostCreateRequest>,

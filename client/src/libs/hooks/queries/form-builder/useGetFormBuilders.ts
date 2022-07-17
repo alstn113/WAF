@@ -1,6 +1,6 @@
 import { useQuery, UseQueryOptions } from 'react-query';
-import FormBuilderAPI from '../../../api/form-builder.api';
-import { ICustomAxiosError, IFromBuilderResponse } from '../../../interfaces';
+import FormBuilderAPI from '@libs/api/form-builder.api';
+import { ICustomAxiosError, IFromBuilderResponse } from '@libs/interfaces';
 
 const useGetFormBuilders = (
   options?: UseQueryOptions<IFromBuilderResponse[], ICustomAxiosError>,

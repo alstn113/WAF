@@ -1,4 +1,4 @@
-import { IForm } from '../interfaces';
+import { IForm } from '@libs/interfaces';
 
 const reorder = (list: IForm[], startIndex: number, endIndex: number) => {
   const result = Array.from(list);

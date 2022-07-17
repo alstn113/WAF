@@ -1,10 +1,10 @@
 import { useMutation, UseMutationOptions } from 'react-query';
-import CommentAPI from '../../../api/comment.api';
+import CommentAPI from '@libs/api/comment.api';
 import {
   IComment,
   ICommentCreateRequest,
   ICustomAxiosError,
-} from '../../../interfaces';
+} from '@libs/interfaces';
 
 const useCreateComment = (
   options?: UseMutationOptions<

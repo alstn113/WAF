@@ -1,8 +1,7 @@
-import { Container } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
-import LoadingSpinner from '../../components/common/LoadingSpinner/LoadingSpinner';
-import useGetPosts from '../../libs/hooks/queries/post/useGetPosts';
-import formatDate from '../../libs/utils/formatDate';
+import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
+import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
+import formatDate from '@libs/utils/formatDate';
 
 const Board = () => {
   const { data, isLoading, error } = useGetPosts();
@@ -11,7 +10,7 @@ const Board = () => {
   if (error) return <div>{error.message}</div>;
 
   return (
-    <Container display={'flex'} justifyContent={'center'} marginTop={'32'}>
+    <div>
       <div>
         {data?.map((post) => (
           <div key={post.id}>
@@ -22,7 +21,7 @@ const Board = () => {
           </div>
         ))}
       </div>
-    </Container>
+    </div>
   );
 };
 

@@ -1,9 +1,8 @@
-import { Button, Input, useToast } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import { Draggable } from 'react-beautiful-dnd';
-import { IForm } from '../../libs/interfaces';
-import userFormBuilderStore from '../../libs/store/useFormBuilderStore';
-import FormContainer from './FormContainer';
+import { IForm } from '@libs/interfaces';
+import userFormBuilderStore from '@libs/store/useFormBuilderStore';
+import FormContainer from '@src/components/Form/FormContainer/FormContainer';
 
 interface Props {
   formItem: IForm;
@@ -11,18 +10,11 @@ interface Props {
 }
 
 const FormItem = ({ formItem, index }: Props) => {
-  const toast = useToast();
   const { changeFormItemField, setFormList, formList } = userFormBuilderStore();
 
   const onDelete = () => {
     const newFormList = formList.filter((item) => item.id !== formItem.id);
     setFormList(newFormList);
-    toast({
-      title: `질문을 삭제하였습니다.`,
-      status: 'success',
-      duration: 1500,
-      isClosable: true,
-    });
   };
 
   return (
@@ -37,7 +29,7 @@ const FormItem = ({ formItem, index }: Props) => {
           <FormContainer index={index} />
           <div>id : {formItem.id}</div>
           <div>index : {index}</div>
-          <Input
+          <input
             type="text"
             placeholder={formItem.type}
             width="50%"
@@ -48,7 +40,7 @@ const FormItem = ({ formItem, index }: Props) => {
           />
           <div>type : {formItem.type}</div>
           <div>answer : {JSON.stringify(formItem.answer)}</div>
-          <Button onClick={onDelete}>삭제</Button>
+          <button onClick={onDelete}>삭제</button>
         </Container>
       )}
     </Draggable>

@@ -1,22 +1,24 @@
 import ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import App from '@src/App';
+import MyThemeProvider from '@src/styles/MyThemeProvider';
 import { ReactQueryDevtools } from 'react-query/devtools';
-
+import { BrowserRouter } from 'react-router-dom';
 const queryClient = new QueryClient({
   defaultOptions: {
-    // queries: {
-    //   staleTime: 60 * 60 * 1000,
-    // },
+    queries: {
+      // suspense: true,
+    },
   },
 });
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <ReactQueryDevtools initialIsOpen={true} />
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <MyThemeProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </MyThemeProvider>
   </QueryClientProvider>,
 );
