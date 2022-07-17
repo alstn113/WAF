@@ -26,24 +26,24 @@ const Form = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <S.Container>
-        <S.Wrapper>
-          <ErrorBoundary
-            fallback={
-              <ErrorFallBack
-                message={MESSAGE.ERROR.LOAD_DATA}
-                queryKey={useGetFormBuilder.getKey(formId)}
-              />
-            }
-          >
-            <Suspense fallback={<Loading />}>
+    <ErrorBoundary
+      fallback={
+        <ErrorFallBack
+          message={MESSAGE.ERROR.LOAD_DATA}
+          queryKey={useGetFormBuilder.getKey(formId)}
+        />
+      }
+    >
+      <Suspense fallback={<Loading />}>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <S.Container>
+            <S.Wrapper>
               <FormContent formId={formId} />
-            </Suspense>
-          </ErrorBoundary>
-        </S.Wrapper>
-      </S.Container>
-    </DragDropContext>
+            </S.Wrapper>
+          </S.Container>
+        </DragDropContext>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 

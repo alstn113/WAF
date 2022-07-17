@@ -15,13 +15,14 @@ const FormItem = ({ formItem, index }: Props) => {
   const { changeFormItemField, setFormList, formList } = userFormBuilderStore();
 
   const onDelete = () => {
-    const newFormList = formList.filter((item) => item.id !== formItem.id);
+    const newFormList = Array.from(formList);
+    newFormList.splice(index, 1);
     setFormList(newFormList);
   };
 
   return (
     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
-      <Draggable draggableId={formItem.id} index={index}>
+      <Draggable draggableId={String(index)} index={index}>
         {(provided, snapshot) => (
           <S.Container
             {...provided.draggableProps}

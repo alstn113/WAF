@@ -1,6 +1,5 @@
 import * as S from './Sidebar.styles';
 import useFormBuilderStore from '@libs/store/useFormBuilderStore';
-import { v4 as uuidv4 } from 'uuid';
 import useUpdateFormBuilder from '@libs/hooks/queries/form-builder/uesUpdateFormBuilder';
 import Button from '@src/components/common/Button/Button';
 
@@ -13,8 +12,7 @@ const Sidebar = ({ formId }: Props) => {
 
   const onCreate = () => {
     const newFormList = Array.from(formList).concat({
-      id: uuidv4(),
-      question: '제목없는 질문',
+      question: '질문',
       type: '단답형',
       answer: [],
     });

@@ -52,9 +52,7 @@ const FormContent = ({ formId }: Props) => {
             isDraggingOver={snapshot.isDraggingOver}
           >
             {formList?.map((formItem, index) => {
-              return (
-                <FormItem key={formItem.id} formItem={formItem} index={index} />
-              );
+              return <FormItem key={index} formItem={formItem} index={index} />;
             })}
             {provided.placeholder}
           </S.FormListContainer>

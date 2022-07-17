@@ -1,5 +1,4 @@
 export interface IForm {
-  id: string;
   question: string;
   type: string;
   answer: string[];
