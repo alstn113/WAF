@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import ScrollToTop from '@components/common/ScrollToTop/ScrollToTop';
-import Navbar from '@components/common/Navbar/Navbar';
+import ScrollToTop from '@components/ScrollToTop/ScrollToTop';
+import Header from '@components/Header/Header';
 import Home from '@pages/Home/Home';
 import NotFound from '@pages/NotFound/NotFound';
 import ModelView from '@pages/ModelView/ModelView';
@@ -22,7 +22,7 @@ const App = () => {
   return (
     <>
       <ScrollToTop />
-      <Navbar />
+      <Header />
       <Routes>
         {/* public routes */}
         <Route path="/" element={<Home />} />

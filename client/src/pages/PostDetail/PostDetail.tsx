@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
-import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
+import Loading from '@src/components/Loading/Loading';
 import useCreateComment from '@libs/hooks/queries/comment/useCreateComment';
 import useGetPost from '@libs/hooks/queries/post/useGetPost';
 
@@ -39,7 +39,7 @@ const PostDetailPage = () => {
     mutate({ ...input, postId });
   };
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <Loading />;
   if (error) return <div>{error.message}</div>;
   return (
     <div>

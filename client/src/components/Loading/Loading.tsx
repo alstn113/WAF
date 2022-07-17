@@ -1,4 +1,4 @@
-import * as S from './LoadingSpinner.styles';
+import * as S from './Loading.styles';
 
 const LoadingSpinner = () => {
   return <S.Spinner />;

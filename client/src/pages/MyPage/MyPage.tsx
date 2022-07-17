@@ -1,4 +1,4 @@
-import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
+import Loading from '@src/components/Loading/Loading';
 import useGetFormBuilders from '@libs/hooks/queries/form-builder/useGetFormBuilders';
 import formatDate from '@libs/utils/formatDate';
 import { Link, useNavigate } from 'react-router-dom';
@@ -54,7 +54,7 @@ const MyPage = () => {
       <div>
         <div>
           {isLoading ? (
-            <LoadingSpinner />
+            <Loading />
           ) : (
             data?.map((formBuilder) => (
               <div key={formBuilder.id}>

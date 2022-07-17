@@ -1,6 +1,6 @@
 import * as S from './Form.styles';
 import { useParams } from 'react-router-dom';
-import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
+import Loading from '@src/components/Loading/Loading';
 import useGetFormBuilder from '@libs/hooks/queries/form-builder/useGetFormBuilder';
 import userFormBuilderStore from '@libs/store/useFormBuilderStore';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
@@ -38,7 +38,7 @@ const Form = () => {
     setFormList(newFormList);
   };
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <Loading />;
   if (error) return <div>{error.response?.data.message}</div>;
 
   return (

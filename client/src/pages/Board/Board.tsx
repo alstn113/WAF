@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
-import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
+import Loading from '@src/components/Loading/Loading';
 import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
 import formatDate from '@libs/utils/formatDate';
 
 const Board = () => {
   const { data, isLoading, error } = useGetPosts();
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading) return <Loading />;
   if (error) return <div>{error.message}</div>;
 
   return (
