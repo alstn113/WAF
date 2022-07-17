@@ -14,21 +14,34 @@ export const FlexColumn = styled.div`
 `;
 
 export const FlexRow = styled.div`
-  width: 100%;
-  ${flexCenter};
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 export const QuestionInput = styled.input`
   font-size: 1.2rem;
   padding: 0.5rem 0.8rem;
   width: 400px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
   transition: 0.2s ease-in-out;
   background: rgba(0, 0, 0, 0.02);
   &:focus {
     background-color: rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid blue;
   }
-  margin-right: 1rem;
+`;
+
+export const Select = styled.select`
+  font-size: 1.2rem;
+  width: 150px;
+  text-align: center;
+`;
+
+export const AnswerWrapper = styled.div`
+  margin: 1rem 0;
+  width: 80%;
 `;
 
 export const Container = styled.div<{

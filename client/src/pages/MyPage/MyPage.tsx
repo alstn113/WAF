@@ -37,7 +37,7 @@ const MyPage = () => {
                   title: '제목없는 설문지',
                   description: '설문지 설명',
                   formList:
-                    '[{ "question": "질문", "type": "단답형", "answer": [] }]',
+                    '[{ "question": "질문", "type": "단답형", "offeredAnswer": [] }]',
                 })
               }
             >

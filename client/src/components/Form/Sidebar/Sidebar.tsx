@@ -14,7 +14,7 @@ const Sidebar = ({ formId }: Props) => {
     const newFormList = Array.from(formList).concat({
       question: '질문',
       type: '단답형',
-      answer: [],
+      offeredAnswer: [],
     });
     setFormList(newFormList);
   };

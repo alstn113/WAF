@@ -1,9 +1,7 @@
+import * as S from './LoginAnswerForm.styles';
+
 const LongAnswerForm = () => {
-  return (
-    <div>
-      <div>장문형 질문</div>
-    </div>
-  );
+  return <S.Text>장문형 텍스트</S.Text>;
 };
 
 export default LongAnswerForm;

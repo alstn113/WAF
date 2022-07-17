@@ -1,7 +1,7 @@
 export interface IForm {
   question: string;
   type: string;
-  answer: string[];
+  offeredAnswer: string[];
 }
 
 export interface IFromBuilder {
