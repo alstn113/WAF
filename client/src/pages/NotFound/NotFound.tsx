@@ -1,9 +1,11 @@
 import { NotFoundImage } from '@assets/.';
+import * as S from './NotFound.styles';
+
 const NotFound = () => {
   return (
-    <div>
+    <S.Container>
       <img src={NotFoundImage} />
-    </div>
+    </S.Container>
   );
 };
 

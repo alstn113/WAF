@@ -1,3 +1,4 @@
+import * as S from './Write.styles';
 import { useQueryClient } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -40,7 +41,7 @@ const Write = () => {
   });
 
   return (
-    <div>
+    <S.Container>
       <form onSubmit={handleSubmit(onSubmit)}>
         <input {...register('title')} type="text" placeholder="title" />
         <p>{errors.title?.message}</p>
@@ -48,7 +49,7 @@ const Write = () => {
         <p>{errors.body?.message}</p>
         <button type="submit">POST</button>
       </form>
-    </div>
+    </S.Container>
   );
 };
 

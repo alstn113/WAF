@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import * as S from './Board.styles';
 import Loading from '@src/components/Loading/Loading';
 import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
 import formatDate from '@libs/utils/formatDate';
@@ -10,7 +11,7 @@ const Board = () => {
   if (error) return <div>{error.message}</div>;
 
   return (
-    <div>
+    <S.Container>
       <div>
         {data?.map((post) => (
           <div key={post.id}>
@@ -21,7 +22,7 @@ const Board = () => {
           </div>
         ))}
       </div>
-    </div>
+    </S.Container>
   );
 };
 
