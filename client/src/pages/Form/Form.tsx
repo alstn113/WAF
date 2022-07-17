@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import * as S from './Form.styles';
 import { useParams } from 'react-router-dom';
 import LoadingSpinner from '@components/common/LoadingSpinner/LoadingSpinner';
 import useGetFormBuilder from '@libs/hooks/queries/form-builder/useGetFormBuilder';
@@ -43,9 +43,9 @@ const Form = () => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <Container>
-        <Wrapper>
-          <Title>
+      <S.Container>
+        <S.Wrapper>
+          <S.Title>
             <input
               type="text"
               value={title}
@@ -53,8 +53,8 @@ const Form = () => {
               placeholder="제목"
               onChange={(e) => changeFormField('title', e.target.value)}
             />
-          </Title>
-          <Description>
+          </S.Title>
+          <S.Description>
             <input
               type="text"
               placeholder="설명"
@@ -62,11 +62,11 @@ const Form = () => {
               width="50%"
               onChange={(e) => changeFormField('description', e.target.value)}
             />
-          </Description>
+          </S.Description>
           <Sidebar formId={formId} />
           <Droppable droppableId="form-list">
             {(provided, snapshot) => (
-              <FormListContainer
+              <S.FormListContainer
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 isDraggingOver={snapshot.isDraggingOver}
@@ -81,49 +81,13 @@ const Form = () => {
                   );
                 })}
                 {provided.placeholder}
-              </FormListContainer>
+              </S.FormListContainer>
             )}
           </Droppable>
-        </Wrapper>
-      </Container>
+        </S.Wrapper>
+      </S.Container>
     </DragDropContext>
   );
 };
-
-export const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
-`;
-export const Wrapper = styled.div`
-  margin: 8px;
-  border: 1px solid lightgrey;
-  border-radius: 2px;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Title = styled.h3`
-  padding: 8px;
-  margin: 8px;
-  text-align: center;
-  font-size: 1.5rem;
-  background: #9dd2ea;
-`;
-
-export const Description = styled.h3`
-  padding: 8px;
-  margin: 8px;
-  text-align: center;
-  background: #9dead3;
-`;
-
-export const FormListContainer = styled.div<{ isDraggingOver: boolean }>`
-  padding: 8px;
-  background-color: ${(props) => (props.isDraggingOver ? '#84c0eb' : '#fff')};
-  flex-grow: 1;
-  min-height: 30px;
-`;
 
 export default Form;
