@@ -18,28 +18,28 @@ const color = {
 };
 
 const font = {
-  small: css`
+  sm: css`
     font-size: 1rem;
     font-weight: 500;
   `,
-  medium: css`
+  md: css`
     font-size: 1.5rem;
     font-weight: 600;
   `,
-  large: css`
+  lg: css`
     font-size: 2rem;
     font-weight: 700;
   `,
 };
 
 const borderRadius = {
-  small: css`
+  sm: css`
     border-radius: 0.5rem;
   `,
-  medium: css`
+  md: css`
     border-radius: 1rem;
   `,
-  large: css`
+  lg: css`
     border-radius: 2rem;
   `,
 };

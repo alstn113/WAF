@@ -13,14 +13,14 @@ declare module '@emotion/react' {
       orange2: string;
     };
     font: {
-      small: css;
-      medium: css;
-      large: css;
+      sm: css;
+      md: css;
+      lg: css;
     };
     borderRadius: {
-      large: css;
-      medium: css;
-      small: css;
+      sm: css;
+      md: css;
+      lg: css;
     };
     media: {
       custom: (maxWidth: number) => string;

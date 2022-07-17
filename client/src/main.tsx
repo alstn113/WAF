@@ -4,6 +4,8 @@ import App from '@src/App';
 import MyThemeProvider from '@src/styles/MyThemeProvider';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter } from 'react-router-dom';
+import Layout from '@components/Layout/Layout';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -17,7 +19,9 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <ReactQueryDevtools initialIsOpen={true} />
     <MyThemeProvider>
       <BrowserRouter>
-        <App />
+        <Layout>
+          <App />
+        </Layout>
       </BrowserRouter>
     </MyThemeProvider>
   </QueryClientProvider>,
