@@ -29,7 +29,7 @@ const MyPage = () => {
     >
       <Suspense fallback={<Loading />}>
         <S.NewFormWrapper>
-          <div>새로운 양식 시작하기</div>
+          <div>새로운 양식으로 시작하기</div>
           <S.FlexRow>
             <S.WrapperItem
               onClick={() =>
