@@ -1,20 +1,17 @@
-import { MouseEventHandler } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import * as S from './Button.styles';
 
-interface Props {
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-  type?: 'button' | 'submit';
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: 'lg' | 'md' | 'sm';
   children: React.ReactNode;
-  size?: 'small' | 'medium' | 'large';
 }
 
-const Button = ({
-  onClick,
-  type = 'button',
-  children,
-  size = 'medium',
-}: Props) => {
-  return <S.Container {...{ onClick, type, size }}>{children}</S.Container>;
+const Button = ({ size = 'md', children, ...options }: Props) => {
+  return (
+    <S.Container size={size} {...options}>
+      {children}
+    </S.Container>
+  );
 };
 
 export default Button;
