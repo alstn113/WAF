@@ -1,27 +1,27 @@
-import { Link } from 'react-router-dom';
 import * as S from './Board.styles';
-import Loading from '@src/components/Loading/Loading';
 import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
-import formatDate from '@libs/utils/formatDate';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallBack from '@components/ErrorFallBack/ErrorFallBack';
+import Loading from '@components/Loading/Loading';
+import { MESSAGE } from '@src/config/message';
+import PostList from '@pages/Board/PostList/PostList';
 
 const Board = () => {
-  const { data, isLoading, error } = useGetPosts();
-
-  if (isLoading) return <Loading />;
-  if (error) return <div>{error.message}</div>;
-
   return (
     <S.Container>
-      <div>
-        {data?.map((post) => (
-          <div key={post.id}>
-            <Link to={`/board/post/${post.id}`}>{post.id}</Link>
-            <div>{post.title}</div>
-            <div>{post.body}</div>
-            <div>{formatDate(post.createdAt)}</div>
-          </div>
-        ))}
-      </div>
+      <ErrorBoundary
+        fallback={
+          <ErrorFallBack
+            message={MESSAGE.ERROR.LOAD_DATA}
+            queryKey={useGetPosts.getKey()}
+          />
+        }
+      >
+        <Suspense fallback={<Loading />}>
+          <PostList />
+        </Suspense>
+      </ErrorBoundary>
     </S.Container>
   );
 };

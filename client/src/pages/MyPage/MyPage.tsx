@@ -1,19 +1,16 @@
-import Loading from '@src/components/Loading/Loading';
+import Loading from '@components/Loading/Loading';
 import useGetFormBuilders from '@libs/hooks/queries/form-builder/useGetFormBuilders';
-import formatDate from '@libs/utils/formatDate';
-import { Link, useNavigate } from 'react-router-dom';
-import useDeleteFormBuilder from '@libs/hooks/queries/form-builder/useDeleteFormBuilder';
+import { useNavigate } from 'react-router-dom';
 import useCreateFormBuilder from '@libs/hooks/queries/form-builder/useCreateFormBuilder';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallBack from '@components/ErrorFallBack/ErrorFallBack';
+import { MESSAGE } from '@src/config/message';
+import { Suspense } from 'react';
+import * as S from './MyPage.styles';
+import MyPageContent from './MyPageContent/MyPageContent';
 
 const MyPage = () => {
-  const { data, isLoading, error, refetch } = useGetFormBuilders();
   const navigate = useNavigate();
-
-  const { mutate: deleteMutate } = useDeleteFormBuilder({
-    onSuccess: async () => {
-      await refetch();
-    },
-  });
 
   const { mutate: createMutate } = useCreateFormBuilder({
     onSuccess: (data) => {
@@ -21,58 +18,38 @@ const MyPage = () => {
     },
   });
 
-  if (error) return <div>{error.response?.data.message}</div>;
   return (
-    <div>
-      <div>
-        <div>새로운 양식 시작하기</div>
-        <div>
-          <div>
-            <div>
-              <div
-                onClick={() =>
-                  createMutate({
-                    title: '제목없음',
-                    description: '설명없음',
-                    formList:
-                      '[{ "id": "8e77d6a0-a3ee-480d-b34b-b0c3650cc09b", "type": "단답형", "answer": [], "question": "question"}]',
-                  })
-                }
-              >
-                내용없음
-              </div>
-            </div>
-            <div>
-              <div>템플릿1</div>
-            </div>
-            <div>
-              <div>템플릿2</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div>
-          {isLoading ? (
-            <Loading />
-          ) : (
-            data?.map((formBuilder) => (
-              <div key={formBuilder.id}>
-                <Link to={`/form/${formBuilder.id}`}>
-                  <div>제목 : {formBuilder.title}</div>
-                  <div>설명 : {formBuilder.description}</div>
-                  <div>생성일 : {formatDate(formBuilder.createdAt)}</div>
-                  <div>업데이트일 : {formatDate(formBuilder.updatedAt)}</div>
-                </Link>
-                <button onClick={() => deleteMutate(formBuilder.id)}>
-                  삭제
-                </button>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
-    </div>
+    <ErrorBoundary
+      fallback={
+        <ErrorFallBack
+          message={MESSAGE.ERROR.LOAD_DATA}
+          queryKey={useGetFormBuilders.getKey()}
+        />
+      }
+    >
+      <Suspense fallback={<Loading />}>
+        <S.NewFormWrapper>
+          <div>새로운 양식 시작하기</div>
+          <S.FlexRow>
+            <S.WrapperItem
+              onClick={() =>
+                createMutate({
+                  title: '제목없음',
+                  description: '설명없음',
+                  formList:
+                    '[{ "id": "8e77d6a0-a3ee-480d-b34b-b0c3650cc09b", "type": "단답형", "answer": [], "question": "question"}]',
+                })
+              }
+            >
+              내용없음
+            </S.WrapperItem>
+            <S.WrapperItem>템플릿 1</S.WrapperItem>
+            <S.WrapperItem>템플릿 2</S.WrapperItem>
+          </S.FlexRow>
+        </S.NewFormWrapper>
+        <MyPageContent />
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 

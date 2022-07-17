@@ -6,6 +6,8 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import useCreatePost from '@libs/hooks/queries/post/useCreatePost';
 import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
+import TextInput from '@components/common/TextInput/TextInput';
+import Button from '@components/common/Button/Button';
 
 interface IFormInput {
   title: string;
@@ -43,11 +45,13 @@ const Write = () => {
   return (
     <S.Container>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('title')} type="text" placeholder="title" />
+        <TextInput {...register('title')} type="text" placeholder="title" />
         <p>{errors.title?.message}</p>
-        <input {...register('body')} type="text" placeholder="body" />
+        <TextInput {...register('body')} type="text" placeholder="body" />
         <p>{errors.body?.message}</p>
-        <button type="submit">POST</button>
+        <Button size="lg" type="submit">
+          POST
+        </Button>
       </form>
     </S.Container>
   );

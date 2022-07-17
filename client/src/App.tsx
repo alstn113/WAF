@@ -9,6 +9,9 @@ import Form from '@pages/Form/Form';
 import Board from '@pages/Board/Board';
 import PostDetail from '@pages/PostDetail/PostDetail';
 import Write from '@pages/Write/Write';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallBack from '@components/ErrorFallBack/ErrorFallBack';
+import { MESSAGE } from '@src/config/message';
 
 const App = () => {
   const { getCurrentUser } = useAuthStore();
@@ -18,7 +21,7 @@ const App = () => {
   }, []);
 
   return (
-    <>
+    <ErrorBoundary fallback={<ErrorFallBack message={MESSAGE.ERROR.UNKNOWN} />}>
       <Routes>
         {/* public routes */}
         <Route path="/" element={<Home />} />
@@ -34,7 +37,7 @@ const App = () => {
         {/* catch all */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </ErrorBoundary>
   );
 };
 

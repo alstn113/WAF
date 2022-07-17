@@ -5,6 +5,13 @@ import * as yup from 'yup';
 import Loading from '@src/components/Loading/Loading';
 import useCreateComment from '@libs/hooks/queries/comment/useCreateComment';
 import useGetPost from '@libs/hooks/queries/post/useGetPost';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrorFallBack from '@components/ErrorFallBack/ErrorFallBack';
+import { MESSAGE } from '@src/config/message';
+import { Suspense } from 'react';
+import PostDetailContent from './PostDetailContent/PostDetailContent';
+import { useQueryClient } from 'react-query';
+import * as S from './PostDetail.styles';
 
 interface IFormInputs {
   text: string;
@@ -17,8 +24,7 @@ const schema = yup.object().shape({
 const PostDetailPage = () => {
   const params = useParams<{ postId: string }>();
   const postId = params.postId as string;
-  const { data, isLoading, error, refetch } = useGetPost(postId);
-
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -30,7 +36,7 @@ const PostDetailPage = () => {
 
   const { mutate } = useCreateComment({
     onSuccess: async () => {
-      await refetch();
+      await queryClient.refetchQueries(useGetPost.getKey(postId));
     },
     onError: (e) => {},
   });
@@ -39,34 +45,24 @@ const PostDetailPage = () => {
     mutate({ ...input, postId });
   };
 
-  if (isLoading) return <Loading />;
-  if (error) return <div>{error.message}</div>;
   return (
-    <div>
-      <div>
-        <div>ID : {data?.id}</div>
-        <div>TITLE : {data?.title}</div>
-        <div>BODY : {data?.body}</div>
-        <hr />
-        <div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register('text')} type="text" placeholder="text" />
-            <p>{errors.text?.message}</p>
-
-            <button>post</button>
-          </form>
-        </div>
-        <hr />
-        <div>
-          {data?.comments?.map((comment) => (
-            <div key={comment.id}>
-              <div>ID : {comment.id}</div>
-              <div>TEXT : {comment.text}</div>
+    <S.Container>
+      <ErrorBoundary
+        fallback={<ErrorFallBack message={MESSAGE.ERROR.LOAD_DATA} />}
+      >
+        <Suspense fallback={<Loading />}>
+          <PostDetailContent postId={postId}>
+            <div>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input {...register('text')} type="text" placeholder="text" />
+                <p>{errors.text?.message}</p>
+                <button>post</button>
+              </form>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
+          </PostDetailContent>
+        </Suspense>
+      </ErrorBoundary>
+    </S.Container>
   );
 };
 

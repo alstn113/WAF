@@ -1,12 +1,12 @@
 import * as S from './Form.styles';
 import { useParams } from 'react-router-dom';
-import Loading from '@src/components/Loading/Loading';
+import Loading from '@components/Loading/Loading';
 import useGetFormBuilder from '@libs/hooks/queries/form-builder/useGetFormBuilder';
 import userFormBuilderStore from '@libs/store/useFormBuilderStore';
 import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
 import reorder from '@libs/utils/reorder';
-import FormItem from '@src/components/Form/FormItem/FormItem';
-import Sidebar from '@src/components/Form/Sidebar/Sidebar';
+import FormItem from '@components/Form/FormItem/FormItem';
+import Sidebar from '@components/Form/Sidebar/Sidebar';
 
 const Form = () => {
   const params = useParams<{ formId: string }>();

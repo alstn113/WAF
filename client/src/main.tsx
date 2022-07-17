@@ -9,7 +9,7 @@ import Layout from '@components/Layout/Layout';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      // suspense: true,
+      suspense: true,
     },
   },
 });
