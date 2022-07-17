@@ -1,5 +1,5 @@
 import { ThemeProvider } from '@emotion/react';
-import GlobalStyle from './GlobalStyle';
+import GlobalStyles from './GlobalStyles';
 import theme from '@src/styles/theme';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 const MyThemeProvider = ({ children }: Props) => {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
+      <GlobalStyles />
       {children}
     </ThemeProvider>
   );

@@ -1,6 +1,6 @@
 import { Global, css } from '@emotion/react';
 import reset from '@src/styles/reset';
-const GlobalStyle = () => {
+const GlobalStyles = () => {
   return (
     <>
       <Global styles={reset} />
@@ -30,4 +30,4 @@ const GlobalStyle = () => {
   );
 };
 
-export default GlobalStyle;
+export default GlobalStyles;
