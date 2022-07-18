@@ -1,13 +1,10 @@
 import React, { Suspense } from 'react';
-import { ErrorBoundary } from 'react-error-boundary';
+import ErrorBoundary from './ErrorBoundary';
 import Loading from './Loading/Loading';
 
 interface Props {
   pendingFallback?: React.ReactNode;
-  rejectedFallback: React.ReactElement<
-    unknown,
-    string | React.FunctionComponent | typeof React.Component
-  > | null;
+  rejectedFallback: React.ReactNode;
   children: React.ReactNode;
 }
 const AsyncBoundary = ({
