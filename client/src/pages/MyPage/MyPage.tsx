@@ -1,7 +1,7 @@
 import useGetFormBuilders from '@libs/hooks/queries/form-builder/useGetFormBuilders';
 import { useNavigate } from 'react-router-dom';
 import useCreateFormBuilder from '@libs/hooks/queries/form-builder/useCreateFormBuilder';
-import ErrorFallback from '@components/ErrorFallback/ErrorFallback';
+import ErrorFallback from '../../components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
 import * as S from './MyPage.styles';
 import MyPageContent from './MyPageContent/MyPageContent';
