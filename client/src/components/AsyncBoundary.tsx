@@ -4,7 +4,10 @@ import Loading from './Loading/Loading';
 
 interface Props {
   pendingFallback?: React.ReactNode;
-  rejectedFallback: React.ReactElement;
+  rejectedFallback: React.ReactElement<
+    unknown,
+    string | React.FunctionComponent | typeof React.Component
+  > | null;
   children: React.ReactNode;
 }
 const AsyncBoundary = ({
