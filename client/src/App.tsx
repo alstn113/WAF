@@ -9,7 +9,7 @@ import Form from '@pages/Form/Form';
 import Board from '@pages/Board/Board';
 import PostDetail from '@pages/PostDetail/PostDetail';
 import Write from '@pages/Write/Write';
-import ErrorFallback from './components/ErrorFallback/ErrorFallback';
+import ErrorFallback from '@components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
 import ErrorBoundary from '@components/ErrorBoundary';
 

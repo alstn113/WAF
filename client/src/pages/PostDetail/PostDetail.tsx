@@ -4,12 +4,14 @@ import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
 import useCreateComment from '@libs/hooks/queries/comment/useCreateComment';
 import useGetPost from '@libs/hooks/queries/post/useGetPost';
-import ErrorFallback from '../../components/ErrorFallback/ErrorFallback';
+import ErrorFallback from '@components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
 import PostDetailContent from './PostDetailContent/PostDetailContent';
 import { useQueryClient } from 'react-query';
 import * as S from './PostDetail.styles';
 import AsyncBoundary from '@src/components/AsyncBoundary';
+import ErrorBoundary from '@src/components/ErrorBoundary';
+import { Suspense } from 'react';
 
 interface IFormInputs {
   text: string;
@@ -44,26 +46,26 @@ const PostDetailPage = () => {
   };
 
   return (
-    <S.Container>
-      <AsyncBoundary
-        rejectedFallback={
-          <ErrorFallback
-            message={MESSAGE.ERROR.LOAD_DATA}
-            queryKey={useGetPost.getKey(postId)}
-          />
-        }
-      >
-        <PostDetailContent postId={postId}>
-          <div>
+    <ErrorBoundary
+      fallback={
+        <ErrorFallback
+          message={MESSAGE.ERROR.LOAD_DATA}
+          queryKey={useGetPost.getKey(postId)}
+        />
+      }
+    >
+      <Suspense>
+        <S.Container>
+          <PostDetailContent postId={postId}>
             <form onSubmit={handleSubmit(onSubmit)}>
               <input {...register('text')} type="text" placeholder="text" />
               <p>{errors.text?.message}</p>
               <button>post</button>
             </form>
-          </div>
-        </PostDetailContent>
-      </AsyncBoundary>
-    </S.Container>
+          </PostDetailContent>
+        </S.Container>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 
