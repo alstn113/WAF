@@ -6,11 +6,7 @@ const Home = () => {
   const [isTrue, setIsTrue] = useToggle();
   return (
     <S.Container>
-      <Toggle
-        labelText={isTrue ? 'True' : 'False'}
-        color="PRIMARY"
-        onClick={setIsTrue}
-      />
+      <Toggle labelText={isTrue ? 'True' : 'False'} onClick={setIsTrue} />
       <S.Text>WAP</S.Text>
       <S.Text>AWESOME</S.Text>
       <S.Text>FORM</S.Text>

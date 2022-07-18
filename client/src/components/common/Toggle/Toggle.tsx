@@ -3,20 +3,14 @@ import * as S from './Toggle.styles';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   labelText?: string;
-  color?: 'PRIMARY' | 'SECONDARY' | 'SUCCESS' | 'WARNING' | 'ERROR';
 }
 
 const Toggle = forwardRef<HTMLInputElement, Props>(
-  ({ labelText = ' ', color = 'PRIMARY', ...options }, ref) => {
+  ({ labelText = ' ', ...options }, ref) => {
     return (
       <S.ToggleLabel>
         <S.ToggleText>{labelText}</S.ToggleText>
-        <S.ToggleCheckbox
-          type="checkbox"
-          ref={ref}
-          color={color}
-          {...options}
-        />
+        <S.ToggleCheckbox type="checkbox" ref={ref} {...options} />
         <S.ToggleSwitch />
       </S.ToggleLabel>
     );

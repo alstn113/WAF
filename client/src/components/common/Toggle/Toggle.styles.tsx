@@ -1,4 +1,3 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { PALETTE } from '@src/config/palette';
 
@@ -36,9 +35,7 @@ export const ToggleText = styled.span`
   user-select: none;
 `;
 
-export const ToggleCheckbox = styled.input<{
-  color: 'PRIMARY' | 'SECONDARY' | 'SUCCESS' | 'WARNING' | 'ERROR';
-}>`
+export const ToggleCheckbox = styled.input`
   display: none;
 
   // Switch Off
@@ -51,10 +48,7 @@ export const ToggleCheckbox = styled.input<{
   // Switch On
   &:checked {
     & ~ ${ToggleSwitch} {
-      ${({ color }) =>
-        css`
-          background-color: ${PALETTE[color]};
-        `}
+      background-color: ${PALETTE.PRIMARY};
       &::after {
         transform: translateX(1.2rem);
       }
