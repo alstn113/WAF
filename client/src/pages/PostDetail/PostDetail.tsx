@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
 import useCreateComment from '@libs/hooks/queries/comment/useCreateComment';
 import useGetPost from '@libs/hooks/queries/post/useGetPost';
-import ErrorFallBack from '@src/components/ErrorFallback/ErrorFallback';
+import ErrorFallback from '@src/components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
 import PostDetailContent from './PostDetailContent/PostDetailContent';
 import { useQueryClient } from 'react-query';
@@ -46,7 +46,7 @@ const PostDetailPage = () => {
   return (
     <S.Container>
       <AsyncBoundary
-        rejectedFallback={<ErrorFallBack message={MESSAGE.ERROR.LOAD_DATA} />}
+        rejectedFallback={<ErrorFallback message={MESSAGE.ERROR.LOAD_DATA} />}
       >
         <PostDetailContent postId={postId}>
           <div>
