@@ -11,7 +11,7 @@ const ErrorFallback = ({ message, queryKey }: Props) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    queryClient.resetQueries(queryKey);
+    queryClient.resetQueries(queryKey && queryKey);
   }, []);
 
   return (
