@@ -10,7 +10,7 @@ import Board from '@pages/Board/Board';
 import PostDetail from '@pages/PostDetail/PostDetail';
 import Write from '@pages/Write/Write';
 import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallBack from '@components/ErrorFallBack/ErrorFallBack';
+import ErrorFallback from '@components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
 
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
   }, []);
 
   return (
-    <ErrorBoundary fallback={<ErrorFallBack message={MESSAGE.ERROR.UNKNOWN} />}>
+    <ErrorBoundary fallback={<ErrorFallback message={MESSAGE.ERROR.UNKNOWN} />}>
       <Routes>
         {/* public routes */}
         <Route path="/" element={<Home />} />

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useQueryClient } from 'react-query';
-import * as S from './ErrorFallBack.styles';
+import * as S from './ErrorFallback.styles';
 
 interface Props {
   message: string;
   queryKey?: string[];
 }
 
-const ErrorFallBack = ({ message, queryKey }: Props) => {
+const ErrorFallback = ({ message, queryKey }: Props) => {
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -22,4 +22,4 @@ const ErrorFallBack = ({ message, queryKey }: Props) => {
   );
 };
 
-export default ErrorFallBack;
+export default ErrorFallback;

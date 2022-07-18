@@ -1,15 +1,13 @@
 import * as S from './Form.styles';
 import { useParams } from 'react-router-dom';
-import Loading from '@components/Loading/Loading';
 import useGetFormBuilder from '@libs/hooks/queries/form-builder/useGetFormBuilder';
 import userFormBuilderStore from '@libs/store/useFormBuilderStore';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import reorder from '@libs/utils/reorder';
-import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallBack from '@src/components/ErrorFallBack/ErrorFallBack';
+import ErrorFallback from '@src/components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
-import { Suspense } from 'react';
 import FormContent from './FormContent/FormContent';
+import AsyncBoundary from '@src/components/AsyncBoundary';
 
 const Form = () => {
   const params = useParams<{ formId: string }>();
@@ -26,24 +24,22 @@ const Form = () => {
   };
 
   return (
-    <ErrorBoundary
-      fallback={
-        <ErrorFallBack
+    <AsyncBoundary
+      rejectedFallback={
+        <ErrorFallback
           message={MESSAGE.ERROR.LOAD_DATA}
           queryKey={useGetFormBuilder.getKey(formId)}
         />
       }
     >
-      <Suspense fallback={<Loading />}>
-        <DragDropContext onDragEnd={onDragEnd}>
-          <S.Container>
-            <S.Wrapper>
-              <FormContent formId={formId} />
-            </S.Wrapper>
-          </S.Container>
-        </DragDropContext>
-      </Suspense>
-    </ErrorBoundary>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <S.Container>
+          <S.Wrapper>
+            <FormContent formId={formId} />
+          </S.Wrapper>
+        </S.Container>
+      </DragDropContext>
+    </AsyncBoundary>
   );
 };
 

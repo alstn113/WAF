@@ -67,7 +67,9 @@ const FormItem = ({ formItem, index }: Props) => {
                   ))}
                 </S.Select>
               </S.FlexRow>
-              <S.AnswerWrapper>{formType[formItem.type]}</S.AnswerWrapper>
+              <S.OfferedAnswerWrapper>
+                {formType[formItem.type]}
+              </S.OfferedAnswerWrapper>
               <Button size="md" onClick={onDelete}>
                 삭제
               </Button>

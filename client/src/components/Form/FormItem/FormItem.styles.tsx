@@ -39,7 +39,7 @@ export const Select = styled.select`
   text-align: center;
 `;
 
-export const AnswerWrapper = styled.div`
+export const OfferedAnswerWrapper = styled.div`
   margin: 1rem 0;
   width: 80%;
 `;

@@ -2,16 +2,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import * as yup from 'yup';
-import Loading from '@src/components/Loading/Loading';
 import useCreateComment from '@libs/hooks/queries/comment/useCreateComment';
 import useGetPost from '@libs/hooks/queries/post/useGetPost';
-import { ErrorBoundary } from 'react-error-boundary';
-import ErrorFallBack from '@components/ErrorFallBack/ErrorFallBack';
+import ErrorFallBack from '@src/components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
-import { Suspense } from 'react';
 import PostDetailContent from './PostDetailContent/PostDetailContent';
 import { useQueryClient } from 'react-query';
 import * as S from './PostDetail.styles';
+import AsyncBoundary from '@src/components/AsyncBoundary';
 
 interface IFormInputs {
   text: string;
@@ -47,21 +45,19 @@ const PostDetailPage = () => {
 
   return (
     <S.Container>
-      <ErrorBoundary
-        fallback={<ErrorFallBack message={MESSAGE.ERROR.LOAD_DATA} />}
+      <AsyncBoundary
+        rejectedFallback={<ErrorFallBack message={MESSAGE.ERROR.LOAD_DATA} />}
       >
-        <Suspense fallback={<Loading />}>
-          <PostDetailContent postId={postId}>
-            <div>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <input {...register('text')} type="text" placeholder="text" />
-                <p>{errors.text?.message}</p>
-                <button>post</button>
-              </form>
-            </div>
-          </PostDetailContent>
-        </Suspense>
-      </ErrorBoundary>
+        <PostDetailContent postId={postId}>
+          <div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <input {...register('text')} type="text" placeholder="text" />
+              <p>{errors.text?.message}</p>
+              <button>post</button>
+            </form>
+          </div>
+        </PostDetailContent>
+      </AsyncBoundary>
     </S.Container>
   );
 };

@@ -13,6 +13,7 @@ interface Actions {
     field: 'question' | 'type',
     data: string,
   ) => void;
+  changeOfferedAnswer: (index: number, data: string[]) => void;
 }
 
 const userFormBuilderStore = create<States & Actions>((set) => ({
@@ -42,6 +43,12 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
     set(
       produce((state: States) => {
         state.formList[index][field] = data;
+      }),
+    ),
+  changeOfferedAnswer: (index, data) =>
+    set(
+      produce((state: States) => {
+        state.formList[index].offeredAnswer = data;
       }),
     ),
 }));
