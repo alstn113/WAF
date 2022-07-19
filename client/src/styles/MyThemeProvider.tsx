@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import GlobalStyles from './GlobalStyles';
-import theme from '@src/styles/theme';
+import theme from '../../src/styles/theme';
 
 interface Props {
   children: React.ReactNode;
