@@ -18,7 +18,13 @@ module.exports = {
   async viteFinal(config, { configType }) {
     return mergeConfig(config, {
       resolve: {
-        alias: { '@src': path.resolve(__dirname, '../src') },
+        alias: {
+          '@src': path.resolve(__dirname, '../src'),
+          '@components': path.resolve(__dirname, '../src/components'),
+          '@pages': path.resolve(__dirname, '../src/pages'),
+          '@libs': path.resolve(__dirname, '../src/libs'),
+          '@assets': path.resolve(__dirname, '../src/assets'),
+        },
       },
     });
   },
