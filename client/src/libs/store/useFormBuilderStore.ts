@@ -8,11 +8,8 @@ interface Actions {
   setFormBuilder: (data: IFromBuilder) => void;
   setFormList: (newFormList: IForm[]) => void;
   changeFormField: (field: 'title' | 'description', data: string) => void;
-  changeFormItemField: (
-    index: number,
-    field: 'question' | 'type',
-    data: string,
-  ) => void;
+  changeQuestion: (index: number, data: string) => void;
+  changeType: (index: number, data: string) => void;
   changeOfferedAnswer: (index: number, data: string[]) => void;
   toggleRequired: (index: number) => void;
 }
@@ -40,10 +37,17 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
         state[field] = data;
       }),
     ),
-  changeFormItemField: (index, field, data) =>
+  changeQuestion: (index, data) =>
     set(
       produce((state: States) => {
-        state.formList[index][field] = data;
+        state.formList[index].question = data;
+      }),
+    ),
+  changeType: (index, data) =>
+    set(
+      produce((state: States) => {
+        state.formList[index].type = data;
+        state.formList[index].offeredAnswer = [];
       }),
     ),
   changeOfferedAnswer: (index, data) =>

@@ -17,7 +17,7 @@ interface Props {
 }
 
 const FormItem = ({ formItem, index }: Props) => {
-  const { changeFormItemField, setFormList, toggleRequired, formList } =
+  const { changeQuestion, changeType, setFormList, toggleRequired, formList } =
     userFormBuilderStore();
 
   const onDelete = () => {
@@ -27,11 +27,11 @@ const FormItem = ({ formItem, index }: Props) => {
   };
 
   const formType: { [key: string]: ReactNode } = {
-    단답형: <ShortAnswerForm />,
-    장문형: <LongAnswerForm />,
-    객관식: <MultipleChoiceForm />,
-    체크박스: <CheckBoxForm />,
-    드롭다운: <DropdonwForm />,
+    단답형: <ShortAnswerForm index={index} />,
+    장문형: <LongAnswerForm index={index} />,
+    객관식: <MultipleChoiceForm index={index} />,
+    체크박스: <CheckBoxForm index={index} />,
+    드롭다운: <DropdonwForm index={index} />,
   };
 
   return (
@@ -49,15 +49,13 @@ const FormItem = ({ formItem, index }: Props) => {
                 type="text"
                 placeholder="질문"
                 value={formItem.question}
-                onChange={(e) =>
-                  changeFormItemField(index, 'question', e.target.value)
-                }
+                onChange={(e) => changeQuestion(index, e.target.value)}
               />
               <S.Select
                 defaultValue={'단답형'}
                 value={formItem.type}
                 onChange={(e) => {
-                  changeFormItemField(index, 'type', e.target.value);
+                  changeType(index, e.target.value);
                 }}
               >
                 {Object.keys(formType).map((formType) => (
@@ -78,7 +76,6 @@ const FormItem = ({ formItem, index }: Props) => {
             <Button size="md" onClick={onDelete}>
               삭제
             </Button>
-            {index}
           </S.FlexColumn>
         </S.Container>
       )}

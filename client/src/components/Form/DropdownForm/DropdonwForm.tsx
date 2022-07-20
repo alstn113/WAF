@@ -1,7 +1,11 @@
-const DropdonwForm = () => {
+interface Props {
+  index: number;
+}
+
+const DropdonwForm = ({ index }: Props) => {
   return (
     <div>
-      <div>드롭다운</div>
+      <div>드롭다운 {index}</div>
     </div>
   );
 };
