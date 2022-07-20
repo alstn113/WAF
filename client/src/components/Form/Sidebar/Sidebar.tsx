@@ -15,6 +15,7 @@ const Sidebar = ({ formId }: Props) => {
       question: '질문',
       type: '단답형',
       offeredAnswer: [],
+      required: false,
     });
     setFormList(newFormList);
   };

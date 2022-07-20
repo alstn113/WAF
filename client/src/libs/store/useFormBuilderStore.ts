@@ -14,6 +14,7 @@ interface Actions {
     data: string,
   ) => void;
   changeOfferedAnswer: (index: number, data: string[]) => void;
+  toggleRequired: (index: number) => void;
 }
 
 const userFormBuilderStore = create<States & Actions>((set) => ({
@@ -49,6 +50,12 @@ const userFormBuilderStore = create<States & Actions>((set) => ({
     set(
       produce((state: States) => {
         state.formList[index].offeredAnswer = data;
+      }),
+    ),
+  toggleRequired: (index) =>
+    set(
+      produce((state: States) => {
+        state.formList[index].required = !state.formList[index].required;
       }),
     ),
 }));

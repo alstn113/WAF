@@ -2,6 +2,7 @@ export interface IForm {
   question: string;
   type: string;
   offeredAnswer: string[];
+  required: boolean;
 }
 
 export interface IFromBuilder {
