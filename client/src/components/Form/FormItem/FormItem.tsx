@@ -36,12 +36,8 @@ const FormItem = ({ formItem, index }: Props) => {
 
   return (
     <Draggable draggableId={String(index)} index={index}>
-      {(provided, snapshot) => (
-        <S.Container
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-          isDragging={snapshot.isDragging}
-        >
+      {(provided) => (
+        <S.Container {...provided.draggableProps} ref={provided.innerRef}>
           <S.FlexColumn>
             <S.Handle {...provided.dragHandleProps} />
             <S.FlexRow>

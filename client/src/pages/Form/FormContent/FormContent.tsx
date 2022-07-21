@@ -45,11 +45,10 @@ const FormContent = ({ formId }: Props) => {
       </S.Description>
       <Sidebar formId={formId} />
       <Droppable droppableId="form-list">
-        {(provided, snapshot) => (
+        {(provided) => (
           <S.FormListContainer
             {...provided.droppableProps}
             ref={provided.innerRef}
-            isDraggingOver={snapshot.isDraggingOver}
           >
             {formList?.map((formItem, index) => {
               return <FormItem key={index} formItem={formItem} index={index} />;

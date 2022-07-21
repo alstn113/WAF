@@ -44,14 +44,12 @@ export const OfferedAnswerWrapper = styled.div`
   width: 80%;
 `;
 
-export const Container = styled.div<{
-  isDragging: boolean;
-}>`
+export const Container = styled.div`
   border: 1px solid lightgrey;
   border-radius: 2px;
   padding: 8px;
   min-height: 100px;
   text-align: center;
   margin-bottom: 8px;
-  background-color: ${(props) => (props.isDragging ? 'lightgreen' : 'white')};
+  background-color: #fff;
 `;
