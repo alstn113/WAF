@@ -33,7 +33,7 @@ const MultipleChoiceForm = ({ index }: Props) => {
           <div>
             {answerList?.map((answer, answerIndex) => (
               <div key={answerIndex}>
-                ⚪️
+                ⏺
                 <Input
                   type="text"
                   value={answer}
