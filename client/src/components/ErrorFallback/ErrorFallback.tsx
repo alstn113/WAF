@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useQueryClient } from 'react-query';
-import * as S from './ErrorFallback.styles';
 
 interface Props {
   message: string;
@@ -15,10 +14,10 @@ const ErrorFallback = ({ message, queryKey }: Props) => {
   }, []);
 
   return (
-    <S.Container>
-      <S.Title>ERROR</S.Title>
-      <S.ErrorMessage>{message}</S.ErrorMessage>
-    </S.Container>
+    <div>
+      <div>ERROR</div>
+      <div>{message}</div>
+    </div>
   );
 };
 

@@ -1,13 +1,17 @@
-import * as S from './Write.styles';
 import { useQueryClient } from 'react-query';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
-import useCreatePost from '@libs/hooks/queries/post/useCreatePost';
-import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
-import TextInput from '@components/common/TextInput/TextInput';
-import Button from '@components/common/Button/Button';
+import {
+  Button,
+  Container,
+  FormControl,
+  Input,
+  useToast,
+} from '@chakra-ui/react';
+import useCreatePost from '../../libs/hooks/queries/post/useCreatePost';
+import useGetPosts from '../../libs/hooks/queries/post/useGetPosts';
 
 interface IFormInput {
   title: string;
@@ -20,6 +24,7 @@ const schema = yup.object().shape({
 });
 
 const Write = () => {
+  const toast = useToast();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { mutate } = useCreatePost({
@@ -27,7 +32,14 @@ const Write = () => {
       await queryClient.invalidateQueries(useGetPosts.getKey());
       navigate('/board');
     },
-    onError: (e) => {},
+    onError: (e) => {
+      toast({
+        title: `${e.response?.data.message} [CODE : ${e.response?.data.statusCode}]`,
+        status: 'error',
+        isClosable: true,
+        duration: 1000,
+      });
+    },
   });
   const onSubmit = (input: IFormInput) => {
     mutate(input);
@@ -43,17 +55,20 @@ const Write = () => {
   });
 
   return (
-    <S.Container>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <TextInput {...register('title')} type="text" placeholder="title" />
+    <Container
+      display={'flex'}
+      justifyContent={'center'}
+      alignItems={'center'}
+      marginTop={'32'}
+    >
+      <FormControl onSubmit={handleSubmit(onSubmit)}>
+        <Input {...register('title')} type="text" placeholder="title" />
         <p>{errors.title?.message}</p>
-        <TextInput {...register('body')} type="text" placeholder="body" />
+        <Input {...register('body')} type="text" placeholder="body" />
         <p>{errors.body?.message}</p>
-        <Button size="lg" type="submit">
-          POST
-        </Button>
-      </form>
-    </S.Container>
+        <Button type="submit">POST</Button>
+      </FormControl>
+    </Container>
   );
 };
 

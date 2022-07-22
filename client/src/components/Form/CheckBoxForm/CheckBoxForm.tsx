@@ -1,7 +1,4 @@
-import Button from '@src/components/common/Button/Button';
-import { Input } from '@src/components/common/TextInput/TextInput.styles';
 import userFormBuilderStore from '@src/libs/store/useFormBuilderStore';
-import * as S from './CheckBoxForm.styles';
 
 interface Props {
   index: number;
@@ -29,12 +26,12 @@ const CheckBoxForm = ({ index }: Props) => {
   return (
     <div>
       <div>
-        <S.Flex>
+        <div>
           <div>
             {answerList?.map((answer, answerIndex) => (
               <div key={answerIndex}>
                 ⏹
-                <Input
+                <input
                   type="text"
                   value={answer}
                   onChange={(e) => onChangeItem(answerIndex, e.target.value)}
@@ -43,8 +40,8 @@ const CheckBoxForm = ({ index }: Props) => {
               </div>
             ))}
           </div>
-          <Button onClick={onCreate}>옵션 생성</Button>
-        </S.Flex>
+          <button onClick={onCreate}>옵션 생성</button>
+        </div>
       </div>
     </div>
   );

@@ -1,14 +1,19 @@
-import useFormBuilderStore from '@libs/store/useFormBuilderStore';
-import * as S from './ModelView.styles';
+import { Container } from '@chakra-ui/react';
+import useFormBuilderStore from '../../libs/store/useFormBuilderStore';
 
 const ModelView = () => {
   const { title, description, formList } = useFormBuilderStore();
   return (
-    <S.Container>
+    <Container
+      flex={'display'}
+      justifyContent={'center'}
+      alignItems={'center'}
+      marginTop="16"
+    >
       <pre>{JSON.stringify(title, null, '\t')}</pre>
       <pre>{JSON.stringify(description, null, '\t')}</pre>
       <pre>{JSON.stringify(formList, null, '\t')}</pre>
-    </S.Container>
+    </Container>
   );
 };
 

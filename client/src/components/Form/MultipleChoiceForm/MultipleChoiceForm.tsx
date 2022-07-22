@@ -1,7 +1,5 @@
-import Button from '@src/components/common/Button/Button';
-import { Input } from '@src/components/common/TextInput/TextInput.styles';
+import { Button, Input } from '@chakra-ui/react';
 import userFormBuilderStore from '@src/libs/store/useFormBuilderStore';
-import * as S from './MultipleChoiceForm.styles';
 
 interface Props {
   index: number;
@@ -29,7 +27,7 @@ const MultipleChoiceForm = ({ index }: Props) => {
   return (
     <div>
       <div>
-        <S.Flex>
+        <div>
           <div>
             {answerList?.map((answer, answerIndex) => (
               <div key={answerIndex}>
@@ -39,12 +37,12 @@ const MultipleChoiceForm = ({ index }: Props) => {
                   value={answer}
                   onChange={(e) => onChangeItem(answerIndex, e.target.value)}
                 />
-                <button onClick={() => onDelete(answerIndex)}>삭제</button>
+                <Button onClick={() => onDelete(answerIndex)}>삭제</Button>
               </div>
             ))}
           </div>
           <Button onClick={onCreate}>옵션 생성</Button>
-        </S.Flex>
+        </div>
       </div>
     </div>
   );

@@ -8,10 +8,8 @@ import ErrorFallback from '@components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
 import PostDetailContent from './PostDetailContent/PostDetailContent';
 import { useQueryClient } from 'react-query';
-import * as S from './PostDetail.styles';
 import AsyncBoundary from '@src/components/AsyncBoundary';
-import ErrorBoundary from '@src/components/ErrorBoundary';
-import { Suspense } from 'react';
+import { Container } from '@chakra-ui/react';
 
 interface IFormInputs {
   text: string;
@@ -46,26 +44,29 @@ const PostDetailPage = () => {
   };
 
   return (
-    <ErrorBoundary
-      fallback={
+    <AsyncBoundary
+      rejectedFallback={
         <ErrorFallback
           message={MESSAGE.ERROR.LOAD_DATA}
           queryKey={useGetPost.getKey(postId)}
         />
       }
     >
-      <Suspense>
-        <S.Container>
-          <PostDetailContent postId={postId}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <input {...register('text')} type="text" placeholder="text" />
-              <p>{errors.text?.message}</p>
-              <button>post</button>
-            </form>
-          </PostDetailContent>
-        </S.Container>
-      </Suspense>
-    </ErrorBoundary>
+      <Container
+        display={'flex'}
+        justifyContent={'center'}
+        alignItems={'center'}
+        marginTop={'32'}
+      >
+        <PostDetailContent postId={postId}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <input {...register('text')} type="text" placeholder="text" />
+            <p>{errors.text?.message}</p>
+            <button>post</button>
+          </form>
+        </PostDetailContent>
+      </Container>
+    </AsyncBoundary>
   );
 };
 

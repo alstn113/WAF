@@ -1,15 +1,14 @@
-import * as S from './FormItem.styles';
 import { Draggable } from 'react-beautiful-dnd';
 import { IForm } from '@libs/interfaces';
 import userFormBuilderStore from '@libs/store/useFormBuilderStore';
-import Button from '@src/components/common/Button/Button';
 import { ReactNode } from 'react';
 import CheckBoxForm from '@components/Form/CheckBoxForm/CheckBoxForm';
 import DropdonwForm from '@components/Form/DropdownForm/DropdonwForm';
 import LongAnswerForm from '@components/Form/LongAnswerForm/LongAnswerForm';
 import MultipleChoiceForm from '@components/Form/MultipleChoiceForm/MultipleChoiceForm';
 import ShortAnswerForm from '@components/Form/ShortAnswerForm/ShortAnswerForm';
-import Toggle from '@src/components/common/Toggle/Toggle';
+import { Button, Checkbox, Input, Select } from '@chakra-ui/react';
+import styled from '@emotion/styled';
 
 interface Props {
   formItem: IForm;
@@ -36,47 +35,66 @@ const FormItem = ({ formItem, index }: Props) => {
 
   return (
     <Draggable draggableId={String(index)} index={index}>
-      {(provided) => (
-        <S.Container {...provided.draggableProps} ref={provided.innerRef}>
-          <S.FlexColumn>
-            <S.Handle {...provided.dragHandleProps} />
-            <S.FlexRow>
-              <S.QuestionInput
-                type="text"
-                placeholder="질문"
-                value={formItem.question}
-                onChange={(e) => changeQuestion(index, e.target.value)}
-              />
-              <S.Select
-                defaultValue={'단답형'}
-                value={formItem.type}
-                onChange={(e) => {
-                  changeType(index, e.target.value);
-                }}
-              >
-                {Object.keys(formType).map((formType) => (
-                  <option key={formType} value={formType}>
-                    {formType}
-                  </option>
-                ))}
-              </S.Select>
-            </S.FlexRow>
-            <S.OfferedAnswerWrapper>
-              {formType[formItem.type]}
-            </S.OfferedAnswerWrapper>
-            <Toggle
-              labelText="필수"
-              checked={formItem.required}
-              onClick={() => toggleRequired(index)}
+      {(provided, snapshot) => (
+        <Container
+          {...provided.draggableProps}
+          ref={provided.innerRef}
+          isDragging={snapshot.isDragging}
+        >
+          <Handle {...provided.dragHandleProps} />
+          <div>
+            <Input
+              type="text"
+              placeholder="질문"
+              value={formItem.question}
+              width="auto"
+              onChange={(e) => changeQuestion(index, e.target.value)}
             />
-            <Button size="md" onClick={onDelete}>
-              삭제
-            </Button>
-          </S.FlexColumn>
-        </S.Container>
+            <select
+              defaultValue={'단답형'}
+              value={formItem.type}
+              onChange={(e) => {
+                changeType(index, e.target.value);
+              }}
+            >
+              {Object.keys(formType).map((formType) => (
+                <option key={formType} value={formType}>
+                  {formType}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div>{formType[formItem.type]}</div>
+          <Checkbox
+            isChecked={formItem.required}
+            onChange={() => toggleRequired(index)}
+          />
+          <Button size="md" onClick={onDelete}>
+            삭제
+          </Button>
+        </Container>
       )}
     </Draggable>
   );
 };
+
+export const Handle = styled.div`
+  height: 1.5rem;
+  width: 100%;
+  background: rgb(228, 143, 143);
+  margin-bottom: 0.5rem;
+`;
+
+export const Container = styled.div<{
+  isDragging: boolean;
+}>`
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  padding: 8px;
+  min-height: 100px;
+  text-align: center;
+  margin-bottom: 8px;
+  background-color: ${(props) => (props.isDragging ? 'lightgreen' : 'white')};
+`;
 
 export default FormItem;

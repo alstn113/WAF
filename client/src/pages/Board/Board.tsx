@@ -1,28 +1,24 @@
-import * as S from './Board.styles';
 import useGetPosts from '@libs/hooks/queries/post/useGetPosts';
 import ErrorFallback from '@components/ErrorFallback/ErrorFallback';
 import { MESSAGE } from '@src/config/message';
 import PostList from '@pages/Board/PostList/PostList';
 import AsyncBoundary from '@src/components/AsyncBoundary';
-import ErrorBoundary from '@src/components/ErrorBoundary';
-import { Suspense } from 'react';
+import { Container } from '@chakra-ui/react';
 
 const Board = () => {
   return (
-    <ErrorBoundary
-      fallback={
+    <AsyncBoundary
+      rejectedFallback={
         <ErrorFallback
           message={MESSAGE.ERROR.LOAD_DATA}
           queryKey={useGetPosts.getKey()}
         />
       }
     >
-      <Suspense>
-        <S.Container>
-          <PostList />
-        </S.Container>
-      </Suspense>
-    </ErrorBoundary>
+      <Container display={'flex'} justifyContent={'center'} marginTop={'32'}>
+        <PostList />
+      </Container>
+    </AsyncBoundary>
   );
 };
 

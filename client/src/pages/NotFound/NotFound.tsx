@@ -1,11 +1,10 @@
+import { Container, Image } from '@chakra-ui/react';
 import { NotFoundImage } from '@assets/.';
-import * as S from './NotFound.styles';
-
 const NotFound = () => {
   return (
-    <S.Container>
-      <img src={NotFoundImage} />
-    </S.Container>
+    <Container display={'flex'} justifyContent={'center'} alignItems={'center'}>
+      <Image src={NotFoundImage} marginTop={'32'} />
+    </Container>
   );
 };
 

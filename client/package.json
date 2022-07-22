@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.4",
+    "@chakra-ui/react": "^2.2.4",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@hookform/resolvers": "^2.9.6",
@@ -28,20 +28,11 @@
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.9",
     "@emotion/babel-plugin": "^11.9.2",
-    "@storybook/addon-actions": "^6.5.9",
-    "@storybook/addon-essentials": "^6.5.9",
-    "@storybook/addon-interactions": "^6.5.9",
-    "@storybook/addon-links": "^6.5.9",
-    "@storybook/builder-vite": "^0.2.0",
-    "@storybook/react": "^6.5.9",
-    "@storybook/testing-library": "^0.0.13",
     "@types/react": "^18.0.15",
     "@types/react-beautiful-dnd": "^13.1.2",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
-    "babel-loader": "^8.2.5",
     "typescript": "^4.6.4",
     "vite": "^3.0.0",
     "vite-tsconfig-paths": "^3.5.0"

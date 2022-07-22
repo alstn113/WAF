@@ -1,5 +1,4 @@
-import Button from '@src/components/common/Button/Button';
-import { Input } from '@src/components/common/TextInput/TextInput.styles';
+import { Input } from '@chakra-ui/react';
 import userFormBuilderStore from '@src/libs/store/useFormBuilderStore';
 import reorder from '@src/libs/utils/reorder';
 import {
@@ -8,7 +7,6 @@ import {
   Droppable,
   DropResult,
 } from 'react-beautiful-dnd';
-import * as S from './DropdownForm.styles';
 
 interface Props {
   index: number;
@@ -45,7 +43,7 @@ const DropdownForm = ({ index }: Props) => {
   return (
     <div>
       <div>
-        <S.Flex>
+        <div>
           <DragDropContext onDragEnd={onDragEnd}>
             <Droppable droppableId="drop">
               {(provided) => (
@@ -61,16 +59,9 @@ const DropdownForm = ({ index }: Props) => {
                             {...provided.draggableProps}
                             ref={provided.innerRef}
                           >
-                            <div
-                              {...provided.dragHandleProps}
-                              style={{
-                                width: '100%',
-                                height: '10px',
-                                backgroundColor: 'rgb(228, 143, 143)',
-                              }}
-                            />
-                            ⏺
+                            <div {...provided.dragHandleProps}>handle</div>
                             <Input
+                              width="auto"
                               type="text"
                               value={answerItem}
                               onChange={(e) =>
@@ -90,8 +81,8 @@ const DropdownForm = ({ index }: Props) => {
               )}
             </Droppable>
           </DragDropContext>
-          <Button onClick={onCreate}>옵션 생성</Button>
-        </S.Flex>
+          <button onClick={onCreate}>옵션 생성</button>
+        </div>
       </div>
     </div>
   );
